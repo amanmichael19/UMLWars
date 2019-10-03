@@ -9,5 +9,7 @@
 
 // add headers that you want to pre-compile here
 #include "framework.h"
+#include <gdiplus.h>
+#pragma comment(lib, "gdiplus.lib")
 
 #endif //PCH_H

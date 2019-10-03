@@ -14,6 +14,9 @@
 // See project1.cpp for the implementation of this class
 //
 
+/**
+ * Class that represents an instance of the application
+ */
 class Cproject1App : public CWinApp
 {
 public:
@@ -30,6 +33,10 @@ public:
 public:
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
+
+private:
+	Gdiplus::GdiplusStartupInput gdiplusStartupInput; ///< Contains startup information for Gdiplus
+	ULONG_PTR gdiplusToken = 0; ///< Pointer to the GDI+ Token the app will use
 };
 
 extern Cproject1App theApp;

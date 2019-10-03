@@ -1,3 +1,11 @@
+/**
+ * \file ChildView.h
+ *
+ * \author Daniel Anderson
+ *
+ * Class that displays the program window
+ */
+
 
 // ChildView.h : interface of the CChildView class
 //
@@ -8,6 +16,9 @@
 
 // CChildView window
 
+/**
+ * Class that displays the program window
+ */
 class CChildView : public CWnd
 {
 // Construction

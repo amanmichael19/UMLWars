@@ -50,6 +50,10 @@ Cproject1App theApp;
 
 // Cproject1App initialization
 
+/**
+ * Creates an instance of the app
+ * \returns True if instance was created successfully
+ */
 BOOL Cproject1App::InitInstance()
 {
 	// InitCommonControlsEx() is required on Windows XP if an application
@@ -64,6 +68,7 @@ BOOL Cproject1App::InitInstance()
 
 	CWinApp::InitInstance();
 
+	Gdiplus::GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
 
 	// Initialize OLE libraries
 	if (!AfxOleInit())
@@ -110,9 +115,14 @@ BOOL Cproject1App::InitInstance()
 	return TRUE;
 }
 
+/**
+ * Destroys an instance of the app
+ * \returns True if instance was successfully exited
+ */
 int Cproject1App::ExitInstance()
 {
 	//TODO: handle additional resources you may have added
+	Gdiplus::GdiplusShutdown(gdiplusToken);
 	AfxOleTerm(FALSE);
 
 	return CWinApp::ExitInstance();
@@ -123,6 +133,9 @@ int Cproject1App::ExitInstance()
 
 // CAboutDlg dialog used for App About
 
+/**
+ * Class for an about window dialog box
+ */
 class CAboutDlg : public CDialogEx
 {
 public:
@@ -134,6 +147,8 @@ public:
 #endif
 
 protected:
+	/// DDX/DDV Support
+	/// \param pDX Data exhanger
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
 // Implementation
@@ -141,6 +156,10 @@ protected:
 	DECLARE_MESSAGE_MAP()
 };
 
+/**
+ * CAboutDlg Constructor
+ * \returns A new about Dialogbox
+ */
 CAboutDlg::CAboutDlg() noexcept : CDialogEx(IDD_ABOUTBOX)
 {
 }
@@ -153,7 +172,10 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
-// App command to run the dialog
+
+/**
+ * App command to run the dialog
+ */
 void Cproject1App::OnAppAbout()
 {
 	CAboutDlg aboutDlg;

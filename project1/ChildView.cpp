@@ -44,6 +44,9 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 	return TRUE;
 }
 
+/**
+ * What the ChildView does when it paints the screen.
+ */
 void CChildView::OnPaint() 
 {
 	CPaintDC dc(this); // device context for painting
