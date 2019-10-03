@@ -1,8 +1,12 @@
 /**
  * \file GameObject.cpp
  *
- * \author Daniel Anderson
+ * \author Caleb Jenkins
  */
 
 #include "pch.h"
 #include "GameObject.h"
+
+CGameObject::CGameObject()
+{
+}
