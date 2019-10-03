@@ -44,10 +44,13 @@ public:
 
 private:
 	/// An object that is the Game
-	CGame mGame;
+	//CGame mGame;
+
 
 protected:
 	afx_msg void OnPaint();
 	DECLARE_MESSAGE_MAP()
+
+
 };
 
