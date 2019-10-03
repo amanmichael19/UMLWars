@@ -12,6 +12,7 @@
 
 
 #pragma once
+#include "Game.h"
 
 
 // CChildView window
@@ -40,6 +41,11 @@ public:
 	virtual ~CChildView();
 
 	// Generated message map functions
+
+private:
+	/// An object that is the Game
+	CGame mGame;
+
 protected:
 	afx_msg void OnPaint();
 	DECLARE_MESSAGE_MAP()
