@@ -7,4 +7,6 @@
 #include "pch.h"
 #include "GameObject.h"
 
-
+CGameObject::CGameObject()
+{
+}

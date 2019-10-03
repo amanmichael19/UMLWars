@@ -13,6 +13,7 @@ class CGameObject
 {
 public:
 
+	CGameObject();
 
 
 	/** The X location of the item
