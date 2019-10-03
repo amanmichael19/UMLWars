@@ -185,7 +185,7 @@ void CXMLReader::LoadInheritance(const shared_ptr<CXmlNode>& parentNode)
 			inherit.push_back(node->GetAttributeValue(L"derived", L""));
 
 			// Pushback direction, defaults to down
-			inherit.push_back(node->GetAttributeValue(L"direction", L"down"));
+			inherit.push_back(node->GetAttributeValue(L"direction", L"up"));
 
 			// Operation is good
 			if (bad == L"")

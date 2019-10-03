@@ -97,7 +97,7 @@ namespace Testing
 			// Bad was chosen because of use of "up" direction value
 			Assert::IsTrue(goodInherits.at(2).at(0) == L"Fish");
 			Assert::IsTrue(goodInherits.at(2).at(1) == L"StinkyFish");
-			Assert::IsTrue(goodInherits.at(2).at(2) == L"down");
+			Assert::IsTrue(goodInherits.at(2).at(2) == L"up");
 			Assert::IsTrue(badInherits.at(3).at(0) == L"Insect");
 			Assert::IsTrue(badInherits.at(3).at(1) == L"Fly");
 			Assert::IsTrue(badInherits.at(3).at(2) == L"down");
