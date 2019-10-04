@@ -8,6 +8,7 @@
 
 #pragma once
 #include "GameObject.h"
+#include <string>
 
 /**
  * Class that displays results of game
@@ -20,5 +21,6 @@ public:
 private:
 	void DisplayRank();
 	int mFinalScore = 0; ///< The calculated final score achieved in the game, defaults to 0
+	std::wstring mRankText = L""; ///< The ranking text to be displayed on the screen
 };
 

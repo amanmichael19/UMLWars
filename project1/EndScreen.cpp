@@ -7,6 +7,8 @@
 #include "pch.h"
 #include "EndScreen.h"
 
+using std::wstring;
+
 /// Value of a Correct UML
 const int CORRECT_VALUE = 2;
 
@@ -27,6 +29,21 @@ const int RANK_THREE_CUTOFF = 15;
 
 /// Final Score cutoff for rank 4
 const int RANK_FOUR_CUTOFF = 20;
+
+/// Text for Rank 1
+const wstring RANK_ONE_TEXT = L"A SQUIRREL WITH A PEN\nSquirrels are good at many things, but grading UML is not one of them.";
+
+/// Text for Rank 2
+const wstring RANK_TWO_TEXT = L"A FIRST YEAR CS STUDENT\nA good try, but a lot of room for improvement.";
+
+/// Text for Rank 3
+const wstring RANK_THREE_TEXT = L"A SEASONED ULA\nYou have seen your fair share of UML, but your not quite an expert yet.";
+
+/// Text for Rank 4
+const wstring RANK_FOUR_TEXT = L"THE HEAD TA\nAn impressive display. Surely this is the final rank?";
+
+/// Text for Rank 5
+const wstring RANK_FIVE_TEXT = L"LIVING LEGEND : GRADY BOOCH\nIt was not.";
 
 /**
  * Calculate the final score of the game
@@ -63,30 +80,30 @@ void CEndScreen::DisplayRank()
 	// Rank 1
 	if (mFinalScore < RANK_ONE_CUTOFF)
 	{
-
+		mRankText = RANK_ONE_TEXT;
 	}
 
 	// Rank 2
 	else if (mFinalScore < RANK_TWO_CUTOFF)
 	{
-
+		mRankText = RANK_TWO_TEXT;
 	}
 
 	// Rank 3
 	else if (mFinalScore < RANK_THREE_CUTOFF)
 	{
-
+		mRankText = RANK_THREE_TEXT;
 	}
 
 	// Rank 4
 	else if (mFinalScore < RANK_FOUR_CUTOFF)
 	{
-
+		mRankText = RANK_FOUR_TEXT;
 	}
 
 	// Rank 5
 	else
 	{
-
+		mRankText = RANK_FIVE_TEXT;
 	}
 }
