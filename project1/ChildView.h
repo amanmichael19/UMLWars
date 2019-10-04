@@ -1,7 +1,7 @@
 /**
  * \file ChildView.h
  *
- * \author Daniel Anderson
+ * \author Ziyuan Zhang
  *
  * Class that displays the program window
  */

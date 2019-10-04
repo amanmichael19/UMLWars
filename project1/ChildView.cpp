@@ -1,3 +1,9 @@
+/**
+ * \file ChildView.cpp
+ *
+ * \author Ziyuan Zhang
+ */
+
 
 // ChildView.cpp : implementation of the CChildView class
 //
