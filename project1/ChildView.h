@@ -44,7 +44,7 @@ public:
 
 private:
 	/// An object that is the Game
-	//CGame mGame;
+	CGame mGame;
 
 
 protected:

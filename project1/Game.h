@@ -20,6 +20,11 @@ public:
 	/// Game constructor
 	CGame();
 
+	/// Allows adding CGameObjects
+	void Add(std::shared_ptr<CGameObject> gob);
+
+	std::shared_ptr<CGameObject> CGame::HitTest(int x, int y);
+
 private:
 
 	/// All of the gameobjects to populate our game
