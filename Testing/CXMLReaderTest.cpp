@@ -41,9 +41,10 @@ namespace Testing
 			// Check for specific good and bad names
 			// Good was arbitrary
 			// Bad was chosen as it is a special case
-			Assert::IsTrue(goodNames.at(2) == L"Picture");
-			Assert::IsTrue(badNames.at(1).at(0) == L"");
-			Assert::IsTrue(badNames.at(1).at(1) == L"Missing class name");
+			Assert::IsTrue(goodNames.at(2)->GetName() == L"Picture");
+			Assert::IsTrue(goodNames.at(2)->GetBad() == L"");
+			Assert::IsTrue(badNames.at(1)->GetName() == L"");
+			Assert::IsTrue(badNames.at(1)->GetBad() == L"Missing class name");
 		}
 
 		void TestAttributes(CXMLReader reader)
@@ -59,9 +60,10 @@ namespace Testing
 			// Check for specific good and bad attributes
 			// Good was arbitrary
 			// Bad was chosen because of use of <> characters
-			Assert::IsTrue(goodAttributes.at(2) == L"description: string");
-			Assert::IsTrue(badAttributes.at(5).at(0) == L"v: vector<double>");
-			Assert::IsTrue(badAttributes.at(5).at(1) == L"Language artifact");
+			Assert::IsTrue(goodAttributes.at(2)->GetAttribute() == L"description: string");
+			Assert::IsTrue(goodAttributes.at(2)->GetBad() == L"");
+			Assert::IsTrue(badAttributes.at(5)->GetAttribute() == L"v: vector<double>");
+			Assert::IsTrue(badAttributes.at(5)->GetBad() == L"Language artifact");
 		}
 
 		void TestOperations(CXMLReader reader)
@@ -77,9 +79,10 @@ namespace Testing
 			// Check for specific good and bad operations
 			// Good was arbitrary
 			// Bad was chosen because of use of <> characters
-			Assert::IsTrue(goodOperations.at(2) == L"Save(image: Image, filename: string)");
-			Assert::IsTrue(badOperations.at(0).at(0) == L"GetActors(): vector<Actor>");
-			Assert::IsTrue(badOperations.at(0).at(1) == L"Language artifact");
+			Assert::IsTrue(goodOperations.at(2)->GetOperation() == L"Save(image: Image, filename: string)");
+			Assert::IsTrue(goodOperations.at(2)->GetBad() == L"");
+			Assert::IsTrue(badOperations.at(0)->GetOperation() == L"GetActors(): vector<Actor>");
+			Assert::IsTrue(badOperations.at(0)->GetBad() == L"Language artifact");
 		}
 
 		void TestInherits(CXMLReader reader)
@@ -95,13 +98,13 @@ namespace Testing
 			// Check for specific good and bad inherits
 			// Good was arbitrary
 			// Bad was chosen because of use of "up" direction value
-			Assert::IsTrue(goodInherits.at(2).at(0) == L"Fish");
-			Assert::IsTrue(goodInherits.at(2).at(1) == L"StinkyFish");
-			Assert::IsTrue(goodInherits.at(2).at(2) == L"up");
-			Assert::IsTrue(badInherits.at(3).at(0) == L"Insect");
-			Assert::IsTrue(badInherits.at(3).at(1) == L"Fly");
-			Assert::IsTrue(badInherits.at(3).at(2) == L"down");
-			Assert::IsTrue(badInherits.at(3).at(3) == L"Upside down");
+			Assert::IsTrue(goodInherits.at(2)->GetBase() == L"Fish");
+			Assert::IsTrue(goodInherits.at(2)->GetDerived() == L"StinkyFish");
+			Assert::IsTrue(goodInherits.at(2)->GetDirection() == L"up");
+			Assert::IsTrue(badInherits.at(3)->GetBase() == L"Insect");
+			Assert::IsTrue(badInherits.at(3)->GetDerived() == L"Fly");
+			Assert::IsTrue(badInherits.at(3)->GetDirection() == L"down");
+			Assert::IsTrue(badInherits.at(3)->GetBad() == L"Upside down");
 		}
 	};
 }

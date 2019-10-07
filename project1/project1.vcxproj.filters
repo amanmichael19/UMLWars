@@ -48,6 +48,21 @@
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UMLName.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UMLComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UMLAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UMLOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UMLInheritance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="project1.cpp">
@@ -72,6 +87,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UMLName.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UMLComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UMLAttribute.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UMLOperation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UMLInheritance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
