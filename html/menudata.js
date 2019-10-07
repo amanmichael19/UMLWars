@@ -45,7 +45,9 @@ var menudata={children:[
 {text:"l",url:"functions_func.html#index_l"},
 {text:"o",url:"functions_func.html#index_o"},
 {text:"s",url:"functions_func.html#index_s"}]},
-{text:"Variables",url:"functions_vars.html"}]}]},
+{text:"Variables",url:"functions_vars.html",children:[
+{text:"g",url:"functions_vars.html#index_g"},
+{text:"m",url:"functions_vars.html#index_m"}]}]}]},
 {text:"Files",url:"files.html",children:[
 {text:"File List",url:"files.html"},
 {text:"File Members",url:"globals.html",children:[

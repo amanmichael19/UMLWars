@@ -40,6 +40,14 @@ var dir_9494b5426caa720dc1bf65a82ac3fc2c =
     [ "UMLOperation.h", "_u_m_l_operation_8h.html", [
       [ "CUMLOperation", "class_c_u_m_l_operation.html", "class_c_u_m_l_operation" ]
     ] ],
+    [ "UMLPiece.cpp", "_u_m_l_piece_8cpp.html", null ],
+    [ "UMLPiece.h", "_u_m_l_piece_8h.html", [
+      [ "CUMLPiece", "class_c_u_m_l_piece.html", "class_c_u_m_l_piece" ]
+    ] ],
+    [ "UMLPieceEmitter.cpp", "_u_m_l_piece_emitter_8cpp.html", null ],
+    [ "UMLPieceEmitter.h", "_u_m_l_piece_emitter_8h.html", [
+      [ "CUMLPieceEmitter", "class_c_u_m_l_piece_emitter.html", "class_c_u_m_l_piece_emitter" ]
+    ] ],
     [ "XMLReader.cpp", "_x_m_l_reader_8cpp.html", "_x_m_l_reader_8cpp" ],
     [ "XMLReader.h", "_x_m_l_reader_8h.html", [
       [ "CXMLReader", "class_c_x_m_l_reader.html", "class_c_x_m_l_reader" ]

@@ -201,6 +201,8 @@
     <ClInclude Include="UMLInheritance.h" />
     <ClInclude Include="UMLName.h" />
     <ClInclude Include="UMLOperation.h" />
+    <ClInclude Include="UMLPiece.h" />
+    <ClInclude Include="UMLPieceEmitter.h" />
     <ClInclude Include="XmlNode.h" />
     <ClInclude Include="XMLReader.h" />
   </ItemGroup>
@@ -221,6 +223,8 @@
     <ClCompile Include="UMLInheritance.cpp" />
     <ClCompile Include="UMLName.cpp" />
     <ClCompile Include="UMLOperation.cpp" />
+    <ClCompile Include="UMLPiece.cpp" />
+    <ClCompile Include="UMLPieceEmitter.cpp" />
     <ClCompile Include="XmlNode.cpp" />
     <ClCompile Include="XMLReader.cpp" />
   </ItemGroup>

@@ -11,5 +11,7 @@ var annotated_dup =
     [ "CUMLInheritance", "class_c_u_m_l_inheritance.html", "class_c_u_m_l_inheritance" ],
     [ "CUMLName", "class_c_u_m_l_name.html", "class_c_u_m_l_name" ],
     [ "CUMLOperation", "class_c_u_m_l_operation.html", "class_c_u_m_l_operation" ],
+    [ "CUMLPiece", "class_c_u_m_l_piece.html", "class_c_u_m_l_piece" ],
+    [ "CUMLPieceEmitter", "class_c_u_m_l_piece_emitter.html", "class_c_u_m_l_piece_emitter" ],
     [ "CXMLReader", "class_c_x_m_l_reader.html", "class_c_x_m_l_reader" ]
 ];

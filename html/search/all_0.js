@@ -9,10 +9,13 @@ var searchData=
   ['childview_2eh_6',['ChildView.h',['../_child_view_8h.html',1,'']]],
   ['correct_5fvalue_7',['CORRECT_VALUE',['../_end_screen_8cpp.html#a648c9523685778aa59bf46c67c7f5803',1,'EndScreen.cpp']]],
   ['cproject1app_8',['Cproject1App',['../class_cproject1_app.html',1,'']]],
-  ['cumlattribute_9',['CUMLAttribute',['../class_c_u_m_l_attribute.html',1,'']]],
-  ['cumlcomponent_10',['CUMLComponent',['../class_c_u_m_l_component.html',1,'']]],
-  ['cumlinheritance_11',['CUMLInheritance',['../class_c_u_m_l_inheritance.html',1,'']]],
-  ['cumlname_12',['CUMLName',['../class_c_u_m_l_name.html',1,'']]],
-  ['cumloperation_13',['CUMLOperation',['../class_c_u_m_l_operation.html',1,'']]],
-  ['cxmlreader_14',['CXMLReader',['../class_c_x_m_l_reader.html',1,'']]]
+  ['createumlpiece_9',['CreateUMLPiece',['../class_c_u_m_l_piece_emitter.html#a6ff8feaf195e42a921baa8648065f2fc',1,'CUMLPieceEmitter']]],
+  ['cumlattribute_10',['CUMLAttribute',['../class_c_u_m_l_attribute.html',1,'']]],
+  ['cumlcomponent_11',['CUMLComponent',['../class_c_u_m_l_component.html',1,'']]],
+  ['cumlinheritance_12',['CUMLInheritance',['../class_c_u_m_l_inheritance.html',1,'']]],
+  ['cumlname_13',['CUMLName',['../class_c_u_m_l_name.html',1,'']]],
+  ['cumloperation_14',['CUMLOperation',['../class_c_u_m_l_operation.html',1,'']]],
+  ['cumlpiece_15',['CUMLPiece',['../class_c_u_m_l_piece.html',1,'']]],
+  ['cumlpieceemitter_16',['CUMLPieceEmitter',['../class_c_u_m_l_piece_emitter.html',1,'CUMLPieceEmitter'],['../class_c_u_m_l_piece_emitter.html#aee3eee818d74d49ec8f0fff5e577054d',1,'CUMLPieceEmitter::CUMLPieceEmitter()']]],
+  ['cxmlreader_17',['CXMLReader',['../class_c_x_m_l_reader.html',1,'']]]
 ];

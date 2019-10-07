@@ -13,6 +13,8 @@ var hierarchy =
       [ "CUMLName", "class_c_u_m_l_name.html", null ],
       [ "CUMLOperation", "class_c_u_m_l_operation.html", null ]
     ] ],
+    [ "CUMLPiece", "class_c_u_m_l_piece.html", null ],
+    [ "CUMLPieceEmitter", "class_c_u_m_l_piece_emitter.html", null ],
     [ "CWinApp", null, [
       [ "Cproject1App", "class_cproject1_app.html", null ]
     ] ],
