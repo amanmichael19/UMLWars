@@ -45,6 +45,8 @@ public:
 private:
 	/// An object that is the Game
 	CGame mGame;
+	/// Any object in the game
+	std::shared_ptr<CGameObject> mGameObjects;
 
 
 protected:
