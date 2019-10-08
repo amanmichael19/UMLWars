@@ -10,8 +10,8 @@
 
 #pragma once
 
-
 class CGame;
+class CGameObjectVisitor;
 
 /**
  * GameObject class to hold various game objects
@@ -67,6 +67,10 @@ public:
 
 	bool HitTest(int x, int y);
 
+	/** Accept a visitor
+	* \param visitor
+	*/
+	virtual void Accept(CGameObjectVisitor* visitor) {};
 
 private:
 

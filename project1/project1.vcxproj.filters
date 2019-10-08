@@ -78,6 +78,9 @@
     <ClInclude Include="UMLPiece.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ScoreBoard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="project1.cpp">
@@ -132,6 +135,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UMLPiece.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreBoard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

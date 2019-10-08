@@ -198,6 +198,7 @@
     <ClInclude Include="PlayerVisitor.h" />
     <ClInclude Include="project1.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="ScoreBoard.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="UMLAttribute.h" />
     <ClInclude Include="UMLComponent.h" />
@@ -224,6 +225,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerVisitor.cpp" />
     <ClCompile Include="project1.cpp" />
+    <ClCompile Include="ScoreBoard.cpp" />
     <ClCompile Include="UMLAttribute.cpp" />
     <ClCompile Include="UMLComponent.cpp" />
     <ClCompile Include="UMLInheritance.cpp" />
