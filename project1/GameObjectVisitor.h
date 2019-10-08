@@ -12,6 +12,7 @@
 //forward reference game object types
 class CPlayer;
 class CPen;
+class CUMLPiece;
 
 /**
  * Class implementing game object visitor
@@ -28,5 +29,9 @@ class CGameObjectVisitor
 		/// visit pen object
 		/// \param pen
 		virtual void VisitPen(CPen* pen) {}
+
+		/// visit uml piece
+		/// \param umlPiece
+		virtual void VisitUMLPiece(CUMLPiece* umlPiece) {}
 };
 
