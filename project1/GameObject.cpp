@@ -46,3 +46,18 @@ bool CGameObject::HitTest(int x, int y)
 		return true;
 	}
 }
+
+
+
+/**
+* Draw our item
+* \param graphics The graphics context to draw on
+*/
+void CGameObject::Draw(Gdiplus::Graphics* graphics)
+{
+	double wid = mObjectImage->GetWidth();
+	double hit = mObjectImage->GetHeight();
+	graphics->DrawImage(mObjectImage.get(),
+			float(GetX() + wid / 2), float(GetY() - hit / 2),
+			-(float)mObjectImage->GetWidth(), (float)mObjectImage->GetHeight());
+}

@@ -9,6 +9,9 @@
  */
 
 #pragma once
+#include <memory>
+using namespace Gdiplus;
+using namespace std;
 
 class CGame;
 class CGameObjectVisitor;
@@ -72,6 +75,10 @@ public:
 	*/
 	virtual void Accept(CGameObjectVisitor* visitor) {};
 
+	/// Draw this item
+	/// \param graphics Graphics device to draw on
+	void Draw(Gdiplus::Graphics* graphics);
+
 private:
 
 	//GameObject location and center of object
@@ -84,5 +91,8 @@ private:
 
 	/// The Game for this object
 	CGame* mGame;
+
+	/// The image of this object
+	std::unique_ptr<Gdiplus::Bitmap> mObjectImage;
 };
 
