@@ -13,6 +13,7 @@
 class CPlayer;
 class CPen;
 class CUMLPiece;
+class CScoreBoard;
 
 /**
  * Class implementing game object visitor
@@ -33,5 +34,9 @@ class CGameObjectVisitor
 		/// visit uml piece
 		/// \param umlPiece
 		virtual void VisitUMLPiece(CUMLPiece* umlPiece) {}
+
+		/// visit score board
+		/// \param scoreboard
+		virtual void VisitScoreBoard(CScoreBoard* scoreBoard) {}
 };
 
