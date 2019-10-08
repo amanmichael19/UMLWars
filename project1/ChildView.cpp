@@ -12,6 +12,7 @@
 #include "framework.h"
 #include "project1.h"
 #include "ChildView.h"
+#include "DoubleBufferDC.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -34,6 +35,7 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEMOVE()
+	ON_WM_ERASEBKGND()
 END_MESSAGE_MAP()
 
 
@@ -58,9 +60,8 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
  */
 void CChildView::OnPaint() 
 {
-	CPaintDC dc(this); // device context for painting
-	
-	// TODO: Add your message handler code here
+	CPaintDC paintDC(this);     // device context for painting
+	CDoubleBufferDC dc(&paintDC); // device context for painting
 	
 	// Do not call CWnd::OnPaint() for painting messages
 }
@@ -88,4 +89,16 @@ void CChildView::OnMouseMove(UINT nFlags, CPoint point)
 	// TODO: Add your message handler code here and/or call default
 
 	CWnd::OnMouseMove(nFlags, point);
+}
+
+/**
+ * Erase the background
+ *
+ * This is disabled to eliminate flicker
+ * \param pDC Device context
+ * \returns FALSE
+ */
+BOOL CChildView::OnEraseBkgnd(CDC* pDC)
+{
+	return FALSE;
 }

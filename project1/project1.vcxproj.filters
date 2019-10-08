@@ -81,7 +81,11 @@
     <ClInclude Include="ScoreBoard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="RedPend.h">
+=======
+    <ClInclude Include="DoubleBufferDC.h">
+>>>>>>> f27c7fe3654593c884718da85f896c0df50ee51f
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
