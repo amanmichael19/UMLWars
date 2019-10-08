@@ -3,7 +3,7 @@
 /**
  * \file UmlVisitor.h
  *
- * \author Amanuel
+ * \author Funakoshi Silva
  *
  *
  */
@@ -19,7 +19,7 @@ class CUmlVisitor : public CGameObjectVisitor
 {
 public:
 	/// visit UML object
-	/// \param player
+	/// \param piece
 	virtual void VisitUML(CUMLPiece* piece);
 };
 
