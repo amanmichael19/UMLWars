@@ -1,172 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="ChildView.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObjectVisitor.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerVisitor.cpp" />
+    <ClCompile Include="project1.cpp" />
+    <ClCompile Include="RedPend.cpp" />
+    <ClCompile Include="ScoreBoard.cpp" />
+    <ClCompile Include="UMLAttribute.cpp" />
+    <ClCompile Include="UMLComponent.cpp" />
+    <ClCompile Include="UMLInheritance.cpp" />
+    <ClCompile Include="UMLName.cpp" />
+    <ClCompile Include="UMLOperation.cpp" />
+    <ClCompile Include="UMLPiece.cpp" />
+    <ClCompile Include="UMLPieceEmitter.cpp" />
+    <ClCompile Include="XmlNode.cpp" />
+    <ClCompile Include="XMLReader.cpp" />
+    <ClCompile Include="UmlVisitor.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="project1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MainFrm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ChildView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="XmlNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="XMLReader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UMLName.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UMLComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UMLAttribute.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UMLOperation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UMLInheritance.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectVisitor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerVisitor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UMLPieceEmitter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UMLPiece.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreBoard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="RedPend.h">
-=======
-    <ClInclude Include="DoubleBufferDC.h">
->>>>>>> f27c7fe3654593c884718da85f896c0df50ee51f
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="ChildView.h" />
+    <ClInclude Include="DoubleBufferDC.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjectVisitor.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerVisitor.h" />
+    <ClInclude Include="project1.h" />
+    <ClInclude Include="RedPend.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="ScoreBoard.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="UMLAttribute.h" />
+    <ClInclude Include="UMLComponent.h" />
+    <ClInclude Include="UMLInheritance.h" />
+    <ClInclude Include="UMLName.h" />
+    <ClInclude Include="UMLOperation.h" />
+    <ClInclude Include="UMLPiece.h" />
+    <ClInclude Include="UMLPieceEmitter.h" />
+    <ClInclude Include="XmlNode.h" />
+    <ClInclude Include="XMLReader.h" />
+    <ClInclude Include="UmlVisitor.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="project1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MainFrm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ChildView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="XmlNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="XMLReader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UMLName.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UMLComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UMLAttribute.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UMLOperation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UMLInheritance.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectVisitor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerVisitor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UMLPieceEmitter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UMLPiece.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreBoard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RedPend.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ResourceCompile Include="project1.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="project1.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    <Image Include="res\project1.ico" />
+    <Image Include="res\Toolbar.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\project1.rc2">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="res\project1.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\Toolbar.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <None Include="res\project1.rc2" />
   </ItemGroup>
 </Project>
