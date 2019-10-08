@@ -34,8 +34,9 @@ public:
 private:
 	std::unique_ptr<Gdiplus::Bitmap> mPlayerImage;
 
+	//similar idea could be used
 	// All of the items to populate our aquarium
-	std::vector<std::shared_ptr<CGameObject> > mItems;
+	//std::vector<std::shared_ptr<CGameObject> > mItems;
 };
 
 
