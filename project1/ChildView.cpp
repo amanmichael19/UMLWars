@@ -86,8 +86,6 @@ void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 
 void CChildView::OnMouseMove(UINT nFlags, CPoint point)
 {
-	// TODO: Add your message handler code here and/or call default
-
 	CWnd::OnMouseMove(nFlags, point);
 }
 
