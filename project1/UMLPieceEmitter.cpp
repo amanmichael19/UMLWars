@@ -55,6 +55,7 @@ shared_ptr<CUMLPiece> CUMLPieceEmitter::CreateUMLPiece()
 	if (((rand() % 10) + mHandicap) > 4)
 	{
 		// Make bad UML
+		// TODO: Decide which element is going to be 'bad'
 	}
 
 	else

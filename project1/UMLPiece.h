@@ -24,6 +24,22 @@ public:
 	/// \returns The current vlaue of mBad
 	std::wstring GetBad() { return mBad; }
 
+	/// Setter for mName
+	/// \param name The new value for mName
+	void SetName(std::wstring name) { mName = name; }
+
+	/// Getter for mName
+	/// \returns The current vlaue of mName
+	std::wstring GetName() { return mName; }
+
+	/// Adds attribute to UMLPiece
+	/// \param attribute The attribute being added
+	void AddAttribute(std::wstring attribute) { mAttributes.push_back(attribute); }
+
+	/// Adds operation to UMLPiece
+	/// \param operation The operation being added
+	void AddOperation(std::wstring operation) { mOperations.push_back(operation); }
+
 private:
 	std::wstring mBad; ///< The reason, if any, why this UMLPiece is bad
 	std::wstring mName; ///< The class name of this UMLPiece
