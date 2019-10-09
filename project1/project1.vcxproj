@@ -203,8 +203,11 @@
     <ClInclude Include="ScoreBoard.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="UMLAttribute.h" />
+    <ClInclude Include="UMLClass.h" />
     <ClInclude Include="UMLComponent.h" />
+    <ClInclude Include="UMLDisplay.h" />
     <ClInclude Include="UMLInheritance.h" />
+    <ClInclude Include="UMLInherited.h" />
     <ClInclude Include="UMLName.h" />
     <ClInclude Include="UMLOperation.h" />
     <ClInclude Include="UMLPiece.h" />
@@ -231,8 +234,11 @@
     <ClCompile Include="RedPend.cpp" />
     <ClCompile Include="ScoreBoard.cpp" />
     <ClCompile Include="UMLAttribute.cpp" />
+    <ClCompile Include="UMLClass.cpp" />
     <ClCompile Include="UMLComponent.cpp" />
+    <ClCompile Include="UMLDisplay.cpp" />
     <ClCompile Include="UMLInheritance.cpp" />
+    <ClCompile Include="UMLInherited.cpp" />
     <ClCompile Include="UMLName.cpp" />
     <ClCompile Include="UMLOperation.cpp" />
     <ClCompile Include="UMLPiece.cpp" />

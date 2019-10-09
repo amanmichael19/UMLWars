@@ -22,6 +22,9 @@
     <ClCompile Include="XmlNode.cpp" />
     <ClCompile Include="XMLReader.cpp" />
     <ClCompile Include="UmlVisitor.cpp" />
+    <ClCompile Include="UMLDisplay.cpp" />
+    <ClCompile Include="UMLClass.cpp" />
+    <ClCompile Include="UMLInherited.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChildView.h" />
@@ -49,6 +52,9 @@
     <ClInclude Include="XmlNode.h" />
     <ClInclude Include="XMLReader.h" />
     <ClInclude Include="UmlVisitor.h" />
+    <ClInclude Include="UMLDisplay.h" />
+    <ClInclude Include="UMLClass.h" />
+    <ClInclude Include="UMLInherited.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="project1.rc" />

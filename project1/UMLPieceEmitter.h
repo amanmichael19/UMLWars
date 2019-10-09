@@ -8,7 +8,8 @@
 
 #pragma once
 #include "XMLReader.h"
-#include "UMLPiece.h"
+#include "UMLClass.h"
+#include "UMLInherited.h"
 #include "Game.h"
 
 /**
@@ -17,12 +18,17 @@
 class CUMLPieceEmitter
 {
 public:
-	CUMLPieceEmitter();
+	CUMLPieceEmitter(CGame* game);
 
-	std::shared_ptr<CUMLPiece> CreateUMLPiece();
-	//void CreateInheritedUMLPiece();
+	std::shared_ptr<CUMLPiece> EmitPiece();
 
 private:
+	void CreateDisplay(std::shared_ptr<CUMLDisplay> display, bool name, int attributes, int operations);
+
+	void IncrementEmitted();
+
+	std::shared_ptr<CUMLPiece> EmitInherited();
+
 	std::vector<std::shared_ptr<CUMLName>> mNames; ///< Vector containing valid class names
 	std::vector<std::shared_ptr<CUMLName>> mBadNames; ///< Vector containing invalid class names with reasons
 
@@ -35,9 +41,10 @@ private:
 	std::vector<std::shared_ptr<CUMLInheritance>> mInherits; ///< Vector containing valid inherits
 	std::vector<std::shared_ptr<CUMLInheritance>> mBadInherits; ///< Vector containing invalid inherits with reasons
 
-	std::shared_ptr<CGame> mGame; ///< The game this emitter is part of
+	CGame* mGame; ///< The game this emitter is part of
 
-	int mHandicap = 5; ///< The rate that the amount of bad UML is artificially increased
+	int mHandicap = 5; ///< Higher value makes game easier (less good UML and inheritance)
 	int mTotalEmitted = 0; ///< The total number of UMLPieces that have been emitted this game
+	int mPieceSpeed = 10; ///< Speed that pieces will move after being emitted
 };
 
