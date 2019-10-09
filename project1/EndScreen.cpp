@@ -46,6 +46,14 @@ const wstring RANK_FOUR_TEXT = L"THE HEAD TA\nAn impressive display. Surely this
 const wstring RANK_FIVE_TEXT = L"LIVING LEGEND : GRADY BOOCH\nIt was not.";
 
 /**
+ * Constructor for CEndScreen
+ * \param game The game this end screen is part of
+ */
+CEndScreen::CEndScreen(CGame* game) : CGameObject(game)
+{
+}
+
+/**
  * Calculate the final score of the game
  * \param correct Number of UML Correctly Graded
  * \param missed Number of UML Missed
@@ -53,6 +61,9 @@ const wstring RANK_FIVE_TEXT = L"LIVING LEGEND : GRADY BOOCH\nIt was not.";
  */
 void CEndScreen::SetFinalScore(int correct, int missed, int unfair)
 {
+	// Clear current score value
+	mFinalScore = 0;
+
 	// Add points for correct UML
 	mFinalScore += correct * CORRECT_VALUE;
 	

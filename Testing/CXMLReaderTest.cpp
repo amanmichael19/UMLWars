@@ -16,7 +16,12 @@ namespace Testing
 			::SetCurrentDirectory(g_dir);
 		}
 		
-		TEST_METHOD(TestCXMLLoad)
+		TEST_METHOD(TestCXMLReaderConstructor)
+		{
+			CXMLReader reader;
+		}
+
+		TEST_METHOD(TestCXMLReaderLoadAll)
 		{
 			CXMLReader reader;
 			reader.Load();
@@ -26,6 +31,38 @@ namespace Testing
 			TestOperations(reader);
 			TestInherits(reader);
 
+		}
+
+		TEST_METHOD(TestCXMLReaderLoadNames)
+		{
+			CXMLReader reader;
+			reader.Load();
+
+			TestNames(reader);
+		}
+
+		TEST_METHOD(TestCXMLReaderLoadAttributes)
+		{
+			CXMLReader reader;
+			reader.Load();
+
+			TestAttributes(reader);
+		}
+
+		TEST_METHOD(TestCXMLReaderLoadOperations)
+		{
+			CXMLReader reader;
+			reader.Load();
+
+			TestOperations(reader);
+		}
+
+		TEST_METHOD(TestCXMLReaderLoadInherits)
+		{
+			CXMLReader reader;
+			reader.Load();
+
+			TestInherits(reader);
 		}
 
 		void TestNames(CXMLReader reader)

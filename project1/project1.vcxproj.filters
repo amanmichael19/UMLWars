@@ -25,6 +25,7 @@
     <ClCompile Include="UMLDisplay.cpp" />
     <ClCompile Include="UMLClass.cpp" />
     <ClCompile Include="UMLInherited.cpp" />
+    <ClCompile Include="EndScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChildView.h" />
@@ -55,6 +56,7 @@
     <ClInclude Include="UMLDisplay.h" />
     <ClInclude Include="UMLClass.h" />
     <ClInclude Include="UMLInherited.h" />
+    <ClInclude Include="EndScreen.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="project1.rc" />

@@ -16,7 +16,13 @@
 class CEndScreen : public CGameObject
 {
 public:
+	CEndScreen(CGame* game);
+
 	void SetFinalScore(int correct, int missed, int unfair);
+	
+	/// Getter for mFinalScore
+	/// \returns The final score value of the game
+	int GetFinalScore() { return mFinalScore; }
 
 private:
 	void DisplayRank();
