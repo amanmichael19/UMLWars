@@ -9,10 +9,15 @@
 
 #include "pch.h"
 #include "Player.h"
+#include "Game.h"
 
 using namespace Gdiplus;
 using namespace std;
 
+/// Constant ratio to convert radians to degrees
+const double RtoD = 57.295779513;
+/// pi constant
+const double PI = 3.141592653;
 
 /// halrold filename 
 //const wstring HaroldImageName = L"images/harold.png";
@@ -20,20 +25,38 @@ using namespace std;
 CPlayer::CPlayer(CGame* game) : CGameObject(game)
 {
 	mPlayerImage = unique_ptr<Gdiplus::Bitmap>(
-		Bitmap::FromFile(L"images/harold.png"));
+		Bitmap::FromFile(L"images/images/harold.png"));
 	if (mPlayerImage->GetLastStatus() != Ok)
 	{
 		AfxMessageBox(L"Failed to open images/harold.png");
 	}
+	else
+	{
+		SetLocation(CGame::GetWidth() / 2.0f, double(double(CGame::GetHeight()) - mPlayerImage->GetHeight()/2.0f - mPlayerImage->GetWidth()));
+	}
 }
 
-
-void CPlayer::OnDraw(Gdiplus::Graphics* graphics)
+void CPlayer::OnMouseMove(double mouseX, double mouseY)
 {
-	graphics->DrawImage(mPlayerImage.get(), 0, 0,
-		mPlayerImage->GetWidth(), mPlayerImage->GetHeight());
+	mAngle = atan2(GetY() - mouseY, mouseX - GetX())-PI/2;
 
-	
+	if (mAngle > PI / 2)
+		mAngle = PI / 2;
+	else if (mAngle < -PI / 2)
+		mAngle = -PI / 2;
+}
 
+void CPlayer::Draw(Gdiplus::Graphics* graphics)
+{
+	float wid = (float)mPlayerImage->GetWidth();
+	float hit = (float)mPlayerImage->GetHeight();
+	float x = float(GetX() - wid / 2);
+	float y = float(GetY() - hit / 2);
+
+	auto state = graphics->Save();
+	graphics->TranslateTransform((float)x, (float)y);
+	graphics->RotateTransform((float)(-mAngle * RtoD));
+	graphics->DrawImage(mPlayerImage.get(), -wid / 2, -hit / 2, wid, hit);
+	graphics->Restore(state);
 }
 

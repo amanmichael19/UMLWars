@@ -28,6 +28,7 @@ const int FrameDuration = 30;
 
 CChildView::CChildView()
 {
+	srand((unsigned int)time(nullptr));
 }
 
 CChildView::~CChildView()
@@ -41,6 +42,7 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEMOVE()
 	ON_WM_ERASEBKGND()
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 
@@ -65,11 +67,16 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
  */
 void CChildView::OnPaint() 
 {
+	
 	CPaintDC paintDC(this);     // device context for painting
 	CDoubleBufferDC dc(&paintDC); // device context for painting
 	Graphics graphics(dc.m_hDC);
 
-	mGame.OnDraw(&graphics);
+	CRect rect;
+	GetClientRect(&rect);
+
+	mGame.OnDraw(&graphics, rect.Width(), rect.Height());
+
 	if (mFirstDraw)
 	{
 		mFirstDraw = false;
@@ -116,9 +123,8 @@ void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 
 void CChildView::OnMouseMove(UINT nFlags, CPoint point)
 {
-	// TODO: Add your message handler code here and/or call default
-
-	CWnd::OnMouseMove(nFlags, point);
+	mGame.OnMouseMove(point.x, point.y);
+	Invalidate();
 }
 
 /**
@@ -131,4 +137,15 @@ void CChildView::OnMouseMove(UINT nFlags, CPoint point)
 BOOL CChildView::OnEraseBkgnd(CDC* pDC)
 {
 	return FALSE;
+}
+
+
+/**
+ * Handle timer events
+ * \param nIDEvent The timer event ID
+ */
+void CChildView::OnTimer(UINT_PTR nIDEvent)
+{
+	Invalidate();
+	CWnd::OnTimer(nIDEvent);
 }

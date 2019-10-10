@@ -11,7 +11,6 @@
 #include "GameObject.h"
 #include <memory>
 #include <string>
-#include <vector>
 
 
 
@@ -20,22 +19,34 @@
   */
 class CPlayer : public CGameObject
 {
-public:
-	/// Default constructor
-	CPlayer(CGame* game);
+	public:
+		/// constructor
+		CPlayer(CGame* game);
 
-	void OnDraw(Gdiplus::Graphics* graphics);
+		/// Default constructor disabled
+		CPlayer() = delete;
 
-	/// Default constructor (disabled)
-	CPlayer() = delete;
+		/// default copy constructor disabled
+		CPlayer(const CPlayer&) = delete;
 
-	//virtual void Draw(Gdiplus::Graphics* graphics);
+		/** draws game objects
+		* \param graphics
+		*/
+		virtual void Draw(Gdiplus::Graphics* graphics) override;
 
-private:
-	std::unique_ptr<Gdiplus::Bitmap> mPlayerImage;
+		/// compute angle and call draw
+		/// \param mouseX
+		/// \param mouseY
+		void OnMouseMove(double mouseX, double mouseY);
 
-	// All of the items to populate our aquarium
-	std::vector<std::shared_ptr<CGameObject> > mItems;
+		/** Accept a visitor
+		* \param visitor
+		*/
+		virtual void Accept(CGameObjectVisitor* visitor) { visitor->VisitPlayer(this); };
+
+	private:
+		std::unique_ptr<Gdiplus::Bitmap> mPlayerImage;
+		double mAngle = 0.0;
 };
 
 

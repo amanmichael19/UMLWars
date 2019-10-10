@@ -109,7 +109,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>pch;ChildView;XMLNode;XMLReader;GameObject;Game</AdditionalDependencies>
+      <AdditionalDependencies>pch;ChildView;Player;PlayerVisitor;GameObjectVisitor;XMLNode;XMLReader;GameObject;Game;ScoreBoard</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

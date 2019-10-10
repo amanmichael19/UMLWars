@@ -9,9 +9,10 @@
  */
 
 #pragma once
+#include "GameObjectVisitor.h"
 
 class CGame;
-class CGameObjectVisitor;
+
 
 /**
  * GameObject class to hold various game objects
@@ -71,12 +72,12 @@ public:
 	/** draws game objects
 	* \param graphics
 	*/
-	virtual void Draw(Gdiplus::Graphics* graphics) = 0;
+	virtual void Draw(Gdiplus::Graphics* graphics) {};
 
 	/** Accept a visitor
 	* \param visitor
 	*/
-	virtual void Accept(CGameObjectVisitor* visitor) = 0;
+	virtual void Accept(CGameObjectVisitor* visitor) {};
 
 	/// update time counter
 	/// \param elapsed time
