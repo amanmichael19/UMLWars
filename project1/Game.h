@@ -19,9 +19,16 @@ class CGame
 public:
 	/// Game constructor
 	CGame();
-
+	/// Destructor
+	virtual ~CGame();
+	/// draw graphics
+	void OnDraw(Gdiplus::Graphics* graphics);
 	/// Allows adding CGameObjects
 	void Add(std::shared_ptr<CGameObject> gob);
+
+	/// update time counter
+	/// \param elapsed time
+	void Update(double elapsed);
 
 	std::shared_ptr<CGameObject> CGame::HitTest(int x, int y);
 

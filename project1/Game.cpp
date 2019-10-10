@@ -13,7 +13,18 @@
  */
 CGame::CGame()
 {
+}
 
+CGame::~CGame()
+{
+}
+
+void CGame::OnDraw(Gdiplus::Graphics* graphics)
+{
+	for (auto gameObjects : mGameObjects)
+	{
+		gameObjects->Draw(graphics);
+	}
 }
 
 /**
@@ -42,4 +53,12 @@ std::shared_ptr<CGameObject> CGame::HitTest(int x, int y)
 	}
 
 	return  nullptr;
+}
+
+void CGame::Update(double elapsed)
+{
+	for (auto gameObjects : mGameObjects)
+	{
+		gameObjects->Update(elapsed);
+	}
 }

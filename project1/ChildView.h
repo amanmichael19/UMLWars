@@ -45,6 +45,10 @@ public:
 private:
 	/// An object that is the Game
 	CGame mGame;
+	/// True until the first time we draw
+	bool mFirstDraw = true;
+	long long mLastTime;    ///< Last time we read the timer
+	double mTimeFreq;       ///< Rate the timer updates
 
 
 protected:
