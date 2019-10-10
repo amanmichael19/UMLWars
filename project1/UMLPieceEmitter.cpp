@@ -11,8 +11,6 @@
 #include <cmath>
 #include "UMLPieceEmitter.h"
 
-using std::srand;
-using std::time;
 using std::shared_ptr;
 using std::make_shared;
 using std::sqrt;
@@ -52,9 +50,6 @@ CUMLPieceEmitter::CUMLPieceEmitter(CGame* game)
 {
 	// Set mGame based on argument
 	mGame = game;
-
-	// Seeds random for emitter
-	srand(unsigned(time(0)));
 
 	// Create a XMLReader object and have it load in the UML data
 	CXMLReader reader;

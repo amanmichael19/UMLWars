@@ -109,7 +109,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>pch;ChildView;XMLNode;XMLReader;GameObject;Game;EndScreen</AdditionalDependencies>
+      <AdditionalDependencies>pch;ChildView;XMLNode;XMLReader;GameObject;Game;EndScreen;UMLPieceEmitter;UMLPiece;UMLClass;UMLInherited;UMLDisplay;RedPend;Player;ScoreBoard</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -177,6 +177,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="CGameObjectTest.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CGameTest.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="CUMLPieceEmitterTest.cpp">
       <SubType>
       </SubType>
     </ClCompile>
