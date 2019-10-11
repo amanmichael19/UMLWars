@@ -24,6 +24,10 @@ public:
 	/// \returns The final score value of the game
 	int GetFinalScore() { return mFinalScore; }
 
+	/// draw
+	/// \param graphics
+	virtual void Draw(Gdiplus::Graphics* graphics);
+
 private:
 	void DisplayRank();
 	int mFinalScore = 0; ///< The calculated final score achieved in the game, defaults to 0

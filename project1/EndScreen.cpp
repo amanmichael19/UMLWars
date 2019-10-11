@@ -7,6 +7,10 @@
 #include "pch.h"
 #include "EndScreen.h"
 
+
+using namespace Gdiplus;
+using namespace std;
+
 using std::wstring;
 
 /// Value of a Correct UML
@@ -117,4 +121,17 @@ void CEndScreen::DisplayRank()
 	{
 		mRankText = RANK_FIVE_TEXT;
 	}
+}
+
+
+void CEndScreen::Draw(Gdiplus::Graphics* graphics)
+{
+	FontFamily fontFamily(L"Arial");
+	Gdiplus::Font font(&fontFamily, 100);
+	SolidBrush heavyGreen(Color(256, 256, 256));
+
+	/// TODO: clean all other objects and display inthe center, wii finish this when the time of score is done.
+	graphics->DrawString(L"Final Score", -1, &font, PointF(112, 200), &heavyGreen);
+
+	graphics->DrawString(to_wstring(mFinalScore).c_str(), -1, &font, PointF(112, 100), &heavyGreen);
 }
