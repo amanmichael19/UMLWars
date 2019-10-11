@@ -25,6 +25,7 @@ const double PI = 3.141592653;
 CPlayer::CPlayer(CGame* game) : CGameObject(game)
 {
 	mPlayerImage = unique_ptr<Gdiplus::Bitmap>(
+		//Bitmap::FromFile(L"M:/project1/images/images/harold.png"));
 		Bitmap::FromFile(L"images/images/harold.png"));
 	if (mPlayerImage->GetLastStatus() != Ok)
 	{

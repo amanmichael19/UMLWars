@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "PlayerVisitor.h"
 #include "ScoreBoard.h"
+#include "EndScreen.h"
 
 using namespace std;
 using namespace Gdiplus;
@@ -58,6 +59,11 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 	// Fill the background with white
 	SolidBrush new_brush(Color::White);
 	graphics->FillRectangle(&new_brush, 0, 0, Width, Height);
+	
+	/// TODO: EndScreen teasting.
+	//CEndScreen EndScreen();
+	//EndScreen->Draw(graphics);
+
 	for (auto gameObjects : mGameObjects)
 	{
 		gameObjects->Draw(graphics);
