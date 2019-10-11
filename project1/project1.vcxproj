@@ -199,7 +199,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerVisitor.h" />
     <ClInclude Include="project1.h" />
-    <ClInclude Include="RedPend.h" />
+    <ClInclude Include="RedPen.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ScoreBoard.h" />
     <ClInclude Include="targetver.h" />
@@ -233,7 +233,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerVisitor.cpp" />
     <ClCompile Include="project1.cpp" />
-    <ClCompile Include="RedPend.cpp" />
+    <ClCompile Include="RedPen.cpp" />
     <ClCompile Include="ScoreBoard.cpp" />
     <ClCompile Include="UMLAttribute.cpp" />
     <ClCompile Include="UMLClass.cpp" />

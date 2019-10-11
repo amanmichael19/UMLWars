@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "Game.h"
-#include "RedPend.h"
+#include "RedPen.h"
 #include "Player.h"
 #include "UMLPieceEmitter.h"
 #include "EndScreen.h"

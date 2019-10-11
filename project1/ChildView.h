@@ -45,10 +45,6 @@ public:
 private:
 	/// An object that is the Game
 	CGame mGame;
-	/// An object that is the Game
-	shared_ptr <CGameObject> obj = make_shared<CGameObject>(&mGame);
-	/// Any object in the game
-	std::shared_ptr<CGameObject> mGameObjects;
 
 
 protected:

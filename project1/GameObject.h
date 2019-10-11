@@ -91,8 +91,5 @@ private:
 
 	/// The Game for this object
 	CGame* mGame;
-
-	/// The image of this object
-	std::unique_ptr<Gdiplus::Bitmap> mObjectImage;
 };
 
