@@ -32,18 +32,20 @@ CPlayer::CPlayer(CGame* game) : CGameObject(game)
 	}
 	else
 	{
-		SetLocation(CGame::GetWidth() / 2.0f, double(double(CGame::GetHeight()) - mPlayerImage->GetHeight()/2.0f - mPlayerImage->GetWidth()));
+		SetLocation(CGame::GetWidth() / 2.0f, double(double(CGame::GetHeight()) - mPlayerImage->GetHeight()/2.0f));
+		mPenHandler = make_shared<CPenHandler>(game, GetX(), GetY());
 	}
 }
 
 void CPlayer::OnMouseMove(double mouseX, double mouseY)
 {
 	mAngle = atan2(GetY() - mouseY, mouseX - GetX())-PI/2;
-
 	if (mAngle > PI / 2)
 		mAngle = PI / 2;
 	else if (mAngle < -PI / 2)
 		mAngle = -PI / 2;
+	mPenHandler->SetPenAngle(mAngle);
+
 }
 
 void CPlayer::Draw(Gdiplus::Graphics* graphics)

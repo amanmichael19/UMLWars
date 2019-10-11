@@ -10,6 +10,7 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;
+using namespace Gdiplus;
 
 namespace Testing
 {
@@ -31,7 +32,8 @@ namespace Testing
 		TEST_METHOD(TestCGameAddPen)
 		{
 			shared_ptr<CGame> game = make_shared<CGame>();
-			shared_ptr<CRedPen> pen = make_shared<CRedPen>(game.get());
+			shared_ptr<Bitmap> penImage = shared_ptr<Bitmap>(Bitmap::FromFile(L"images/images/redpen.png"));
+			shared_ptr<CRedPen> pen = make_shared<CRedPen>(game.get(), penImage);
 			game->Add(pen);
 		}
 

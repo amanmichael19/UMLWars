@@ -15,26 +15,31 @@
 using namespace Gdiplus;
 using namespace std;
 
+/// Constant ratio to convert radians to degrees
+const double RtoD = 57.295779513;
 
-/// halrold filename 
-//const wstring HaroldImageName = L"images/harold.png";
-
-CRedPen::CRedPen(CGame* game) : CGameObject(game)
+CRedPen::CRedPen(CGame* game, shared_ptr<Gdiplus::Bitmap> penImage) : CGameObject(game), mPenImage(penImage)
 {
-	mPenImage = unique_ptr<Gdiplus::Bitmap>(
-		Bitmap::FromFile(L"images/redpen.png"));
-	if (mPenImage->GetLastStatus() != Ok)
+}
+
+void CRedPen::Draw(Gdiplus::Graphics* graphics)
+{
+	float wid = (float)mPenImage->GetWidth();
+	float hit = (float)mPenImage->GetHeight();
+	float x = float(GetX() - wid / 2);
+	float y = float(GetY() - hit / 2);
+
+	auto state = graphics->Save();
+	//mRotate = false;
+	if (mRotate)
 	{
-		AfxMessageBox(L"Failed to open images/redpen.png");
+		graphics->TranslateTransform((float)x, (float)y);
+		graphics->RotateTransform((float)(-mAngle * RtoD));
+		graphics->DrawImage(mPenImage.get(), -wid / 2, -hit / 2, wid, hit);
+		graphics->Restore(state);
+	}
+	else
+	{
+		graphics->DrawImage(mPenImage.get(), x, y, wid, hit);
 	}
 }
-
-void CRedPen::OnDraw(Gdiplus::Graphics* graphics)
-{
-	graphics->DrawImage(mPenImage.get(), 0, 0,
-		mPenImage->GetWidth(), mPenImage->GetHeight());
-
-
-
-}
-

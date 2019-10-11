@@ -10,8 +10,6 @@
 #pragma once
 #include "GameObject.h"
 #include <memory>
-#include <string>
-#include <vector>
 
 
  /**
@@ -21,21 +19,30 @@ class CRedPen : public CGameObject
 {
 public:
 	/// Default constructor
-	CRedPen(CGame* game);
-
-	void OnDraw(Gdiplus::Graphics* graphics);
+	CRedPen(CGame* game, std::shared_ptr<Gdiplus::Bitmap> penImage);
 
 	/// Default constructor (disabled)
 	CRedPen() = delete;
 
-	//virtual void Draw(Gdiplus::Graphics* graphics);
+	/// default copy constructor disabled
+	CRedPen(const CRedPen&) = delete;
+
+	/// draw pen
+	virtual void Draw(Gdiplus::Graphics* graphics) override;
+
+	/// set angle
+	void SetAngle(double angle) { mAngle = angle; }
+
+	/// set Rotation
+	void SetRotateBool(bool rotate) { mRotate = rotate; }
 
 private:
-	std::unique_ptr<Gdiplus::Bitmap> mPenImage;
-
-	//similar idea could be used
-	// All of the items to populate our aquarium
-	//std::vector<std::shared_ptr<CGameObject> > mItems;
+	/// pen image
+	std::shared_ptr<Gdiplus::Bitmap> mPenImage;
+	/// angle of rotation
+	double mAngle = 0.0;
+	/// bool to dictate rotation
+	bool mRotate = true;
 };
 
 

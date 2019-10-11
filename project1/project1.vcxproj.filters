@@ -26,6 +26,7 @@
     <ClCompile Include="UMLInherited.cpp" />
     <ClCompile Include="EndScreen.cpp" />
     <ClCompile Include="RedPen.cpp" />
+    <ClCompile Include="PenHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChildView.h" />
@@ -57,6 +58,7 @@
     <ClInclude Include="UMLInherited.h" />
     <ClInclude Include="EndScreen.h" />
     <ClInclude Include="RedPen.h" />
+    <ClInclude Include="PenHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="project1.rc" />

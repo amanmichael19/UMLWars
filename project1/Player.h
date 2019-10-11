@@ -8,10 +8,9 @@
 
 
 #pragma once
-#include "GameObject.h"
 #include <memory>
-#include <string>
-
+#include "GameObject.h"
+#include "PenHandler.h"
 
 
  /**
@@ -45,8 +44,13 @@ class CPlayer : public CGameObject
 		virtual void Accept(CGameObjectVisitor* visitor) { visitor->VisitPlayer(this); };
 
 	private:
+		/// player image
 		std::unique_ptr<Gdiplus::Bitmap> mPlayerImage;
+		/// pen handler
+		std::shared_ptr<CPenHandler> mPenHandler;
+		/// angle of rotation
 		double mAngle = 0.0;
+
 };
 
 
