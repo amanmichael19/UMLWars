@@ -19,9 +19,6 @@ const double RtoD = 57.295779513;
 /// pi constant
 const double PI = 3.141592653;
 
-/// halrold filename 
-//const wstring HaroldImageName = L"images/harold.png";
-
 CPlayer::CPlayer(CGame* game) : CGameObject(game)
 {
 	mPlayerImage = unique_ptr<Gdiplus::Bitmap>(
