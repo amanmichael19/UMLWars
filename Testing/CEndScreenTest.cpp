@@ -1,10 +1,11 @@
 #include "pch.h"
 #include "CppUnitTest.h"
+#include <memory>
 #include "EndScreen.h"
 #include "Game.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-using std::shared_ptr;
+using namespace std;
 
 namespace Testing
 {

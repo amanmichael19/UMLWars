@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
+#include <memory>
 #include "Game.h"
 #include "RedPen.h"
 #include "Player.h"
@@ -8,6 +9,7 @@
 #include "ScoreBoard.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace std;
 
 namespace Testing
 {

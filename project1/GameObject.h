@@ -9,12 +9,12 @@
  */
 
 #pragma once
-#include <memory>
-using namespace Gdiplus;
-using namespace std;
+
+#include "GameObjectVisitor.h"
+
 
 class CGame;
-class CGameObjectVisitor;
+
 
 /**
  * GameObject class to hold various game objects
@@ -27,16 +27,11 @@ public:
 	/// Creates all objects in the game
 	CGameObject(CGame* game);
 
-public:
-
 	/// Default constructor (disabled)
 	CGameObject() = delete;
 
 	/// Copy constructor (disabled)
 	CGameObject(const CGameObject&) = delete;
-
-	
-
 
 	/** The X location of the item
 	 * \returns X location in pixels
@@ -64,20 +59,31 @@ public:
 	double GetWidth() const { return mWidth; }
 
 	/** The height of the item
-	 * \returns double of height
+	 * \return double of height
 	 */
 	double GetHeight() const { return mHeight; }
 
+	/**
+	* Set the object dimensions
+	* \param x x-location
+	* \param y y-location
+	* \return bool
+	*/
 	bool HitTest(int x, int y);
+
+	/** draws game objects
+	* \param graphics
+	*/
+	virtual void Draw(Gdiplus::Graphics* graphics) {};
 
 	/** Accept a visitor
 	* \param visitor
 	*/
 	virtual void Accept(CGameObjectVisitor* visitor) {};
 
-	/// Draw this item
-	/// \param graphics Graphics device to draw on
-	void Draw(Gdiplus::Graphics* graphics);
+	/// update time counter
+	/// \param elapsed time
+	void Update(double elapsed) {}
 
 private:
 

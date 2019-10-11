@@ -11,23 +11,75 @@
 #pragma once
 #include <vector>
 #include <memory>
-#include "GameObject.h"
 
+class CGameObject;
+class CGameObjectVisitor;
 
 class CGame
 {
-public:
-	/// Game constructor
-	CGame();
+	public:
+		/// Game constructor
+		CGame();
+		/// Destructor
+		virtual ~CGame();
 
-	/// Allows adding CGameObjects
-	void Add(std::shared_ptr<CGameObject> gob);
+		/**
+		 * Draw the game area
+		 * \param graphics The GDI+ graphics context to draw on
+		 * \param width Width of the client window
+		 * \param height Height of the client window
+		 */
+		void OnDraw(Gdiplus::Graphics* graphics, int width, int height);
+		/// Allows adding CGameObjects
+		void Add(std::shared_ptr<CGameObject> gob);
 
-	std::shared_ptr<CGameObject> CGame::HitTest(int x, int y);
+		/// update time counter
+		/// \param elapsed time
+		void Update(double elapsed);
 
-private:
+		/**
+		 *  Test to see if we hit this GameObject.
+		 * \param x X position to test
+		 * \param y Y position to test
+		 * \return std::shared_ptr<CGameObject> 
+		 */
+		std::shared_ptr<CGameObject> CGame::HitTest(int x, int y);
 
-	/// All of the gameobjects to populate our game
-	std::vector<std::shared_ptr<CGameObject> > mGameObjects;
+		/// populate game on launch
+		void OnLaunch();
+
+		/// get width
+		/// \return int
+		static int GetWidth() { return Width; }
+
+		/// get height
+		/// \return int
+		static int GetHeight() { return Height; }
+
+		void OnMouseMove(int x, int y);
+
+		/// accepts visitor
+		/// \param visitor
+		void Accept(CGameObjectVisitor* visitor);
+
+	private:
+
+		/// All of the gameobjects to populate our game
+		std::vector<std::shared_ptr<CGameObject> > mGameObjects;
+
+		/// Game area in virtual pixels
+		const static int Width = 1250;
+
+		/// Game area height in virtual pixels
+		const static int Height = 1000;
+
+		/// value to scale screen size by
+		double mScale = 1.0;
+
+		/// x offset to indicate the origin
+		double mXOffset = 0.0;
+
+		/// y offset to indicate the origin
+		double mYOffset = 0.0;
 };
 

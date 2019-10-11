@@ -1,8 +1,10 @@
 #include "pch.h"
 #include "CppUnitTest.h"
+#include <memory>
 #include "UMLPieceEmitter.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace std;
 
 // Random seed for testing
 const unsigned RANDOM_SEED = 8675309;
