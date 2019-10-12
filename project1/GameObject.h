@@ -83,7 +83,7 @@ public:
 
 	/// update time counter
 	/// \param elapsed time
-	void Update(double elapsed) {}
+	virtual void Update(double elapsed) {}
 
 private:
 

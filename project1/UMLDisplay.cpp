@@ -135,8 +135,8 @@ void CUMLDisplay::SetDimensions(Gdiplus::Graphics* graphics)
 	}
 
 	// Minimum width
-	if (mWidth == 0.0f)
+	if (mWidth == mNameHeight)
 	{
-		mWidth = 30.0f;
+		mWidth += 50.0f;
 	}
 }

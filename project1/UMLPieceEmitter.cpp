@@ -22,10 +22,10 @@ const double MAX_X = 5;
 const double MIN_X = 1;
 
 /// Maximum value for y direction
-const double MAX_Y = 5;
+const double MAX_Y = 15;
 
 /// Minimum value for y direction
-const double MIN_Y = 1;
+const double MIN_Y = 8;
 
 /// First threshold to decrease handicap
 const int HANDICAP_THRESHOLD_ONE = 5;
@@ -41,6 +41,15 @@ const int HANDICAP_THRESHOLD_FOUR = 20;
 
 /// Fifth threshold to decrease handicap
 const int HANDICAP_THRESHOLD_FIVE = 25;
+
+/// Height that UMLPieces are spawned in on
+const double Y_SPAWN_LEVEL = 0.0f;
+
+/// Minimum X value a new UMLPiece can spawn at
+const double MIN_X_SPAWN = 300;
+
+/// Variance that X spawn location can have
+const double X_SPAWN_FACTOR = 424;
 
 /**
  * CUMLPieceEmitter Constructor
@@ -81,7 +90,7 @@ shared_ptr<CUMLPiece> CUMLPieceEmitter::EmitPiece()
 	}
 	
 	// Prepare direction values
-	double x = (rand() / (double)RAND_MAX) * MAX_X + (MAX_X - MIN_X);
+	double x = ((rand() / (double)RAND_MAX) * MAX_X + (MAX_X - MIN_X)) * (rand() % 2 == 0) ? 1 : -1; //Ternary at the end determines sign value
 	double y = (rand() / (double)RAND_MAX) * MAX_Y + (MAX_Y - MIN_Y);
 	double vectorLength = sqrt((x*x + y*y));
 	x = x / vectorLength;
@@ -166,6 +175,9 @@ shared_ptr<CUMLPiece> CUMLPieceEmitter::EmitPiece()
 
 	// Set CUMLClass object's display value to new CUMLDisplay object
 	newPiece->SetDisplay(newDisplay);
+
+	// Set initial location
+	newPiece->SetLocation((rand() / (double)RAND_MAX)* X_SPAWN_FACTOR + MIN_X_SPAWN, Y_SPAWN_LEVEL);
 
 	// Increment the counter for total UMLPieces emitted
 	IncrementEmitted();
@@ -310,6 +322,8 @@ shared_ptr<CUMLPiece> CUMLPieceEmitter::EmitInherited()
 	// Set displays for new piece
 	newPiece->SetBaseDisplay(newBase);
 	newPiece->SetDerivedDisplay(newDerived);
+
+	//TODO: Set initial location
 
 	// Increment the total count of pieces emitted
 	IncrementEmitted();
