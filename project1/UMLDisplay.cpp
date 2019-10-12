@@ -22,6 +22,10 @@ void CUMLDisplay::Draw(Gdiplus::Graphics* graphics, double x, double y)
 	{
 		SetDimensions(graphics);
 	}
+	// Used in some size calculations
+	Gdiplus::RectF size;
+	Gdiplus::PointF origin(0.0f, 0.0f);
+	double yOffset = y + mNameHeight;
 
 	// Colors to be used
 	SolidBrush yellowBrush(Color(255, 255, 193));
@@ -42,13 +46,29 @@ void CUMLDisplay::Draw(Gdiplus::Graphics* graphics, double x, double y)
 	// Draw name centered in UML
 	graphics->DrawString(mName.c_str(), -1, &font, PointF(x + (mWidth - mNameWidth) / 2, y), &blackBrush);
 
-	//TODO: Draw line between name and attributes
+	// Draw line between name and attributes
+	graphics->DrawLine(&blackPen, PointF(x, y + mNameHeight), PointF(x + mWidth, y + mNameHeight));
 
-	//TODO: Draw Attributes
+	// Draw Attributes
+	for (std::wstring att : mAttributes)
+	{
+		graphics->DrawString(att.c_str(), -1, &font, PointF(x, yOffset), &blackBrush);
+		graphics->MeasureString(att.c_str(), -1, &font, origin, &size);
+		yOffset += (double)size.Height;
 
-	//TODO: Draw line between attributes and operations
+	}
 
-	//TODO: Draw operations
+	// Draw line between attributes and operations
+	graphics->DrawLine(&blackPen, PointF(x, yOffset), PointF(x + mWidth, yOffset));
+
+	// Draw operations
+	for (std::wstring op : mOperations)
+	{
+		graphics->DrawString(op.c_str(), -1, &font, PointF(x, yOffset), &blackBrush);
+		graphics->MeasureString(op.c_str(), -1, &font, origin, &size);
+		yOffset += (double)size.Height;
+
+	}
 
 	graphics->Restore(state);
 }
@@ -67,9 +87,9 @@ void CUMLDisplay::SetDimensions(Gdiplus::Graphics* graphics)
 
 	// Handle name
 	graphics->MeasureString(mName.c_str(), -1, &font, origin, &size);
-	mNameHeight = (double)size.Height;
+	mNameHeight = ((double)size.Height > 1.0f) ? (double)size.Height : 25.0f;
 	mNameWidth = (double)size.Width;
-	mHeight += (double)size.Height;
+	mHeight += mNameHeight;
 	mWidth = (double)size.Width;
 
 	// Handle attributes
