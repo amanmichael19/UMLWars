@@ -7,10 +7,116 @@
 #include "pch.h"
 #include "UMLDisplay.h"
 
+using namespace Gdiplus;
+
 /**
  * Draws the UML on the screen
  * \param graphics The graphics device to be drawn on
+ * \param x The x location at center of display
+ * \param y The y location at center of display
  */
-void CUMLDisplay::Draw(Gdiplus::Graphics* graphics)
+void CUMLDisplay::Draw(Gdiplus::Graphics* graphics, double x, double y)
 {
+	// Set dimensions if it is the first time being drawn
+	if (mHeight == 0)
+	{
+		SetDimensions(graphics);
+	}
+
+	// Colors to be used
+	SolidBrush yellowBrush(Color(255, 255, 193));
+	SolidBrush blackBrush(Color(0, 0, 0));
+	Pen blackPen(Color(0, 0, 0));
+
+	// Font to be used
+	FontFamily fontFamily(L"Arial");
+	Gdiplus::Font font(&fontFamily, 15);
+
+	auto state = graphics->Save();
+
+	// Rectangle that contains UML
+	Gdiplus::Rect rect(x, y, mWidth, mHeight);
+	graphics->FillRectangle(&yellowBrush, rect);
+	graphics->DrawRectangle(&blackPen, rect);
+
+	// Draw name centered in UML
+	graphics->DrawString(mName.c_str(), -1, &font, PointF(x + (mWidth - mNameWidth) / 2, y), &blackBrush);
+
+	//TODO: Draw line between name and attributes
+
+	//TODO: Draw Attributes
+
+	//TODO: Draw line between attributes and operations
+
+	//TODO: Draw operations
+
+	graphics->Restore(state);
+}
+
+/**
+ * Sets the dimensions of the UMLDisplay
+ * \param graphics The graphics device being drawn on
+ */
+void CUMLDisplay::SetDimensions(Gdiplus::Graphics* graphics)
+{
+	// Font to be used
+	FontFamily fontFamily(L"Arial");
+	Gdiplus::Font font(&fontFamily, 15);
+	Gdiplus::RectF size;
+	Gdiplus::PointF origin(0.0f, 0.0f);
+
+	// Handle name
+	graphics->MeasureString(mName.c_str(), -1, &font, origin, &size);
+	mNameHeight = (double)size.Height;
+	mNameWidth = (double)size.Width;
+	mHeight += (double)size.Height;
+	mWidth = (double)size.Width;
+
+	// Handle attributes
+	for (std::wstring att : mAttributes)
+	{
+		graphics->MeasureString(att.c_str(), -1, &font, origin, &size);
+		mHeight += (double)size.Height;
+		mAttributeHeight += (double)size.Height;
+		
+		if ((double)size.Width > mWidth)
+		{
+			mWidth = (double)size.Width;
+		}
+		
+		if ((double)size.Width > mAttributeWidth)
+		{
+			mAttributeWidth = (double)size.Width;
+		}
+	}
+
+	// Handle operations
+	for (std::wstring op : mOperations)
+	{
+		graphics->MeasureString(op.c_str(), -1, &font, origin, &size);
+		mHeight += (double)size.Height;
+		mOperationHeight += (double)size.Height;
+
+		if ((double)size.Width > mWidth)
+		{
+			mWidth = (double)size.Width;
+		}
+
+		if ((double)size.Width > mOperationWidth)
+		{
+			mOperationWidth = (double)size.Width;
+		}
+	}
+
+	// Minimum height
+	if (mHeight == 0.0f)
+	{
+		mHeight = 10.0f;
+	}
+
+	// Minimum width
+	if (mWidth == 0.0f)
+	{
+		mWidth = 30.0f;
+	}
 }

@@ -27,8 +27,8 @@ CUMLInherited::CUMLInherited(CGame* game, double x, double y, int speed) : CUMLP
  */
 void CUMLInherited::Draw(Gdiplus::Graphics* graphics)
 {
-	mBaseDisplay->Draw(graphics); // Draw Base
-	mDerivedDisplay->Draw(graphics); // Draw Derived
+	mBaseDisplay->Draw(graphics,0,0); // Draw Base
+	mDerivedDisplay->Draw(graphics,0,0); // Draw Derived
 
 	//TODO: Draw arrow
 }

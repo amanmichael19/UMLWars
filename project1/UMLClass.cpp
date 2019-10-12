@@ -27,7 +27,8 @@ CUMLClass::CUMLClass(CGame* game, double x, double y, int speed) : CUMLPiece(gam
  */
 void CUMLClass::Draw(Gdiplus::Graphics* graphics)
 {
-	mClassDisplay->Draw(graphics);
+	CGameObject::SetLocation(100, 100);
+	mClassDisplay->Draw(graphics,GetX(),GetY());
 }
 
 /**

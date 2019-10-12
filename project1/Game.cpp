@@ -10,6 +10,8 @@
 #include "PlayerVisitor.h"
 #include "ScoreBoard.h"
 #include "EndScreen.h"
+#include "UMLPieceEmitter.h"
+#include <cstdlib>
 
 using namespace std;
 using namespace Gdiplus;
@@ -28,10 +30,13 @@ CGame::~CGame()
 
 void CGame::OnLaunch()
 {
+	srand(unsigned(time(NULL)));
 	auto player = make_shared<CPlayer>(this);
 	auto scoreBoard = make_shared<CScoreBoard>(this);
+	auto emitter = make_shared<CUMLPieceEmitter>(this); //TEMPORARY
 	Add(player);
 	Add(scoreBoard);
+	Add(emitter->EmitPiece());
 }
 
 void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)

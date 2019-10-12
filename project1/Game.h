@@ -14,6 +14,7 @@
 
 class CGameObject;
 class CGameObjectVisitor;
+class CUMLPieceEmitter;
 
 class CGame
 {

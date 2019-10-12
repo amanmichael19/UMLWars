@@ -74,7 +74,7 @@ shared_ptr<CUMLPiece> CUMLPieceEmitter::EmitPiece()
 {
 	// Chance to create inherited instead of class starts at 0%
 	// And moves up to 50% over time
-	if (((rand() % 10) + mHandicap) > 4)
+	if (((rand() % 10) + mHandicap) < 4)
 	{
 		// Make inherited
 		return EmitInherited();
@@ -311,6 +311,8 @@ shared_ptr<CUMLPiece> CUMLPieceEmitter::EmitInherited()
 	newPiece->SetBaseDisplay(newBase);
 	newPiece->SetDerivedDisplay(newDerived);
 
+	// Increment the total count of pieces emitted
 	IncrementEmitted();
+
 	return newPiece;
 }
