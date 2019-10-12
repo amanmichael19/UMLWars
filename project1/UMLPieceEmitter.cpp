@@ -102,7 +102,7 @@ shared_ptr<CUMLPiece> CUMLPieceEmitter::EmitPiece()
 	{
 		// Make bad UML
 		int badValue = rand() % 3;
-		int badIndex;
+		int badIndex = 0;
 
 		switch (badValue)
 		{
@@ -134,7 +134,7 @@ shared_ptr<CUMLPiece> CUMLPieceEmitter::EmitPiece()
 				numOperations = rand() % 4;
 
 				// Finish creating display
-				CreateDisplay(newDisplay, false, numAttributes, numOperations);
+				CreateDisplay(newDisplay, true, numAttributes, numOperations);
 
 				break;
 
@@ -150,7 +150,7 @@ shared_ptr<CUMLPiece> CUMLPieceEmitter::EmitPiece()
 				numOperations = rand() % 3;
 
 				// Finish creating display
-				CreateDisplay(newDisplay, false, numAttributes, numOperations);
+				CreateDisplay(newDisplay, true, numAttributes, numOperations);
 
 				break;
 		}
