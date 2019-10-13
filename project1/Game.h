@@ -15,6 +15,7 @@
 class CGameObject;
 class CGameObjectVisitor;
 class CUMLPieceEmitter;
+class CUmlHitDetector;
 
 class CGame
 {
@@ -37,6 +38,8 @@ class CGame
 		/// update time counter
 		/// \param elapsed time
 		void Update(double elapsed);
+
+		void HitUml(int x, int y);
 
 		/**
 		 *  Test to see if we hit this GameObject.
