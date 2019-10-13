@@ -22,7 +22,11 @@ public:
 	/// \param piece
 	void VisitUMLPiece(CUMLPiece* piece) override { mIsUml = true; }
 
+	/// Resets the visitor after a uml piece was hit
 	void Reset() { mIsUml = false; }
+
+	/// Reports whether Uml was hit
+	/// \return bool 
 	bool IsUML() { return mIsUml; }
 
 private:
