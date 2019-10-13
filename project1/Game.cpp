@@ -12,6 +12,7 @@
 #include "EndScreen.h"
 #include "UMLPieceEmitter.h"
 #include <cstdlib>
+#include "UmlVisitor.h"
 
 using namespace std;
 using namespace Gdiplus;
@@ -116,7 +117,6 @@ std::shared_ptr<CGameObject> CGame::HitTest(int x, int y)
 			return *i;
 		}
 	}
-
 	return  nullptr;
 }
 
@@ -125,5 +125,22 @@ void CGame::Update(double elapsed)
 	for (auto gameObjects : mGameObjects)
 	{
 		gameObjects->Update(elapsed);
+	}
+}
+
+void CGame::HitUml(int x, int y)
+{
+	CUmlVisitor visitor;
+
+	for (auto object : mGameObjects)
+	{
+		object->Accept(&visitor);
+		if (visitor.IsUML())
+		{
+			if (object->HitTest(x, y))
+			{
+				//TODO Perform the scorekeeping. Likely another visitor to determine type.
+			}
+		}
 	}
 }

@@ -20,6 +20,12 @@ class CUmlVisitor : public CGameObjectVisitor
 public:
 	/// visit UML object
 	/// \param piece
-	virtual void VisitUML(CUMLPiece* piece);
+	void VisitUMLPiece(CUMLPiece* piece) override { mIsUml = true; }
+
+	void Reset() { mIsUml = false; }
+	bool IsUML() { return mIsUml; }
+
+private:
+	bool mIsUml = false;
 };
 
