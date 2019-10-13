@@ -24,8 +24,7 @@ public:
 	void SetBaseDisplay(std::shared_ptr<CUMLDisplay> display);
 	void SetDerivedDisplay(std::shared_ptr<CUMLDisplay> display);
 	void SetArrowDirection(std::wstring direction);
-
-	/// TODO: Hit Test
+	virtual bool HitTest(int x, int y) override;
 
 private:
 	std::shared_ptr<CUMLDisplay> mBaseDisplay; ///< The CUMLDisplay object that displays the base class

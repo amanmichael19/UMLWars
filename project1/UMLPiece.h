@@ -35,7 +35,14 @@ public:
 
 	virtual void Update(double elapsed);
 
-	/// TODO: Hit Test
+	bool LeaveScreenCheck();
+
+	/// Hit Test override for UMLPiece
+	/// Since each derived class has its own way of handling hit detection, it's still virtual
+	/// \param x X position of hit
+	/// \param y Y position of hit
+	/// \returns True if arguments hit a UMLPiece
+	virtual bool HitTest(int x, int y) { return false; }
 
 private:
 	std::wstring mBad = L""; ///< The reason, if any, why this UMLPiece is bad

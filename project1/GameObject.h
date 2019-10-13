@@ -69,7 +69,7 @@ public:
 	* \param y y-location
 	* \return bool
 	*/
-	bool HitTest(int x, int y);
+	virtual bool HitTest(int x, int y);
 
 	/** draws game objects
 	* \param graphics

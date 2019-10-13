@@ -18,6 +18,9 @@ const double ARROW_Y_OFFSET = 15;
 /// How many pixels away from tip/tail arrow ends are in X direction
 const double ARROW_X_OFFSET = 20;
 
+/// How many pixels to left or right of arrow a hit can be for hit detection
+const double X_BUFFER = 5;
+
 /**
  * CUMLInherited Constructor
  *
@@ -120,4 +123,68 @@ void CUMLInherited::SetDerivedDisplay(std::shared_ptr<CUMLDisplay> display)
 void CUMLInherited::SetArrowDirection(std::wstring direction)
 {
 	mArrowDirection = direction;
+}
+
+/**
+ * Determines if a set of coordinates have hit this object
+ *
+ * Used mainly for Pen collision detection
+ * \param x X location of hit
+ * \param y Y location of hit
+ * \returns True if the given arguments result in a hit
+ */
+bool CUMLInherited::HitTest(int x, int y)
+{
+	// Get dimensions of 1st CUMLDisplay member
+	double height = mBaseDisplay->GetHeight();
+	double width = mBaseDisplay->GetWidth();
+
+	// Determine acceptable X values
+	double minX = GetX();
+	double maxX = minX + width;
+
+	// Determine acceptable Y values
+	double minY = GetY();
+	double maxY = minY + height;
+
+	// Determine if given x and y are valid
+	bool validX = (x >= minX) && (x <= maxX);
+	bool validY = (y >= minY) && (y <= maxY);
+
+	// Determine if arguments hit base class
+	bool baseHit = (validX && validY);
+
+	// Get dimensions of 2nd CUMLDisplay member
+	height = mDerivedDisplay->GetHeight();
+	width = mDerivedDisplay->GetWidth();
+
+	// Determine acceptable X values
+	minX = GetX() + (mBaseDisplay->GetWidth() - width) / 2;
+	maxX = minX + width;
+
+	// Determine acceptable Y values
+	minY = GetY() + mBaseDisplay->GetHeight() + Y_OFFSET;
+	maxY = minY + height;
+
+	// Determine if given x and y are valid
+	validX = (x >= minX) && (x <= maxX);
+	validY = (y >= minY) && (y <= maxY);
+
+	// Determine if arguments hit derived class
+	bool derivedHit = (validX && validY);
+
+	minX = ((GetX() + (mBaseDisplay->GetWidth() - mDerivedDisplay->GetWidth()) / 2) + (mDerivedDisplay->GetWidth() / 2)) - X_BUFFER;
+	maxX = minX + 2 * X_BUFFER;
+	minY = GetY() + mBaseDisplay->GetHeight();
+	maxY = minY + Y_OFFSET;
+
+	// Determine if given x and y are valid
+	validX = (x >= minX) && (x <= maxX);
+	validY = (y >= minY) && (y <= maxY);
+
+	// Determine if arguments hit arrow
+	bool arrowHit = (validX && validY);
+
+	// Returns tru if either base class, derived class, or arrow were hit
+	return (arrowHit || baseHit || derivedHit);
 }

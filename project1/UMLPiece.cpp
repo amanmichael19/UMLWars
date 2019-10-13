@@ -7,6 +7,9 @@
 #include "pch.h"
 #include "UMLPiece.h"
 
+/// The maximum Y value of the display
+const double SCREEN_SIZE_Y = 1000;
+
 /**
  * CUMLPiece Constructor
  * \param game The game this CUMLPiece object is part of
@@ -31,4 +34,16 @@ void CUMLPiece::Update(double elapsed)
 	double newY = elapsed * mSpeed * mYDirection + GetY();
 
 	CGameObject::SetLocation(newX, newY);
+
+	LeaveScreenCheck();
+}
+
+/**
+ * Checks if the UMLPiece has left the screen
+ * \returns True if the UMLPiece object has left the screen
+ */
+bool CUMLPiece::LeaveScreenCheck()
+{
+	// Could be used to signal missed/correct and indicate that this object should be destroyed
+	return GetY() > SCREEN_SIZE_Y;
 }

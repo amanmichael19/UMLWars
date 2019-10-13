@@ -44,8 +44,6 @@ public:
 	/// \returns The height of the display
 	double GetHeight() { return mHeight; }
 
-	/// TODO: Hit Test
-
 private:
 	std::wstring mName; ///< The class name of this UMLPiece
 	std::vector<std::wstring> mAttributes; ///< The attributes this UMLPiece has, if any

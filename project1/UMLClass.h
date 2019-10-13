@@ -20,6 +20,7 @@ public:
 	CUMLClass(CGame* game, double x, double y, int speed);
 	void Draw(Gdiplus::Graphics* graphics) override;
 	void SetDisplay(std::shared_ptr<CUMLDisplay> display);
+	virtual bool HitTest(int x, int y) override;
 
 private:
 	std::shared_ptr<CUMLDisplay> mClassDisplay; ///< The CUMLDisplay object that displays this class
