@@ -128,6 +128,12 @@ void CGame::Update(double elapsed)
 	}
 }
 
+
+/**
+ * Detects whether a given position has hit a UML piece
+ * \param x X position of point
+ * \param y Y position of point
+ */
 void CGame::HitUml(int x, int y)
 {
 	CUmlVisitor visitor;
@@ -141,6 +147,7 @@ void CGame::HitUml(int x, int y)
 			{
 				//TODO Perform the scorekeeping. Likely another visitor to determine type.
 			}
+			visitor.Reset();
 		}
 	}
 }
