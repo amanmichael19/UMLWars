@@ -9,6 +9,9 @@
 
 using namespace Gdiplus;
 
+/// The size of the font on the UML
+const int FONT_SIZE = 13;
+
 /**
  * Draws the UML on the screen
  * \param graphics The graphics device to be drawn on
@@ -34,7 +37,7 @@ void CUMLDisplay::Draw(Gdiplus::Graphics* graphics, double x, double y)
 
 	// Font to be used
 	FontFamily fontFamily(L"Arial");
-	Gdiplus::Font font(&fontFamily, 15);
+	Gdiplus::Font font(&fontFamily, FONT_SIZE);
 
 	auto state = graphics->Save();
 
@@ -81,7 +84,7 @@ void CUMLDisplay::SetDimensions(Gdiplus::Graphics* graphics)
 {
 	// Font to be used
 	FontFamily fontFamily(L"Arial");
-	Gdiplus::Font font(&fontFamily, 15);
+	Gdiplus::Font font(&fontFamily, FONT_SIZE);
 	Gdiplus::RectF size;
 	Gdiplus::PointF origin(0.0f, 0.0f);
 
