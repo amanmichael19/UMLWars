@@ -22,12 +22,12 @@ void CScoreBoard::Draw(Gdiplus::Graphics* graphics)
 	/// The brush to draw the text with
 
 	/// TODO: position can be scaled with size of window
-	graphics->DrawString(L"Correct", -1, &font, PointF(112, 200), &heavyGreen);    
-	graphics->DrawString(L"Missed", -1, &font, PointF(512, 200), &heavyGreen);
-	graphics->DrawString(L"Unfair", -1, &font, PointF(912, 200), &heavyGreen);
+	graphics->DrawString(L"Correct", -1, &font, PointF(-562, 200), &heavyGreen);    
+	graphics->DrawString(L"Missed", -1, &font, PointF(-112, 200), &heavyGreen);
+	graphics->DrawString(L"Unfair", -1, &font, PointF(284, 200), &heavyGreen);
 
-	graphics->DrawString(to_wstring(mCorrect).c_str(), -1, &font, PointF(112, 100), &heavyGreen);
-	graphics->DrawString(to_wstring(mMissed).c_str(), -1, &font, PointF(512, 100), &heavyGreen);
-	graphics->DrawString(to_wstring(mUnfair).c_str(), -1, &font, PointF(912, 100), &heavyGreen);
+	graphics->DrawString(to_wstring(mCorrect).c_str(), -1, &font, PointF(-562, 100), &heavyGreen);
+	graphics->DrawString(to_wstring(mMissed).c_str(), -1, &font, PointF(-112, 100), &heavyGreen);
+	graphics->DrawString(to_wstring(mUnfair).c_str(), -1, &font, PointF(284, 100), &heavyGreen);
 
 }

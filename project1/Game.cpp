@@ -53,7 +53,8 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 	float scaleY = float(height) / float(Height);
 	mScale = min(scaleX, scaleY);
 
-	mXOffset = (width - mScale * width) / 2 ;
+	mXOffset = width / 2.0;
+	//mXOffset = (width - mScale * width) / 2 ;
 	mYOffset = 0;
 	if (height > Height * mScale) {
 		mYOffset = (float)((height - Height * mScale) / 2);
@@ -64,7 +65,7 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 
 	// Fill the background with white
 	SolidBrush new_brush(Color::White);
-	graphics->FillRectangle(&new_brush, 0, 0, Width, Height);
+	graphics->FillRectangle(&new_brush, -Width/2.0, 0, Width, Height);
 	
 	/// TODO: EndScreen teasting.
 	//CEndScreen EndScreen();

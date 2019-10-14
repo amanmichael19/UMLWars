@@ -46,10 +46,10 @@ const int HANDICAP_THRESHOLD_FIVE = 25;
 const double Y_SPAWN_LEVEL = 0;
 
 /// Minimum X value a new UMLPiece can spawn at
-const double MIN_X_SPAWN = 300;
+const double MIN_X_SPAWN = -300;
 
 /// Variance that X spawn location can have
-const double X_SPAWN_FACTOR = 424;
+const double X_SPAWN_FACTOR = 600;
 
 /**
  * CUMLPieceEmitter Constructor
