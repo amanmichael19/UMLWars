@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['load_175',['Load',['../class_c_x_m_l_reader.html#a28eaf8dcca77f0d39800f681ea5931a4',1,'CXMLReader']]],
-  ['loadclasses_176',['LoadClasses',['../class_c_x_m_l_reader.html#a6925d3057603102e04e7b03beefbc549',1,'CXMLReader']]],
-  ['loadinheritance_177',['LoadInheritance',['../class_c_x_m_l_reader.html#a8e55fd33812e1a5acd5821c6d998ceee',1,'CXMLReader']]]
+  ['hittest_342',['HitTest',['../class_c_game.html#af5efac69463417cdb3c6c2ccd1272e1b',1,'CGame::HitTest()'],['../class_c_game_object.html#a93c2a691a38c2f6ffdd12f8afa09bd84',1,'CGameObject::HitTest()'],['../class_c_u_m_l_class.html#a14b9a5deefd8754dbd89d8c7c3dfd050',1,'CUMLClass::HitTest()'],['../class_c_u_m_l_inherited.html#a06f34cf80b1f659acf527eb7f655a292',1,'CUMLInherited::HitTest()'],['../class_c_u_m_l_piece.html#afae4f7210c6c9d1189ea80e96b388466',1,'CUMLPiece::HitTest()']]],
+  ['hituml_343',['HitUml',['../class_c_game.html#a8d6c1f1dc95c67deb43066f82a54c282',1,'CGame']]]
 ];

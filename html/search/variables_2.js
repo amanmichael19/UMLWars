@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['gdiplusstartupinput_191',['gdiplusStartupInput',['../class_cproject1_app.html#aab275213417c0d1453b0d2987cf9c564',1,'Cproject1App']]],
-  ['gdiplustoken_192',['gdiplusToken',['../class_cproject1_app.html#a1ec6bdf454b5c33c99f5aea14639d36e',1,'Cproject1App']]]
+  ['filename_391',['filename',['../_x_m_l_reader_8cpp.html#ab59477cb70982755f17a45e083d7319a',1,'XMLReader.cpp']]],
+  ['font_5fsize_392',['FONT_SIZE',['../_u_m_l_display_8cpp.html#ab52123cf948df0f5fcc9a16e6a0daacb',1,'UMLDisplay.cpp']]],
+  ['frameduration_393',['FrameDuration',['../_child_view_8cpp.html#acdcdd99ede3202d78c57ccf156e16fd4',1,'ChildView.cpp']]]
 ];

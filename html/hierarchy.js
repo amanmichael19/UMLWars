@@ -5,15 +5,28 @@ var hierarchy =
     ] ],
     [ "CGame", "class_c_game.html", null ],
     [ "CGameObject", "class_c_game_object.html", [
-      [ "CEndScreen", "class_c_end_screen.html", null ]
+      [ "CEndScreen", "class_c_end_screen.html", null ],
+      [ "CPlayer", "class_c_player.html", null ],
+      [ "CRedPen", "class_c_red_pen.html", null ],
+      [ "CScoreBoard", "class_c_score_board.html", null ],
+      [ "CUMLPiece", "class_c_u_m_l_piece.html", [
+        [ "CUMLClass", "class_c_u_m_l_class.html", null ],
+        [ "CUMLInherited", "class_c_u_m_l_inherited.html", null ]
+      ] ]
     ] ],
+    [ "CGameObjectVisitor", "class_c_game_object_visitor.html", [
+      [ "CPlayerVisitor", "class_c_player_visitor.html", null ],
+      [ "CScoreBoardVisitor", "class_c_score_board_visitor.html", null ],
+      [ "CUmlVisitor", "class_c_uml_visitor.html", null ]
+    ] ],
+    [ "CPenHandler", "class_c_pen_handler.html", null ],
     [ "CUMLComponent", "class_c_u_m_l_component.html", [
       [ "CUMLAttribute", "class_c_u_m_l_attribute.html", null ],
       [ "CUMLInheritance", "class_c_u_m_l_inheritance.html", null ],
       [ "CUMLName", "class_c_u_m_l_name.html", null ],
       [ "CUMLOperation", "class_c_u_m_l_operation.html", null ]
     ] ],
-    [ "CUMLPiece", "class_c_u_m_l_piece.html", null ],
+    [ "CUMLDisplay", "class_c_u_m_l_display.html", null ],
     [ "CUMLPieceEmitter", "class_c_u_m_l_piece_emitter.html", null ],
     [ "CWinApp", null, [
       [ "Cproject1App", "class_cproject1_app.html", null ]

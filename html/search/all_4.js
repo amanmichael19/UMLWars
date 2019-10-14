@@ -1,26 +1,6 @@
 var searchData=
 [
-  ['game_2ecpp_24',['Game.cpp',['../_game_8cpp.html',1,'']]],
-  ['game_2eh_25',['Game.h',['../_game_8h.html',1,'']]],
-  ['gameobject_2ecpp_26',['GameObject.cpp',['../_game_object_8cpp.html',1,'']]],
-  ['gameobject_2eh_27',['GameObject.h',['../_game_object_8h.html',1,'']]],
-  ['gdiplusstartupinput_28',['gdiplusStartupInput',['../class_cproject1_app.html#aab275213417c0d1453b0d2987cf9c564',1,'Cproject1App']]],
-  ['gdiplustoken_29',['gdiplusToken',['../class_cproject1_app.html#a1ec6bdf454b5c33c99f5aea14639d36e',1,'Cproject1App']]],
-  ['getattribute_30',['GetAttribute',['../class_c_u_m_l_attribute.html#ac6472a17a96c94a3dd35aac47cca6481',1,'CUMLAttribute']]],
-  ['getattributes_31',['GetAttributes',['../class_c_x_m_l_reader.html#af4bc8cf6fb6a9c2f83686d2433054991',1,'CXMLReader']]],
-  ['getbad_32',['GetBad',['../class_c_u_m_l_component.html#a70bdf9f7ef05cacc0212413b7a6505d0',1,'CUMLComponent::GetBad()'],['../class_c_u_m_l_piece.html#ab4126f57631227b1702373eae5ea1d40',1,'CUMLPiece::GetBad()']]],
-  ['getbadattributes_33',['GetBadAttributes',['../class_c_x_m_l_reader.html#a3e51dc2f276609cb5cffaa164a16e108',1,'CXMLReader']]],
-  ['getbadinherits_34',['GetBadInherits',['../class_c_x_m_l_reader.html#a694c96cb2d95cf12f45fa6044c4e5ffd',1,'CXMLReader']]],
-  ['getbadnames_35',['GetBadNames',['../class_c_x_m_l_reader.html#a8c6b6fe8cd6ed670c778f08eea4c8f9a',1,'CXMLReader']]],
-  ['getbadoperations_36',['GetBadOperations',['../class_c_x_m_l_reader.html#aecb13824bd266c429959c100750011ed',1,'CXMLReader']]],
-  ['getbase_37',['GetBase',['../class_c_u_m_l_inheritance.html#a0f1efb1efcda0d3e9c9d3bf33f6a56d8',1,'CUMLInheritance']]],
-  ['getderived_38',['GetDerived',['../class_c_u_m_l_inheritance.html#a9d7bfbf49f6c477c465fd993d4c45bfc',1,'CUMLInheritance']]],
-  ['getdirection_39',['GetDirection',['../class_c_u_m_l_inheritance.html#ad68bd7b0de6a9858e0ad1e369b3bb054',1,'CUMLInheritance']]],
-  ['getinherits_40',['GetInherits',['../class_c_x_m_l_reader.html#a563767a7bac66b4d34edd9722d281b51',1,'CXMLReader']]],
-  ['getname_41',['GetName',['../class_c_u_m_l_name.html#ab9992fbf5cd79eccaa44fa406067bf1f',1,'CUMLName']]],
-  ['getnames_42',['GetNames',['../class_c_x_m_l_reader.html#a44b63cb4827553fcc117552816632b7a',1,'CXMLReader']]],
-  ['getoperation_43',['GetOperation',['../class_c_u_m_l_operation.html#a2f467cfb28a6a9c086a3fc486ae6a883',1,'CUMLOperation']]],
-  ['getoperations_44',['GetOperations',['../class_c_x_m_l_reader.html#a2d0b67645e403dc4a353672f2e52f815',1,'CXMLReader']]],
-  ['getx_45',['GetX',['../class_c_game_object.html#a238017f3eb4d04e42a6e91154388a6ca',1,'CGameObject']]],
-  ['gety_46',['GetY',['../class_c_game_object.html#aba6e41e9acca07910e5141c6f13e1ef6',1,'CGameObject']]]
+  ['filename_44',['filename',['../_x_m_l_reader_8cpp.html#ab59477cb70982755f17a45e083d7319a',1,'XMLReader.cpp']]],
+  ['font_5fsize_45',['FONT_SIZE',['../_u_m_l_display_8cpp.html#ab52123cf948df0f5fcc9a16e6a0daacb',1,'UMLDisplay.cpp']]],
+  ['frameduration_46',['FrameDuration',['../_child_view_8cpp.html#acdcdd99ede3202d78c57ccf156e16fd4',1,'ChildView.cpp']]]
 ];
