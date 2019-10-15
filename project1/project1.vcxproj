@@ -204,6 +204,7 @@
     <ClInclude Include="RedPen.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ScoreBoard.h" />
+    <ClInclude Include="ScoreBoardVisitor.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="UMLAttribute.h" />
     <ClInclude Include="UMLClass.h" />
@@ -240,6 +241,7 @@
     <ClCompile Include="project1.cpp" />
     <ClCompile Include="RedPen.cpp" />
     <ClCompile Include="ScoreBoard.cpp" />
+    <ClCompile Include="ScoreBoardVisitor.cpp" />
     <ClCompile Include="UMLAttribute.cpp" />
     <ClCompile Include="UMLClass.cpp" />
     <ClCompile Include="UMLComponent.cpp" />

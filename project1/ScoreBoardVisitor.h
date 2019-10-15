@@ -24,9 +24,3 @@ class CScoreBoardVisitor : public CGameObjectVisitor
 	public:
 		virtual void VisitScoreBoard(CScoreBoard* scoreBoard) override {}
 };
-
-class CScoreBoardVisitor :
-	public CGameObjectVisitor
-{
-};
-

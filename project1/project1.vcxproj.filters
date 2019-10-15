@@ -29,6 +29,7 @@
     <ClCompile Include="PenHandler.cpp" />
     <ClCompile Include="UMLStruck.cpp" />
     <ClCompile Include="CountDownTimer.cpp" />
+    <ClCompile Include="ScoreBoardVisitor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChildView.h" />
@@ -63,6 +64,7 @@
     <ClInclude Include="PenHandler.h" />
     <ClInclude Include="UMLStruck.h" />
     <ClInclude Include="CountDownTimer.h" />
+    <ClInclude Include="ScoreBoardVisitor.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="project1.rc" />
