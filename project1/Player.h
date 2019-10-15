@@ -33,10 +33,15 @@ class CPlayer : public CGameObject
 		*/
 		virtual void Draw(Gdiplus::Graphics* graphics) override;
 
-		/// compute angle and call draw
+		/// compute angle
 		/// \param mouseX
 		/// \param mouseY
 		void OnMouseMove(double mouseX, double mouseY);
+
+		/// fire pen
+		/// \param mouseX
+		/// \param mouseY
+		void OnLeftClick(double mouseX, double mouseY);
 
 		/** Accept a visitor
 		* \param visitor

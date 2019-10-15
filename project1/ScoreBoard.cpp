@@ -1,3 +1,9 @@
+/**
+ * \file ScoreBoard.cpp
+ *
+ * \author Amanuel
+ */
+
 #include "pch.h"
 #include <string>
 #include "ScoreBoard.h"

@@ -5,7 +5,14 @@
 void CPlayerVisitor::VisitPlayer(CPlayer* player)
 {
 	mIsPlayer = true;
-	player->OnMouseMove(mMouseX, mMouseY);
+	if (mShoot)
+	{
+		player->OnLeftClick(mMouseX, mMouseY);
+	}
+	else
+	{
+		player->OnMouseMove(mMouseX, mMouseY);
+	}
 }
 
 void CPlayerVisitor::Reset()
