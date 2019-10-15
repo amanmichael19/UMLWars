@@ -9,10 +9,12 @@
 #include "Player.h"
 #include "PlayerVisitor.h"
 #include "ScoreBoard.h"
+#include "CountDownTimer.h"
 #include "EndScreen.h"
 #include "UMLPieceEmitter.h"
 #include <cstdlib>
 #include "UmlVisitor.h"
+
 
 using namespace std;
 using namespace Gdiplus;
@@ -34,9 +36,11 @@ void CGame::OnLaunch()
 	srand(unsigned(time(NULL)));
 	auto player = make_shared<CPlayer>(this);
 	auto scoreBoard = make_shared<CScoreBoard>(this);
+	auto countDownTimer = make_shared<CCountDownTimer>(this);
 	auto emitter = make_shared<CUMLPieceEmitter>(this); //TEMPORARY
 	Add(player);
 	Add(scoreBoard);
+	Add(countDownTimer);
 	Add(emitter->EmitPiece());
 }
 
