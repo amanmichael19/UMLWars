@@ -131,7 +131,10 @@ void CEndScreen::Draw(Gdiplus::Graphics* graphics)
 	SolidBrush heavyGreen(Color(256, 256, 256));
 
 	/// TODO: clean all other objects and display inthe center, wii finish this when the time of score is done.
-	graphics->DrawString(L"Final Score", -1, &font, PointF(112, 200), &heavyGreen);
+	graphics->DrawString(L"Final Score;", -1, &font, PointF(112, 200), &heavyGreen);
 
 	graphics->DrawString(to_wstring(mFinalScore).c_str(), -1, &font, PointF(112, 100), &heavyGreen);
+
+	graphics->DrawString(L"RANK:", -1, &font, PointF(112, 200), &heavyGreen);
+	graphics->DrawString(mRankText.c_str(), -1, &font, PointF(112, 100), &heavyGreen);
 }
