@@ -11,7 +11,6 @@
 #include "pch.h"
 #include "RedPen.h"
 
-
 using namespace Gdiplus;
 using namespace std;
 
@@ -30,9 +29,9 @@ void CRedPen::Draw(Gdiplus::Graphics* graphics)
 	float y = float(GetY() - hit / 2);
 
 	auto state = graphics->Save();
-	if (mRotate)
+	if (mOnHand)
 	{
-		graphics->TranslateTransform((float)x, (float)y);
+		graphics->TranslateTransform((float)GetX(), (float)GetY());
 		graphics->RotateTransform((float)(-mAngle * RtoD));
 		graphics->DrawImage(mPenImage.get(), -wid / 2, -hit / 2, wid, hit);
 		graphics->Restore(state);
@@ -40,5 +39,25 @@ void CRedPen::Draw(Gdiplus::Graphics* graphics)
 	else
 	{
 		graphics->DrawImage(mPenImage.get(), x, y, wid, hit);
+	}
+}
+
+void CRedPen::Update(double elapsed)
+{
+	if (!mOnHand)
+	{
+		//temporary
+		double x = elapsed * mSpeed * mXDirection + GetX();
+		double y = elapsed * mSpeed * mYDirection + GetY();
+		if (x < -1250 / 2 || x > 1250 / 2 || y > 1000 || y < 0)
+		{
+			mOnHand = true;
+			SetLocation(0, 925);
+		}
+		else
+		{
+			SetLocation(x, y);
+		}
+		
 	}
 }

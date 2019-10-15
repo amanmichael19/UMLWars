@@ -107,9 +107,8 @@ void CChildView::OnPaint()
 
 void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: Add your message handler code here and/or call default
-
-	CWnd::OnLButtonDown(nFlags, point);
+	mGame.OnLeftClick(point.x, point.y);
+	Invalidate();
 }
 
 

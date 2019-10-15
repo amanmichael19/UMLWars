@@ -30,10 +30,10 @@ class CPenHandler
 		/// Load/Reload pen 
 		void LoadPen() {};
 
-		/// shoot pen
-		void ShootPen() {};
+		/// fire pen
+		void FirePen(double mouseX, double mouseY);
 		/// set pen angle
-		void SetPenAngle(double angle);
+		void OnMouseMove(double angle);
 
 	private:
 		/// pen image
@@ -42,14 +42,18 @@ class CPenHandler
 		std::shared_ptr<CRedPen> mPen;
 		/// game member variable
 		CGame* mGame;
+		/// the x center of the player to be used as origin for pen
+		double mXOrigin = 0.0;
+		/// the y center of the player to be used as origin for pen
+		double mYOrigin = 0.0;
 		/// initial load x location
 		double mLoadX = 0.0;
 		/// initial load y location
 		double mLoadY = 0.0;
 		/// offset x from player image center
-		const double mXOffset = 40.0;
+		const double mXOffset = 29.0;
 		/// offset y from player image center
-		const double mYOffset = 43.0;
+		const double mYOffset = 54.0;
 		/// boolean to indicate pen on hand
 		bool mOnHand = true;
 

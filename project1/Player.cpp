@@ -37,24 +37,32 @@ CPlayer::CPlayer(CGame* game) : CGameObject(game)
 
 void CPlayer::OnMouseMove(double mouseX, double mouseY)
 {
-	mAngle = atan2(GetY() - mouseY, mouseX - GetX())-PI/2;
-	if (mAngle > PI / 2)
-		mAngle = PI / 2;
-	else if (mAngle < -PI / 2)
-		mAngle = -PI / 2;
-	mPenHandler->SetPenAngle(mAngle);
+	if (mouseY < GetY()) 
+	{
+		/// Did mouseX - GetX() instead of the other way around is to
+		/// make the player rotate to the direction of mouse movement
+		mAngle = atan2(GetY() - mouseY, mouseX - GetX()) - PI / 2;
 
+		if (mAngle > PI / 2)
+			mAngle = PI / 2;
+		else if (mAngle < -PI / 2)
+			mAngle = -PI / 2;
+		mPenHandler->OnMouseMove(mAngle);
+	}
+}
+
+void CPlayer::OnLeftClick(double mouseX, double mouseY)
+{
+	mPenHandler->FirePen(mouseX, mouseY);
 }
 
 void CPlayer::Draw(Gdiplus::Graphics* graphics)
 {
 	float wid = (float)mPlayerImage->GetWidth();
 	float hit = (float)mPlayerImage->GetHeight();
-	float x = float(GetX() - wid / 2);
-	float y = float(GetY() - hit / 2);
 
 	auto state = graphics->Save();
-	graphics->TranslateTransform((float)x, (float)y);
+	graphics->TranslateTransform((float)GetX(), (float)GetY());
 	graphics->RotateTransform((float)(-mAngle * RtoD));
 	graphics->DrawImage(mPlayerImage.get(), -wid / 2, -hit / 2, wid, hit);
 	graphics->Restore(state);

@@ -60,7 +60,11 @@ class CGame
 		/// \return int
 		static int GetHeight() { return Height; }
 
+		/// act on mouse movement
 		void OnMouseMove(int x, int y);
+
+		/// act on left click
+		void OnLeftClick(int x, int y);
 
 		/// accepts visitor
 		/// \param visitor

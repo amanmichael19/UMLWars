@@ -1,3 +1,9 @@
+/**
+ * \file PenHandler.cpp
+ *
+ * \author Amanuel
+ */
+
 #include "pch.h"
 #include "PenHandler.h"
 #include "RedPen.h"
@@ -6,7 +12,11 @@
 using namespace std;
 using namespace Gdiplus;
 
-CPenHandler::CPenHandler(CGame* game, double xlocation, double ylocation) : mGame(game)
+/// angle of hand from center of player
+const double INITIAL_ANGLE = -1.078;
+/// radius of hand from center of player
+const double RADIUS = 61.3;
+CPenHandler::CPenHandler(CGame* game, double xlocation, double ylocation) : mGame(game), mXOrigin(xlocation), mYOrigin(ylocation)
 {
 	mPenImage = shared_ptr<Bitmap>(Bitmap::FromFile(L"images/images/redpen.png"));
 	if (mPenImage->GetLastStatus() != Ok)
@@ -20,7 +30,24 @@ CPenHandler::CPenHandler(CGame* game, double xlocation, double ylocation) : mGam
 	game->Add(mPen);
 }
 
-void CPenHandler::SetPenAngle(double angle)
+void CPenHandler::FirePen(double mouseX, double mouseY)
+{
+	mPen->Fire(mouseX - mLoadX, mouseY - mLoadY);
+	mOnHand = false;
+}
+
+void CPenHandler::OnMouseMove(double angle)
 {
 	mPen->SetAngle(angle);
+	if (mOnHand)
+	{
+		/// rotating away from the x=0 line
+		if (angle > -PI / 2)
+		{
+			angle = -angle;
+		}
+		double x = mXOrigin + RADIUS * cos(INITIAL_ANGLE + angle);
+		double y = mYOrigin + RADIUS * sin(INITIAL_ANGLE + angle);
+		mPen->SetLocation(x, y);
+	}
 }
