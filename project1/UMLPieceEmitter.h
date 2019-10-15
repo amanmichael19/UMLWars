@@ -45,6 +45,6 @@ private:
 
 	int mHandicap = 5; ///< Higher value makes game easier (less good UML and inheritance)
 	int mTotalEmitted = 0; ///< The total number of UMLPieces that have been emitted this game
-	int mPieceSpeed = 10; ///< Speed that pieces will move after being emitted
+	int mPieceSpeed = 50; ///< Speed that pieces will move after being emitted
 };
 

@@ -31,13 +31,23 @@ public:
 
 	/// Draw this object
 	/// \param graphics The graphics device this object is being drawn on
-	virtual void Draw(Gdiplus::Graphics* graphics) {};
+	virtual void Draw(Gdiplus::Graphics* graphics) {}
 
-	/// TODO: Hit Test
+	virtual void Update(double elapsed);
+
+	bool LeaveScreenCheck();
+
+	/// Hit Test override for UMLPiece
+	/// Since each derived class has its own way of handling hit detection, it's still virtual
+	/// \param x X position of hit
+	/// \param y Y position of hit
+	/// \returns True if arguments hit a UMLPiece
+	virtual bool HitTest(int x, int y) { return false; }
 
 private:
 	std::wstring mBad = L""; ///< The reason, if any, why this UMLPiece is bad
-	std::vector<double> mDirection; ///< The direction this UMLPiece is moving
+	double mXDirection; ///< The X direction this UMLPiece is moving
+	double mYDirection; ///< The Y direction this UMLPiece is moving
 	int mSpeed; ///< The speed at which this UMLPiece is moving
 };
 

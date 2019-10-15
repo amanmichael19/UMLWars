@@ -69,7 +69,7 @@ public:
 	* \param y y-location
 	* \return bool
 	*/
-	bool HitTest(int x, int y);
+	virtual bool HitTest(int x, int y);
 
 	/** draws game objects
 	* \param graphics
@@ -83,7 +83,7 @@ public:
 
 	/// update time counter
 	/// \param elapsed time
-	void Update(double elapsed) {}
+	virtual void Update(double elapsed) {}
 
 private:
 

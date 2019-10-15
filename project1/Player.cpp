@@ -30,7 +30,7 @@ CPlayer::CPlayer(CGame* game) : CGameObject(game)
 	}
 	else
 	{
-		SetLocation(CGame::GetWidth() / 2.0f, double(double(CGame::GetHeight()) - mPlayerImage->GetHeight()/2.0f));
+		SetLocation(0, double(double(CGame::GetHeight()) - mPlayerImage->GetHeight()/2.0f));
 		mPenHandler = make_shared<CPenHandler>(game, GetX(), GetY());
 	}
 }

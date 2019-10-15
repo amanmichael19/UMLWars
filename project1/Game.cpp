@@ -10,6 +10,9 @@
 #include "PlayerVisitor.h"
 #include "ScoreBoard.h"
 #include "EndScreen.h"
+#include "UMLPieceEmitter.h"
+#include <cstdlib>
+#include "UmlVisitor.h"
 
 using namespace std;
 using namespace Gdiplus;
@@ -28,10 +31,13 @@ CGame::~CGame()
 
 void CGame::OnLaunch()
 {
+	srand(unsigned(time(NULL)));
 	auto player = make_shared<CPlayer>(this);
 	auto scoreBoard = make_shared<CScoreBoard>(this);
+	auto emitter = make_shared<CUMLPieceEmitter>(this); //TEMPORARY
 	Add(player);
 	Add(scoreBoard);
+	Add(emitter->EmitPiece());
 }
 
 void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
@@ -47,7 +53,8 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 	float scaleY = float(height) / float(Height);
 	mScale = min(scaleX, scaleY);
 
-	mXOffset = (width - mScale * width) / 2 ;
+	mXOffset = width / 2.0;
+	//mXOffset = (width - mScale * width) / 2 ;
 	mYOffset = 0;
 	if (height > Height * mScale) {
 		mYOffset = (float)((height - Height * mScale) / 2);
@@ -58,7 +65,7 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 
 	// Fill the background with white
 	SolidBrush new_brush(Color::White);
-	graphics->FillRectangle(&new_brush, 0, 0, Width, Height);
+	graphics->FillRectangle(&new_brush, -Width/2.0, 0, Width, Height);
 	
 	/// TODO: EndScreen teasting.
 	//CEndScreen EndScreen();
@@ -111,7 +118,6 @@ std::shared_ptr<CGameObject> CGame::HitTest(int x, int y)
 			return *i;
 		}
 	}
-
 	return  nullptr;
 }
 
@@ -120,5 +126,29 @@ void CGame::Update(double elapsed)
 	for (auto gameObjects : mGameObjects)
 	{
 		gameObjects->Update(elapsed);
+	}
+}
+
+
+/**
+ * Detects whether a given position has hit a UML piece
+ * \param x X position of point
+ * \param y Y position of point
+ */
+void CGame::HitUml(int x, int y)
+{
+	CUmlVisitor visitor;
+
+	for (auto object : mGameObjects)
+	{
+		object->Accept(&visitor);
+		if (visitor.IsUML())
+		{
+			if (object->HitTest(x, y))
+			{
+				//TODO Perform the scorekeeping. Likely another visitor to determine type.
+			}
+			visitor.Reset();
+		}
 	}
 }

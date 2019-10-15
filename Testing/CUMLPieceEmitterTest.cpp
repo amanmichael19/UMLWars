@@ -10,7 +10,7 @@ using namespace std;
 const unsigned RANDOM_SEED = 8675309;
 
 // Number of pieces to emit in TestCUMLPieceEmitterEmitGoodUML 
-const int NUM_PIECES = 32;
+const int NUM_PIECES = 12;
 
 // Number of bad pieces to emit
 const int BAD_PIECES = 5;
@@ -74,7 +74,7 @@ namespace Testing
 
 			// Assert that next piece is bad, the piece also happens to have an inheritance relationship
 			piece = emitter->EmitPiece();
-			Assert::IsTrue(piece->GetBad() == L"Can't say 'is a'");
+			Assert::IsTrue(piece->GetBad() == L"Missing class name");
 		}
 
 	};

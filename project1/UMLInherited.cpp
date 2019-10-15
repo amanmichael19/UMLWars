@@ -7,6 +7,20 @@
 #include "pch.h"
 #include "UMLInherited.h"
 
+using Gdiplus::PointF;
+
+/// Number of pixels between base and derived class in Y direction
+const double Y_OFFSET = 50;
+
+/// How many pixels away from tip/tail arrow ends are in Y direction
+const double ARROW_Y_OFFSET = 15;
+
+/// How many pixels away from tip/tail arrow ends are in X direction
+const double ARROW_X_OFFSET = 20;
+
+/// How many pixels to left or right of arrow a hit can be for hit detection
+const double X_BUFFER = 5;
+
 /**
  * CUMLInherited Constructor
  *
@@ -27,10 +41,61 @@ CUMLInherited::CUMLInherited(CGame* game, double x, double y, int speed) : CUMLP
  */
 void CUMLInherited::Draw(Gdiplus::Graphics* graphics)
 {
-	mBaseDisplay->Draw(graphics); // Draw Base
-	mDerivedDisplay->Draw(graphics); // Draw Derived
+	// Set the dimensions of both UMLDisplays, as they will be needed to correctly display the final result
+	if (mFirstDraw)
+	{
+		mBaseDisplay->SetDimensions(graphics);
+		mDerivedDisplay->SetDimensions(graphics);
+		mFirstDraw = false;
+	}
+	
+	double derivedY = GetY() + mBaseDisplay->GetHeight() + Y_OFFSET;
+	double derivedX = GetX() + (mBaseDisplay->GetWidth() - mDerivedDisplay->GetWidth()) / 2;
 
-	//TODO: Draw arrow
+	// Center and Space Base and Derived
+	mBaseDisplay->Draw(graphics,GetX(),GetY()); // Draw Base
+	mDerivedDisplay->Draw(graphics,derivedX,derivedY); // Draw Derived
+
+	// Pen used to draw arrow
+	Gdiplus::Pen blackPen(Gdiplus::Color(0, 0, 0));
+
+	// Pen used to clean up leftover arrow
+	Gdiplus::Pen eraser(Gdiplus::Color(255, 255, 255));
+
+	// Draw shaft of arrow
+	PointF topPoint(derivedX + (mDerivedDisplay->GetWidth() / 2), derivedY - Y_OFFSET);
+	PointF tailPoint(derivedX + (mDerivedDisplay->GetWidth() / 2), derivedY);
+	graphics->DrawLine(&blackPen, topPoint, tailPoint);
+
+	// Draw up arrow tip
+	if (mArrowDirection == L"up")
+	{
+		// Points needed to draw up arrow
+		PointF leftTop(topPoint.X - ARROW_X_OFFSET, topPoint.Y + ARROW_Y_OFFSET);
+		PointF rightTop(topPoint.X + ARROW_X_OFFSET, topPoint.Y + ARROW_Y_OFFSET);
+		PointF topBase(topPoint.X,topPoint.Y + ARROW_Y_OFFSET);
+
+		// Draws up arrow
+		graphics->DrawLine(&blackPen, topPoint, leftTop);
+		graphics->DrawLine(&blackPen, topPoint, rightTop);
+		graphics->DrawLine(&blackPen, leftTop, rightTop);
+		graphics->DrawLine(&eraser, topPoint, topBase);
+	}
+
+	// Draw down arrow tip
+	else
+	{
+		// Points needed to draw down arrow
+		PointF leftBottom(tailPoint.X - ARROW_X_OFFSET, tailPoint.Y - ARROW_Y_OFFSET);
+		PointF rightBottom(tailPoint.X + ARROW_X_OFFSET, tailPoint.Y - ARROW_Y_OFFSET);
+		PointF bottomBase(tailPoint.X, tailPoint.Y - ARROW_Y_OFFSET);
+
+		// Draws down arrow
+		graphics->DrawLine(&blackPen, tailPoint, leftBottom);
+		graphics->DrawLine(&blackPen, tailPoint, rightBottom);
+		graphics->DrawLine(&blackPen, leftBottom, rightBottom);
+		graphics->DrawLine(&eraser, tailPoint, bottomBase);
+	}
 }
 
 /**
@@ -58,4 +123,68 @@ void CUMLInherited::SetDerivedDisplay(std::shared_ptr<CUMLDisplay> display)
 void CUMLInherited::SetArrowDirection(std::wstring direction)
 {
 	mArrowDirection = direction;
+}
+
+/**
+ * Determines if a set of coordinates have hit this object
+ *
+ * Used mainly for Pen collision detection
+ * \param x X location of hit
+ * \param y Y location of hit
+ * \returns True if the given arguments result in a hit
+ */
+bool CUMLInherited::HitTest(int x, int y)
+{
+	// Get dimensions of 1st CUMLDisplay member
+	double height = mBaseDisplay->GetHeight();
+	double width = mBaseDisplay->GetWidth();
+
+	// Determine acceptable X values
+	double minX = GetX();
+	double maxX = minX + width;
+
+	// Determine acceptable Y values
+	double minY = GetY();
+	double maxY = minY + height;
+
+	// Determine if given x and y are valid
+	bool validX = (x >= minX) && (x <= maxX);
+	bool validY = (y >= minY) && (y <= maxY);
+
+	// Determine if arguments hit base class
+	bool baseHit = (validX && validY);
+
+	// Get dimensions of 2nd CUMLDisplay member
+	height = mDerivedDisplay->GetHeight();
+	width = mDerivedDisplay->GetWidth();
+
+	// Determine acceptable X values
+	minX = GetX() + (mBaseDisplay->GetWidth() - width) / 2;
+	maxX = minX + width;
+
+	// Determine acceptable Y values
+	minY = GetY() + mBaseDisplay->GetHeight() + Y_OFFSET;
+	maxY = minY + height;
+
+	// Determine if given x and y are valid
+	validX = (x >= minX) && (x <= maxX);
+	validY = (y >= minY) && (y <= maxY);
+
+	// Determine if arguments hit derived class
+	bool derivedHit = (validX && validY);
+
+	minX = ((GetX() + (mBaseDisplay->GetWidth() - mDerivedDisplay->GetWidth()) / 2) + (mDerivedDisplay->GetWidth() / 2)) - X_BUFFER;
+	maxX = minX + 2 * X_BUFFER;
+	minY = GetY() + mBaseDisplay->GetHeight();
+	maxY = minY + Y_OFFSET;
+
+	// Determine if given x and y are valid
+	validX = (x >= minX) && (x <= maxX);
+	validY = (y >= minY) && (y <= maxY);
+
+	// Determine if arguments hit arrow
+	bool arrowHit = (validX && validY);
+
+	// Returns tru if either base class, derived class, or arrow were hit
+	return (arrowHit || baseHit || derivedHit);
 }
