@@ -53,7 +53,10 @@ void CPlayer::OnMouseMove(double mouseX, double mouseY)
 
 void CPlayer::OnLeftClick(double mouseX, double mouseY)
 {
-	mPenHandler->FirePen(mouseX, mouseY);
+	if (mPenHandler->OnHand())
+	{
+		mPenHandler->FirePen(mouseX, mouseY);
+	}
 }
 
 void CPlayer::Draw(Gdiplus::Graphics* graphics)
