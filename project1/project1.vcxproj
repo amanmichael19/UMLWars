@@ -188,6 +188,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ChildView.h" />
+    <ClInclude Include="CountDownTimer.h" />
     <ClInclude Include="DoubleBufferDC.h" />
     <ClInclude Include="EndScreen.h" />
     <ClInclude Include="framework.h" />
@@ -203,6 +204,7 @@
     <ClInclude Include="RedPen.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ScoreBoard.h" />
+    <ClInclude Include="ScoreBoardVisitor.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="UMLAttribute.h" />
     <ClInclude Include="UMLClass.h" />
@@ -214,12 +216,14 @@
     <ClInclude Include="UMLOperation.h" />
     <ClInclude Include="UMLPiece.h" />
     <ClInclude Include="UMLPieceEmitter.h" />
+    <ClInclude Include="UMLStruck.h" />
     <ClInclude Include="UmlVisitor.h" />
     <ClInclude Include="XmlNode.h" />
     <ClInclude Include="XMLReader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChildView.cpp" />
+    <ClCompile Include="CountDownTimer.cpp" />
     <ClCompile Include="EndScreen.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -237,6 +241,7 @@
     <ClCompile Include="project1.cpp" />
     <ClCompile Include="RedPen.cpp" />
     <ClCompile Include="ScoreBoard.cpp" />
+    <ClCompile Include="ScoreBoardVisitor.cpp" />
     <ClCompile Include="UMLAttribute.cpp" />
     <ClCompile Include="UMLClass.cpp" />
     <ClCompile Include="UMLComponent.cpp" />
@@ -247,6 +252,7 @@
     <ClCompile Include="UMLOperation.cpp" />
     <ClCompile Include="UMLPiece.cpp" />
     <ClCompile Include="UMLPieceEmitter.cpp" />
+    <ClCompile Include="UMLStruck.cpp" />
     <ClCompile Include="UmlVisitor.cpp" />
     <ClCompile Include="XmlNode.cpp" />
     <ClCompile Include="XMLReader.cpp" />

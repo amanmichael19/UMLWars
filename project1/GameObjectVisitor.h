@@ -14,6 +14,7 @@ class CPlayer;
 class CPen;
 class CUMLPiece;
 class CScoreBoard;
+class CCountDownTimer;
 
 /**
  * Class implementing game object visitor
