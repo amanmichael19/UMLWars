@@ -91,8 +91,18 @@ void CGame::OnMouseMove(int x, int y)
 	double mouseX = (x - mXOffset) / mScale;
 	double mouseY = (y - mYOffset) / mScale;
 
-	CPlayerVisitor visitor(mouseX, mouseY);
+	CPlayerVisitor visitor(mouseX, mouseY, false);
 	Accept(&visitor);
+}
+
+void CGame::OnLeftClick(int x, int y)
+{
+	double mouseX = (x - mXOffset) / mScale;
+	double mouseY = (y - mYOffset) / mScale;
+
+	CPlayerVisitor visitor(mouseX, mouseY, true);
+	Accept(&visitor);
+
 }
 
 void CGame::Accept(CGameObjectVisitor* visitor)

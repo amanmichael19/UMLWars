@@ -44,6 +44,8 @@ public:
 	/// \returns True if arguments hit a UMLPiece
 	virtual bool HitTest(int x, int y) { return false; }
 
+	void DisplayHitMessage();
+
 private:
 	std::wstring mBad = L""; ///< The reason, if any, why this UMLPiece is bad
 	double mXDirection; ///< The X direction this UMLPiece is moving

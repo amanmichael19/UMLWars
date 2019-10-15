@@ -19,7 +19,7 @@ class CPlayerVisitor : public CGameObjectVisitor
 		///constructor
 		/// \param mouseX
 		/// \param mouseY
-		CPlayerVisitor(double mouseX, double mouseY) { mMouseX = mouseX; mMouseY = mouseY; }
+		CPlayerVisitor(double mouseX, double mouseY, bool shoot) { mMouseX = mouseX; mMouseY = mouseY; mShoot = shoot; }
 		/// visit player object
 		/// \param player
 		virtual void VisitPlayer(CPlayer* player) override;
@@ -38,5 +38,7 @@ class CPlayerVisitor : public CGameObjectVisitor
 		double mMouseX = 0.0;
 		/// mouse y
 		double mMouseY = 0.0;
+		/// shoot or rotate
+		bool mShoot = false;
 };
 

@@ -36,6 +36,8 @@ public:
 
 	void SetDimensions(Gdiplus::Graphics* graphics);
 
+	void UMLStruck(int x, int y, std::wstring msg);
+
 	/// Getter for mWidth
 	/// \returns The width of the display
 	double GetWidth() { return mWidth; }
