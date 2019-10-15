@@ -47,9 +47,9 @@ class CPenHandler
 		/// initial load y location
 		double mLoadY = 0.0;
 		/// offset x from player image center
-		const double mXOffset = 29.0;
+		const double mXOffset = 40.0;
 		/// offset y from player image center
-		const double mYOffset = 54.0;
+		const double mYOffset = 43.0;
 		/// boolean to indicate pen on hand
 		bool mOnHand = true;
 

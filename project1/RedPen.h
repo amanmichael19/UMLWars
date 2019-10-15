@@ -11,6 +11,7 @@
 #include "GameObject.h"
 #include <memory>
 
+const double PI = 3.141592653;
 
  /**
   * class implementing player
@@ -31,7 +32,7 @@ public:
 	virtual void Draw(Gdiplus::Graphics* graphics) override;
 
 	/// set angle
-	void SetAngle(double angle) { mAngle = angle; }
+	void SetAngle(double angle) { mAngle = angle - mAngleOffset; }
 
 	/// set Rotation
 	void SetRotateBool(bool rotate) { mRotate = rotate; }
@@ -40,7 +41,9 @@ private:
 	/// pen image
 	std::shared_ptr<Gdiplus::Bitmap> mPenImage;
 	/// angle of rotation
-	double mAngle = 0.0;
+	double mAngle = -PI/2;
+	///angle offset
+	double mAngleOffset = PI / 2;
 	/// bool to dictate rotation
 	bool mRotate = true;
 };

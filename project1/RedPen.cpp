@@ -30,7 +30,6 @@ void CRedPen::Draw(Gdiplus::Graphics* graphics)
 	float y = float(GetY() - hit / 2);
 
 	auto state = graphics->Save();
-	//mRotate = false;
 	if (mRotate)
 	{
 		graphics->TranslateTransform((float)x, (float)y);
