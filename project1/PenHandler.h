@@ -19,7 +19,7 @@ class CPenHandler
 {
 	public:
 		/// constructor
-		CPenHandler(CGame* game, double xlocaton, double ylocation);
+		CPenHandler(CGame* game, double xLocation, double yLocation);
 
 		/// default constructor disabled
 		CPenHandler() = delete;
@@ -34,6 +34,8 @@ class CPenHandler
 		void FirePen(double mouseX, double mouseY);
 		/// set pen angle
 		void OnMouseMove(double angle);
+		///onHand bool
+		bool OnHand();
 
 	private:
 		/// pen image
@@ -42,21 +44,6 @@ class CPenHandler
 		std::shared_ptr<CRedPen> mPen;
 		/// game member variable
 		CGame* mGame;
-		/// the x center of the player to be used as origin for pen
-		double mXOrigin = 0.0;
-		/// the y center of the player to be used as origin for pen
-		double mYOrigin = 0.0;
-		/// initial load x location
-		double mLoadX = 0.0;
-		/// initial load y location
-		double mLoadY = 0.0;
-		/// offset x from player image center
-		const double mXOffset = 29.0;
-		/// offset y from player image center
-		const double mYOffset = 54.0;
-		/// boolean to indicate pen on hand
-		bool mOnHand = true;
-
-
+		
 };
 
