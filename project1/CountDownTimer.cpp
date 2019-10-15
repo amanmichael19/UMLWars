@@ -26,4 +26,6 @@ void CCountDownTimer::Draw(Gdiplus::Graphics* graphics)
 	graphics->DrawString(L"Time Left:", -1, &font, PointF(-620, 10), &heavyGreen);
 
 	graphics->DrawString(to_wstring(mTimeLeft).c_str(), -1, &font, PointF(-620+130, 10), &heavyGreen);
+
+
 }
