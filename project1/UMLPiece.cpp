@@ -5,7 +5,10 @@
  */
 
 #include "pch.h"
+#include <vector>
+#include <memory>
 #include "UMLPiece.h"
+#include "UMLDisplay.h"
 
 /// The maximum Y value of the display
 const double SCREEN_SIZE_Y = 1000;
@@ -46,4 +49,18 @@ bool CUMLPiece::LeaveScreenCheck()
 {
 	// Could be used to signal missed/correct and indicate that this object should be destroyed
 	return GetY() > SCREEN_SIZE_Y;
+}
+
+void CUMLPiece::DisplayHitMessage()
+{
+
+	// Create UMLDisplay for Class object
+	std::shared_ptr<CUMLDisplay> newDisplay = std::make_shared<CUMLDisplay>();
+
+	if (mBad == L"")
+	{
+		mBad = L"This was good UML.";
+	}
+
+	newDisplay->UMLStruck(GetX(), GetY(), mBad);
 }
