@@ -14,6 +14,8 @@
 #include "UMLPieceEmitter.h"
 #include <cstdlib>
 #include "UmlVisitor.h"
+#include "ScoreBoardVisitor.h"
+#include <vector>
 
 
 using namespace std;
@@ -151,18 +153,46 @@ void CGame::Update(double elapsed)
  */
 void CGame::HitUml(int x, int y)
 {
-	CUmlVisitor visitor;
+	CUmlVisitor umlVisitor;
+	CScoreBoardVisitor scoVisitor;
+	std::vector<std::shared_ptr<CGameObject> > hitUml;
+
 
 	for (auto object : mGameObjects)
 	{
-		object->Accept(&visitor);
-		if (visitor.IsUML())
+		object->Accept(&scoVisitor);
+		if (scoVisitor.IsScoreboard())
 		{
-			if (object->HitTest(x, y))
-			{
-				//TODO Perform the scorekeeping. Likely another visitor to determine type.
-			}
-			visitor.Reset();
+			break;
 		}
 	}
+
+
+	for (auto object : mGameObjects)
+	{
+		object->Accept(&umlVisitor);
+		if (umlVisitor.IsUML())
+		{
+			if (umlVisitor.TryHit(x, y))
+			{
+				if (std::find(hitUml.begin(), hitUml.end(), object) == 
+					hitUml.end())
+				{
+					hitUml.push_back(object);
+
+					if (umlVisitor.IsBad())
+					{
+						scoVisitor.Increment(true);
+					}
+					else
+					{
+						scoVisitor.Increment(false);
+					}
+				}
+			}
+			umlVisitor.Reset();
+		}
+	}
+
+	
 }

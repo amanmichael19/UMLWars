@@ -26,7 +26,7 @@ public:
 	void SetBad(std::wstring bad) { mBad = bad; }
 
 	/// Getter for mBad
-	/// \returns The current vlaue of mBad
+	/// \returns The current value of mBad
 	std::wstring GetBad() { return mBad; }
 
 	/// Draw this object

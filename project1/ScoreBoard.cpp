@@ -37,3 +37,5 @@ void CScoreBoard::Draw(Gdiplus::Graphics* graphics)
 	graphics->DrawString(to_wstring(mUnfair).c_str(), -1, &font, PointF(284, 100), &heavyGreen);
 
 }
+
+

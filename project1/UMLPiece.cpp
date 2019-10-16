@@ -8,7 +8,8 @@
 #include <vector>
 #include <memory>
 #include "UMLPiece.h"
-#include "UMLDisplay.h"
+
+using namespace Gdiplus;
 
 /// The maximum Y value of the display
 const double SCREEN_SIZE_Y = 1000;
@@ -54,13 +55,18 @@ bool CUMLPiece::LeaveScreenCheck()
 void CUMLPiece::DisplayHitMessage()
 {
 
-	// Create UMLDisplay for Class object
-	std::shared_ptr<CUMLDisplay> newDisplay = std::make_shared<CUMLDisplay>();
-
 	if (mBad == L"")
 	{
 		mBad = L"This was good UML.";
 	}
 
-	newDisplay->UMLStruck(GetX(), GetY(), mBad);
+	// Colors to be used
+	SolidBrush yellowBrush(Color(255, 255, 193));
+	SolidBrush blackBrush(Color(0, 0, 0));
+	Pen blackPen(Color(0, 0, 0));
+
+	// Font to be used
+	FontFamily fontFamily(L"Arial");
+	Gdiplus::Font font(&fontFamily, 13);
+
 }
