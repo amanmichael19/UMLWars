@@ -20,6 +20,10 @@
 
 using namespace std;
 using namespace Gdiplus;
+
+/// Time between UMLPiece emissions
+const double EMITTER_INTERVAL = 5;
+
 /**
  * Game constructor
  */
@@ -50,8 +54,8 @@ void CGame::OnLaunch()
 	auto countDownTimer = make_shared<CCountDownTimer>(this);
 	Add(countDownTimer);
 
-	auto emitter = make_shared<CUMLPieceEmitter>(this); //TEMPORARY
-	Add(emitter->EmitPiece());
+	// Create emitter
+	mEmitter = make_shared<CUMLPieceEmitter>(this);
 }
 
 void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
@@ -161,6 +165,15 @@ std::shared_ptr<CGameObject> CGame::HitTest(int x, int y)
 
 void CGame::Update(double elapsed)
 {
+	mEmitterTime -= elapsed;
+
+	// Emits a new UMLPiece if the emit time interval is over
+	if (mEmitterTime <= 0)
+	{
+		Add(mEmitter->EmitPiece());
+		mEmitterTime += EMITTER_INTERVAL;
+	}
+
 	for (auto gameObjects : mGameObjects)
 	{
 		gameObjects->Update(elapsed);

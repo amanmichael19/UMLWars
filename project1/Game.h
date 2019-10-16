@@ -89,5 +89,11 @@ class CGame
 
 		/// y offset to indicate the origin
 		double mYOffset = 0.0;
+
+		/// Emitter for UMLPieces
+		std::shared_ptr<CUMLPieceEmitter> mEmitter;
+
+		/// Time until emitter emits next piece
+		double mEmitterTime = 0;
 };
 
