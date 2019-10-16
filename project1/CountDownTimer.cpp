@@ -22,10 +22,8 @@ void CCountDownTimer::Draw(Gdiplus::Graphics* graphics)
 	Gdiplus::Font font(&fontFamily, 20);
 	SolidBrush heavyGreen(Color(0, 0, 0));
 
-	/// TODO: position can be scaled with size of window
-	graphics->DrawString(L"Time Left:", -1, &font, PointF(-620, 10), &heavyGreen);
-
-	graphics->DrawString(to_wstring(mTimeLeft).c_str(), -1, &font, PointF(-620+130, 10), &heavyGreen);
-
-
+	char buffer[15];
+	sprintf_s(buffer, "Time Left: %d", mTimeLeft);
+	wstring output(&buffer[0], &buffer[14]);
+	graphics->DrawString(output.c_str(), -1, &font, PointF(-600, 10), &heavyGreen);
 }
