@@ -33,14 +33,22 @@ CGame::~CGame()
 
 void CGame::OnLaunch()
 {
+	// Seed random for the game using time
 	srand(unsigned(time(NULL)));
-	auto player = make_shared<CPlayer>(this);
+
+	// Create the scoreboard
 	auto scoreBoard = make_shared<CScoreBoard>(this);
-	auto countDownTimer = make_shared<CCountDownTimer>(this);
-	auto emitter = make_shared<CUMLPieceEmitter>(this); //TEMPORARY
-	Add(player);
 	Add(scoreBoard);
+
+	// Create the player
+	auto player = make_shared<CPlayer>(this);
+	Add(player);
+
+	// Create the countdown timer
+	auto countDownTimer = make_shared<CCountDownTimer>(this);
 	Add(countDownTimer);
+
+	auto emitter = make_shared<CUMLPieceEmitter>(this); //TEMPORARY
 	Add(emitter->EmitPiece());
 }
 
@@ -87,7 +95,21 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
  */
 void CGame::Add(std::shared_ptr<CGameObject> gob)
 {
-	mGameObjects.push_back(gob);
+	// Pushback as normal if empty
+	if (mGameObjects.empty())
+	{
+		mGameObjects.push_back(gob);
+	}
+
+	// Else move scoreboard so it is always drawn last.
+	else
+	{
+		auto lastObject = mGameObjects.back();
+		mGameObjects.pop_back();
+		mGameObjects.push_back(gob);
+		mGameObjects.push_back(lastObject);
+	}
+	
 }
 
 void CGame::OnMouseMove(int x, int y)
