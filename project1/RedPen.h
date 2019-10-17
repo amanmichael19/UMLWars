@@ -9,6 +9,7 @@
 
 #pragma once
 #include "GameObject.h"
+#include "Game.h"
 #include <memory>
 
 const double PI = 3.141592653;
@@ -47,6 +48,15 @@ public:
 	bool GetOnHand() { return mOnHand; }
 	/// follow player hand
 	void TrackHand();
+
+	/// set location of the red pen
+	/// \param x
+	/// \param y
+	void SetLocation(double x, double y) override;
+
+	virtual void Accept(CGameObjectVisitor* visitor) override {}
+
+
 
 private:
 	/// pen image

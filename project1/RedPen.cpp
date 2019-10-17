@@ -21,6 +21,17 @@ const double INITIAL_ANGLE = -1.078;
 /// radius of hand from center of player
 const double RADIUS = 61.3;
 
+
+void CRedPen::SetLocation(double x, double y) {
+
+	CGameObject::SetLocation(x, y);
+
+	auto mGame = CGameObject::GetGame();
+
+	mGame->HitUml(this);
+
+}
+
 CRedPen::CRedPen(CGame* game, shared_ptr<Gdiplus::Bitmap> penImage, double xlocation, double ylocation) : CGameObject(game), mPenImage(penImage),
 mXOrigin(xlocation), mYOrigin(ylocation)
 {

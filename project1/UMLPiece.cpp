@@ -42,6 +42,7 @@ void CUMLPiece::Update(double elapsed)
 	LeaveScreenCheck();
 }
 
+
 /**
  * Checks if the UMLPiece has left the screen
  * \returns True if the UMLPiece object has left the screen

@@ -187,34 +187,83 @@ void CGame::Update(double elapsed)
 }
 
 
+///**
+// * Detects whether a given position has hit a UML piece
+// * \param x X position of point
+// * \param y Y position of point
+// */
+//void CGame::HitUml(int x, int y)
+//{
+//	CUmlVisitor umlVisitor;
+//	CScoreBoardVisitor scoVisitor;
+//	std::vector<std::shared_ptr<CGameObject> > hitUml;
+//
+//
+//	for (auto object : mGameObjects)
+//	{
+//		object->Accept(&scoVisitor);
+//		if (scoVisitor.IsScoreboard())
+//		{
+//			break;
+//		}
+//	}
+//
+//
+//	for (auto object : mGameObjects)
+//	{
+//		object->Accept(&umlVisitor);
+//		if (umlVisitor.IsUML())
+//		{
+//			if (umlVisitor.TryHit(x, y))
+//			{
+//				if (std::find(hitUml.begin(), hitUml.end(), object) == 
+//					hitUml.end())
+//				{
+//					hitUml.push_back(object);
+//
+//					if (umlVisitor.IsBad())
+//					{
+//						scoVisitor.Increment(true);
+//					}
+//					else
+//					{
+//						scoVisitor.Increment(false);
+//					}
+//				}
+//			}
+//			umlVisitor.Reset();
+//		}
+//	}
+//
+//	
+//}
+
+
 /**
  * Detects whether a given position has hit a UML piece
  * \param x X position of point
  * \param y Y position of point
  */
-void CGame::HitUml(int x, int y)
+void CGame::HitUml(CGameObject* pen)
 {
 	CUmlVisitor umlVisitor;
 	CScoreBoardVisitor scoVisitor;
+	//auto scoreBoard = make_shared<CScoreBoard>(this);
 	std::vector<std::shared_ptr<CGameObject> > hitUml;
 
+	double penX = pen->GetX();
+	double penY = pen->GetY();
 
 	for (auto object : mGameObjects)
 	{
-		object->Accept(&scoVisitor);
-		if (scoVisitor.IsScoreboard())
-		{
-			break;
-		}
-	}
+		//if (scoVisitor.IsScoreboard()) {
+		//	
+		//}
 
-
-	for (auto object : mGameObjects)
-	{
 		object->Accept(&umlVisitor);
 		if (umlVisitor.IsUML())
 		{
-			if (umlVisitor.TryHit(x, y))
+			if (umlVisitor.TryHit(penX, penY))
 			{
 				if (std::find(hitUml.begin(), hitUml.end(), object) == 
 					hitUml.end())
@@ -235,5 +284,5 @@ void CGame::HitUml(int x, int y)
 		}
 	}
 
-	
+
 }

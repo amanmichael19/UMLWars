@@ -39,7 +39,9 @@ class CGame
 		/// \param elapsed time
 		void Update(double elapsed);
 
-		void HitUml(int x, int y);
+		void HitUml(CGameObject* fire);
+
+		//void HitUml(int x, int y);
 
 		/**
 		 *  Test to see if we hit this GameObject.
@@ -74,6 +76,7 @@ class CGame
 
 		/// All of the gameobjects to populate our game
 		std::vector<std::shared_ptr<CGameObject> > mGameObjects;
+
 
 		/// Game area in virtual pixels
 		const static int Width = 1250;

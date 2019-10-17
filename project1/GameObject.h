@@ -79,11 +79,17 @@ public:
 	/** Accept a visitor
 	* \param visitor
 	*/
-	virtual void Accept(CGameObjectVisitor* visitor) {};
+	virtual void Accept(CGameObjectVisitor* visitor) = 0;
+
 
 	/// update time counter
 	/// \param elapsed time
 	virtual void Update(double elapsed) {}
+
+	/// Get the game this item is in
+	/// \returns game pointer
+	CGame* GetGame() const { return mGame; }
+
 
 private:
 
