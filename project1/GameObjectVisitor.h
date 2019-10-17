@@ -11,7 +11,7 @@
 
 //forward reference game object types
 class CPlayer;
-class CPen;
+class CRedPen;
 class CUMLPiece;
 class CScoreBoard;
 class CCountDownTimer;
@@ -30,7 +30,7 @@ class CGameObjectVisitor
 
 		/// visit pen object
 		/// \param pen
-		virtual void VisitPen(CPen* pen) {}
+		virtual void VisitPen(CRedPen* pen) {}
 
 		/// visit uml piece
 		/// \param umlPiece
@@ -39,5 +39,7 @@ class CGameObjectVisitor
 		/// visit score board
 		/// \param scoreboard
 		virtual void VisitScoreBoard(CScoreBoard* scoreBoard) {}
+
+
 };
 

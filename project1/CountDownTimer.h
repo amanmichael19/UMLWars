@@ -1,3 +1,11 @@
+/**
+ * \file CountDownTimer.h
+ *
+ * \author Ziyuan Zhang
+ *
+ * 
+ */
+
 #pragma once
 #include "GameObject.h"
 
@@ -14,7 +22,10 @@ public:
 	/// default copy constructor disabled
 	CCountDownTimer(const CCountDownTimer&) = delete;
 
-	virtual void Update(double elapsed) { mTimeLeft=mTimeTotal-(clock()-start)/1000; }
+	virtual void Update(double elapsed) { mTimeLeft = mTimeTotal - (clock() - start) / 1000; };
+
+	virtual void Accept(CGameObjectVisitor* visitor) override {}
+
 
 	/// draw
 	/// \param graphics

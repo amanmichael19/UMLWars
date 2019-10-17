@@ -198,7 +198,6 @@
     <ClInclude Include="GameObjectVisitor.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="PenHandler.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerVisitor.h" />
     <ClInclude Include="project1.h" />
@@ -237,7 +236,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="PenHandler.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerVisitor.cpp" />
     <ClCompile Include="project1.cpp" />

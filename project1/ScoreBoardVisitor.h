@@ -22,7 +22,11 @@ class CScoreBoardVisitor : public CGameObjectVisitor
 
 
 	public:
-		virtual void VisitScoreBoard(CScoreBoard* scoreBoard) override { mBoard = true; mSB = scoreBoard; }
+		void CScoreBoardVisitor::VisitScoreBoard(CScoreBoard* scoreBoard) override { 
+			if (mBoard == false) {
+				mBoard = true; mSB = scoreBoard;
+			}
+		}
 
 		/// Report if object was a scoreboard
 		/// \return bool

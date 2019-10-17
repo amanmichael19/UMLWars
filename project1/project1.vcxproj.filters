@@ -26,7 +26,6 @@
     <ClCompile Include="UMLInherited.cpp" />
     <ClCompile Include="EndScreen.cpp" />
     <ClCompile Include="RedPen.cpp" />
-    <ClCompile Include="PenHandler.cpp" />
     <ClCompile Include="UMLStruck.cpp" />
     <ClCompile Include="CountDownTimer.cpp" />
     <ClCompile Include="ScoreBoardVisitor.cpp" />
@@ -62,7 +61,6 @@
     <ClInclude Include="UMLInherited.h" />
     <ClInclude Include="EndScreen.h" />
     <ClInclude Include="RedPen.h" />
-    <ClInclude Include="PenHandler.h" />
     <ClInclude Include="UMLStruck.h" />
     <ClInclude Include="CountDownTimer.h" />
     <ClInclude Include="ScoreBoardVisitor.h" />

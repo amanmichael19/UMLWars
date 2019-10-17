@@ -14,12 +14,12 @@
  */
 void CScoreBoardVisitor::Increment(bool correct)
 {
-	if (correct)
-	{
-		mSB->IncrementCorrectScore();
-	}
-	else
-	{
-		mSB->IncrementUnfairScore();
-	}
+		if (correct)
+		{
+			mSB->IncrementCorrectScore();
+		}
+		else
+		{
+			mSB->IncrementUnfairScore();
+		}
 }

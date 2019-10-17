@@ -109,7 +109,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>pch;ChildView;XMLNode;XMLReader;GameObject;Game;EndScreen;UMLPieceEmitter;UMLPiece;UMLClass;UMLInherited;UMLDisplay;RedPen;Player;ScoreBoard;PlayerVisitor;GameObjectVisitor;PenHandler</AdditionalDependencies>
+      <AdditionalDependencies>pch;ChildView;XMLNode;XMLReader;GameObject;Game;EndScreen;UMLPieceEmitter;UMLPiece;UMLClass;UMLInherited;UMLDisplay;RedPen;Player;ScoreBoard;PlayerVisitor;GameObjectVisitor</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

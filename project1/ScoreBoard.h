@@ -26,7 +26,7 @@ class CScoreBoard : public CGameObject
 		CScoreBoard(const CScoreBoard&) = delete;
 
 		/// accepts visitor
-		virtual void Accept(CGameObjectVisitor* visitor) override {}
+		virtual void Accept(CGameObjectVisitor* visitor) override { visitor->VisitScoreBoard(this); }
 
 		/// draw
 		/// \param graphics
