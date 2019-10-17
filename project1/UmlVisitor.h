@@ -26,7 +26,7 @@ public:
 	void CUmlVisitor::VisitUMLPiece(CUMLPiece* piece);
 
 	/// Resets the visitor after a uml piece was hit
-	void Reset() { mIsUml = false; mPiece = nullptr; }
+	void Reset() { mIsUml = false; mPiece = nullptr;}
 
 	/// Reports whether Uml was hit
 	/// \return bool 

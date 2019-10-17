@@ -43,8 +43,9 @@ void CGame::OnLaunch()
 	srand(unsigned(time(NULL)));
 
 	// Create the scoreboard
-	auto scoreBoard = make_shared<CScoreBoard>(this);
-	Add(scoreBoard);
+	mScoreBoard = make_shared<CScoreBoard>(this);
+	//mScoreBoard->Draw();
+	//Add(scoreBoard);
 
 	// Create the player
 	auto player = make_shared<CPlayer>(this);
@@ -105,6 +106,7 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 	{
 		gameObjects->Draw(graphics);
 	}
+	mScoreBoard->Draw(graphics);
 }
 
 /**
@@ -210,10 +212,11 @@ void CGame::HitUml(CGameObject* pen)
 
 	// this is a very naive to solve it. We do not know the position of scoreboard.
 	// The other ways to solve: 1) always make sure the scorebaord is the first in the game object list 2) mScoreBoard
-	for (auto object : mGameObjects)
+	/*for (auto object : mGameObjects)
 	{
 		object->Accept(&scoVisitor);
-	}
+	}*/
+	mScoreBoard->Accept(&scoVisitor);
 
 	for (auto object : mGameObjects)
 	{
@@ -230,10 +233,12 @@ void CGame::HitUml(CGameObject* pen)
 					if (umlVisitor.IsBad())
 					{
 						scoVisitor.Increment(true);
+						break;
 					}
 					else
 					{
 						scoVisitor.Increment(false);
+						break;
 					}
 				}
 			}
