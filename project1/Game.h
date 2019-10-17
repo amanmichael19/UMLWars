@@ -11,8 +11,10 @@
 #pragma once
 #include <vector>
 #include <memory>
+#include "ScoreBoard.h"
 
 class CGameObject;
+//class CScoreBoard;
 class CGameObjectVisitor;
 class CUMLPieceEmitter;
 class CUmlHitDetector;
@@ -76,7 +78,7 @@ class CGame
 
 		/// All of the gameobjects to populate our game
 		std::vector<std::shared_ptr<CGameObject> > mGameObjects;
-
+		std::shared_ptr<CScoreBoard> mScoreBoard;
 
 		/// Game area in virtual pixels
 		const static int Width = 1250;

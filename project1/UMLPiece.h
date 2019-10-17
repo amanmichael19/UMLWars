@@ -49,7 +49,7 @@ public:
 	/// \param x X position of hit
 	/// \param y Y position of hit
 	/// \returns True if arguments hit a UMLPiece
-	bool HitTest(int x, int y) { return true; }
+	//bool HitTest(int x, int y) {}
 
 	void DisplayHitMessage();
 
