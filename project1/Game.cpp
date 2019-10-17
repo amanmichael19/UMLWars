@@ -8,7 +8,6 @@
 #include "Game.h"
 #include "Player.h"
 #include "PlayerVisitor.h"
-#include "ScoreBoard.h"
 #include "CountDownTimer.h"
 #include "EndScreen.h"
 #include "UMLPieceEmitter.h"
@@ -16,6 +15,7 @@
 #include "UmlVisitor.h"
 #include "ScoreBoardVisitor.h"
 #include <vector>
+#include "UMLStruck.h"
 
 
 using namespace std;
@@ -56,6 +56,12 @@ void CGame::OnLaunch()
 
 	// Create emitter
 	mEmitter = make_shared<CUMLPieceEmitter>(this);
+
+	//auto struck = make_shared<CUMLStruck>(this);
+	//struck->Set(0, 0, L"Not good UML");
+	////auto mGame = CGameObject::GetGame();
+	////mGame->Add(struck);
+	//Add(struck);
 }
 
 /**
@@ -185,58 +191,6 @@ void CGame::Update(double elapsed)
 		gameObjects->Update(elapsed);
 	}
 }
-
-
-///**
-// * Detects whether a given position has hit a UML piece
-// * \param x X position of point
-// * \param y Y position of point
-// */
-//void CGame::HitUml(int x, int y)
-//{
-//	CUmlVisitor umlVisitor;
-//	CScoreBoardVisitor scoVisitor;
-//	std::vector<std::shared_ptr<CGameObject> > hitUml;
-//
-//
-//	for (auto object : mGameObjects)
-//	{
-//		object->Accept(&scoVisitor);
-//		if (scoVisitor.IsScoreboard())
-//		{
-//			break;
-//		}
-//	}
-//
-//
-//	for (auto object : mGameObjects)
-//	{
-//		object->Accept(&umlVisitor);
-//		if (umlVisitor.IsUML())
-//		{
-//			if (umlVisitor.TryHit(x, y))
-//			{
-//				if (std::find(hitUml.begin(), hitUml.end(), object) == 
-//					hitUml.end())
-//				{
-//					hitUml.push_back(object);
-//
-//					if (umlVisitor.IsBad())
-//					{
-//						scoVisitor.Increment(true);
-//					}
-//					else
-//					{
-//						scoVisitor.Increment(false);
-//					}
-//				}
-//			}
-//			umlVisitor.Reset();
-//		}
-//	}
-//
-//	
-//}
 
 
 /**
