@@ -22,7 +22,7 @@ using namespace std;
 using namespace Gdiplus;
 
 /// Time between UMLPiece emissions
-const double EMITTER_INTERVAL = 5;
+const double EMITTER_INTERVAL = 4;
 
 /**
  * Game constructor

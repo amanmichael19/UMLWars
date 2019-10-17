@@ -28,19 +28,19 @@ const double MAX_Y = 15;
 const double MIN_Y = 8;
 
 /// First threshold to decrease handicap
-const int HANDICAP_THRESHOLD_ONE = 5;
+const int HANDICAP_THRESHOLD_ONE = 3;
 
 /// Second threshold to decrease handicap
-const int HANDICAP_THRESHOLD_TWO = 10;
+const int HANDICAP_THRESHOLD_TWO = 6;
 
 /// Third threshold to decrease handicap
-const int HANDICAP_THRESHOLD_THREE = 15;
+const int HANDICAP_THRESHOLD_THREE = 9;
 
 /// Fourth threshold to decrease handicap
-const int HANDICAP_THRESHOLD_FOUR = 20;
+const int HANDICAP_THRESHOLD_FOUR = 12;
 
 /// Fifth threshold to decrease handicap
-const int HANDICAP_THRESHOLD_FIVE = 25;
+const int HANDICAP_THRESHOLD_FIVE = 15;
 
 /// Height that UMLPieces are spawned in on
 const double Y_SPAWN_LEVEL = 0;
@@ -234,6 +234,9 @@ void CUMLPieceEmitter::IncrementEmitted()
 {
 	// Increment total emitted counter
 	mTotalEmitted++;
+
+	// Increase object speed
+	mPieceSpeed++;
 
 	// Decrease handicap at various point thresholds
 	switch (mTotalEmitted)
