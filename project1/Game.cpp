@@ -254,12 +254,15 @@ void CGame::HitUml(CGameObject* pen)
 	double penX = pen->GetX();
 	double penY = pen->GetY();
 
+	// this is a very naive to solve it. We do not know the position of scoreboard.
+	// The other ways to solve: 1) always make sure the scorebaord is the first in the game object list 2) mScoreBoard
 	for (auto object : mGameObjects)
 	{
-		//if (scoVisitor.IsScoreboard()) {
-		//	
-		//}
+		object->Accept(&scoVisitor);
+	}
 
+	for (auto object : mGameObjects)
+	{
 		object->Accept(&umlVisitor);
 		if (umlVisitor.IsUML())
 		{
