@@ -188,6 +188,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ChildView.h" />
+    <ClInclude Include="ClearGameObject.h" />
     <ClInclude Include="CountDownTimer.h" />
     <ClInclude Include="DoubleBufferDC.h" />
     <ClInclude Include="EndScreen.h" />
@@ -222,6 +223,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ChildView.cpp" />
+    <ClCompile Include="ClearGameObject.cpp" />
     <ClCompile Include="CountDownTimer.cpp" />
     <ClCompile Include="EndScreen.cpp" />
     <ClCompile Include="Game.cpp" />

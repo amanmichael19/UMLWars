@@ -34,6 +34,16 @@ mXOrigin(xlocation), mYOrigin(ylocation)
 	SetLocation(mLoadX, mLoadY);
 }
 
+void CRedPen::SetLocation(double x, double y) {
+
+	CGameObject::SetLocation(x, y);
+
+	auto mGame = CGameObject::GetGame();
+
+	mGame->HitUml(this);
+
+}
+
 void CRedPen::Draw(Gdiplus::Graphics* graphics)
 {
 	float wid = (float)mPenImage->GetWidth();
@@ -42,17 +52,18 @@ void CRedPen::Draw(Gdiplus::Graphics* graphics)
 	float y = float(GetY() - hit / 2);
 
 	auto state = graphics->Save();
+	graphics->TranslateTransform((float)GetX(), (float)GetY());
 	if (mOnHand)
 	{
-		graphics->TranslateTransform((float)GetX(), (float)GetY());
 		graphics->RotateTransform((float)(-mAngleOfRotation * RtoD));
-		graphics->DrawImage(mPenImage.get(), -wid / 2, -hit / 2, wid, hit);
-		graphics->Restore(state);
+		
 	}
 	else
 	{
-		graphics->DrawImage(mPenImage.get(), x, y, wid, hit);
+		graphics->RotateTransform((float)(-mAngleOnAir * RtoD));		
 	}
+	graphics->DrawImage(mPenImage.get(), -wid / 2, -hit / 2, wid, hit);
+	graphics->Restore(state);
 }
 
 void CRedPen::FirePen(double xDirection, double yDirection)
@@ -63,6 +74,7 @@ void CRedPen::FirePen(double xDirection, double yDirection)
 		mXDirection = (xDirection - mLoadX)/sqrtVecorSum;
 		mYDirection = (yDirection - mLoadY)/sqrtVecorSum;
 		mOnHand = false;
+		mAngleOnAir = mAngleOfRotation;
 	}
 }
 

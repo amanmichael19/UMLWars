@@ -9,6 +9,7 @@
 
 #pragma once
 #include "GameObject.h"
+#include "Game.h"
 #include <memory>
 
 const double PI = 3.141592653;
@@ -47,6 +48,15 @@ public:
 	/// on mouse move
 	void OnMouseMove(double angle);
 
+	/// set location of the red pen
+	/// \param x
+	/// \param y
+	void SetLocation(double x, double y) override;
+
+	virtual void Accept(CGameObjectVisitor* visitor) override {}
+
+
+
 private:
 	/// pen image
 	std::shared_ptr<Gdiplus::Bitmap> mPenImage;
@@ -56,6 +66,8 @@ private:
 	double mAngleOffset = PI/2;
 	/// angle of movement
 	double mAngleOfMovement = 0.0;
+	/// angle of pen after being fired
+	double mAngleOnAir = 0.0;
 	/// bool to dictate rotation
 	bool mOnHand = true;
 	/// initial load x location
@@ -75,7 +87,7 @@ private:
 	/// y direction
 	double mYDirection = 0.0;
 	/// speed
-	double mSpeed = 500.0;
+	double mSpeed = 1000.0;
 };
 
 

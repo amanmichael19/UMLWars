@@ -14,10 +14,16 @@
 #include "UMLPieceEmitter.h"
 #include <cstdlib>
 #include "UmlVisitor.h"
+#include "ScoreBoardVisitor.h"
+#include <vector>
 
 
 using namespace std;
 using namespace Gdiplus;
+
+/// Time between UMLPiece emissions
+const double EMITTER_INTERVAL = 5;
+
 /**
  * Game constructor
  */
@@ -33,22 +39,36 @@ CGame::~CGame()
 
 void CGame::OnLaunch()
 {
+	// Seed random for the game using time
 	srand(unsigned(time(NULL)));
-	auto player = make_shared<CPlayer>(this);
+
+	// Create the scoreboard
 	auto scoreBoard = make_shared<CScoreBoard>(this);
-	auto countDownTimer = make_shared<CCountDownTimer>(this);
-	auto emitter = make_shared<CUMLPieceEmitter>(this); //TEMPORARY
-	Add(player);
 	Add(scoreBoard);
+
+	// Create the player
+	auto player = make_shared<CPlayer>(this);
+	Add(player);
+
+	// Create the countdown timer
+	auto countDownTimer = make_shared<CCountDownTimer>(this);
 	Add(countDownTimer);
-	Add(emitter->EmitPiece());
+
+	// Create emitter
+	mEmitter = make_shared<CUMLPieceEmitter>(this);
 }
 
+/**
+ * Draw the game area
+ * \param graphics The GDI+ graphics context to draw on
+ * \param width Width of the client window
+ * \param height Height of the client window
+ */
 void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 {
 	// Fill the background with black
-	SolidBrush brush(Color::Black);
-	graphics->FillRectangle(&brush, 0, 0, width, height);
+	/*SolidBrush brush(Color::Black);
+	graphics->FillRectangle(&brush, 0, 0, width, height);*/
 
 	//
 	// Automatic Scaling
@@ -57,7 +77,7 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 	float scaleY = float(height) / float(Height);
 	mScale = min(scaleX, scaleY);
 
-	mXOffset = width / 2.0;
+	mXOffset = width / 2.0f;
 	//mXOffset = (width - mScale * width) / 2 ;
 	mYOffset = 0;
 	if (height > Height * mScale) {
@@ -68,8 +88,8 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 	graphics->ScaleTransform(mScale, mScale);
 
 	// Fill the background with white
-	SolidBrush new_brush(Color::White);
-	graphics->FillRectangle(&new_brush, -Width/2.0, 0, Width, Height);
+	/*SolidBrush new_brush(Color::White);
+	graphics->FillRectangle(&new_brush, -Width/2.0, 0, Width, Height);*/
 	
 	/// TODO: EndScreen teasting.
 	//CEndScreen EndScreen();
@@ -87,7 +107,21 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
  */
 void CGame::Add(std::shared_ptr<CGameObject> gob)
 {
-	mGameObjects.push_back(gob);
+	// Pushback as normal if empty
+	if (mGameObjects.empty())
+	{
+		mGameObjects.push_back(gob);
+	}
+
+	// Else move scoreboard so it is always drawn last.
+	else
+	{
+		auto lastObject = mGameObjects.back();
+		mGameObjects.pop_back();
+		mGameObjects.push_back(gob);
+		mGameObjects.push_back(lastObject);
+	}
+	
 }
 
 void CGame::OnMouseMove(int x, int y)
@@ -137,6 +171,15 @@ std::shared_ptr<CGameObject> CGame::HitTest(int x, int y)
 
 void CGame::Update(double elapsed)
 {
+	mEmitterTime -= elapsed;
+
+	// Emits a new UMLPiece if the emit time interval is over
+	if (mEmitterTime <= 0)
+	{
+		Add(mEmitter->EmitPiece());
+		mEmitterTime += EMITTER_INTERVAL;
+	}
+
 	for (auto gameObjects : mGameObjects)
 	{
 		gameObjects->Update(elapsed);
@@ -144,25 +187,105 @@ void CGame::Update(double elapsed)
 }
 
 
+///**
+// * Detects whether a given position has hit a UML piece
+// * \param x X position of point
+// * \param y Y position of point
+// */
+//void CGame::HitUml(int x, int y)
+//{
+//	CUmlVisitor umlVisitor;
+//	CScoreBoardVisitor scoVisitor;
+//	std::vector<std::shared_ptr<CGameObject> > hitUml;
+//
+//
+//	for (auto object : mGameObjects)
+//	{
+//		object->Accept(&scoVisitor);
+//		if (scoVisitor.IsScoreboard())
+//		{
+//			break;
+//		}
+//	}
+//
+//
+//	for (auto object : mGameObjects)
+//	{
+//		object->Accept(&umlVisitor);
+//		if (umlVisitor.IsUML())
+//		{
+//			if (umlVisitor.TryHit(x, y))
+//			{
+//				if (std::find(hitUml.begin(), hitUml.end(), object) == 
+//					hitUml.end())
+//				{
+//					hitUml.push_back(object);
+//
+//					if (umlVisitor.IsBad())
+//					{
+//						scoVisitor.Increment(true);
+//					}
+//					else
+//					{
+//						scoVisitor.Increment(false);
+//					}
+//				}
+//			}
+//			umlVisitor.Reset();
+//		}
+//	}
+//
+//	
+//}
+
+
 /**
  * Detects whether a given position has hit a UML piece
  * \param x X position of point
  * \param y Y position of point
  */
-void CGame::HitUml(int x, int y)
+void CGame::HitUml(CGameObject* pen)
 {
-	CUmlVisitor visitor;
+	CUmlVisitor umlVisitor;
+	CScoreBoardVisitor scoVisitor;
+	//auto scoreBoard = make_shared<CScoreBoard>(this);
+	std::vector<std::shared_ptr<CGameObject> > hitUml;
+
+	double penX = pen->GetX();
+	double penY = pen->GetY();
+
+	// this is a very naive to solve it. We do not know the position of scoreboard.
+	// The other ways to solve: 1) always make sure the scorebaord is the first in the game object list 2) mScoreBoard
+	for (auto object : mGameObjects)
+	{
+		object->Accept(&scoVisitor);
+	}
 
 	for (auto object : mGameObjects)
 	{
-		object->Accept(&visitor);
-		if (visitor.IsUML())
+		object->Accept(&umlVisitor);
+		if (umlVisitor.IsUML())
 		{
-			if (object->HitTest(x, y))
+			if (umlVisitor.TryHit(penX, penY))
 			{
-				//TODO Perform the scorekeeping. Likely another visitor to determine type.
+				if (std::find(hitUml.begin(), hitUml.end(), object) == 
+					hitUml.end())
+				{
+					hitUml.push_back(object);
+
+					if (umlVisitor.IsBad())
+					{
+						scoVisitor.Increment(true);
+					}
+					else
+					{
+						scoVisitor.Increment(false);
+					}
+				}
 			}
-			visitor.Reset();
+			umlVisitor.Reset();
 		}
 	}
+
+
 }

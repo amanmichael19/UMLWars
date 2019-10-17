@@ -43,6 +43,7 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_WM_MOUSEMOVE()
 	ON_WM_ERASEBKGND()
 	ON_WM_TIMER()
+	ON_WM_SIZE()
 END_MESSAGE_MAP()
 
 
@@ -67,16 +68,6 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
  */
 void CChildView::OnPaint() 
 {
-	
-	CPaintDC paintDC(this);     // device context for painting
-	CDoubleBufferDC dc(&paintDC); // device context for painting
-	Graphics graphics(dc.m_hDC);
-
-	CRect rect;
-	GetClientRect(&rect);
-
-	mGame.OnDraw(&graphics, rect.Width(), rect.Height());
-
 	if (mFirstDraw)
 	{
 		mFirstDraw = false;
@@ -91,6 +82,7 @@ void CChildView::OnPaint()
 		mLastTime = time.QuadPart;
 		mTimeFreq = double(freq.QuadPart);
 	}
+
 	/*
 	 * Compute the elapsed time since the last draw
 	 */
@@ -100,15 +92,22 @@ void CChildView::OnPaint()
 	double elapsed = double(diff) / mTimeFreq;
 	mLastTime = time.QuadPart;
 	mGame.Update(elapsed);
-	
+
+	CPaintDC paintDC(this);     // device context for painting
+	CDoubleBufferDC dc(&paintDC); // device context for painting
+	Graphics graphics(dc.m_hDC);
+
+	CRect rect;
+	GetClientRect(&rect);
+
+	mGame.OnDraw(&graphics, rect.Width(), rect.Height());
 }
 
 
 
 void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	mGame.OnLeftClick(point.x, point.y);
-	Invalidate();
+	mGame.OnLeftClick(point.x, point.y);	
 }
 
 
@@ -123,7 +122,6 @@ void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 void CChildView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	mGame.OnMouseMove(point.x, point.y);
-	Invalidate();
 }
 
 /**
@@ -145,6 +143,14 @@ BOOL CChildView::OnEraseBkgnd(CDC* pDC)
  */
 void CChildView::OnTimer(UINT_PTR nIDEvent)
 {
-	Invalidate();
 	CWnd::OnTimer(nIDEvent);
+	Invalidate();
+}
+
+
+void CChildView::OnSize(UINT nType, int cx, int cy)
+{
+	CWnd::OnSize(nType, cx, cy);
+	Invalidate();
+	// TODO: Add your message handler code here
 }

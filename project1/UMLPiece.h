@@ -8,9 +8,12 @@
 
 #pragma once
 #include "GameObject.h"
+#include "UmlVisitor.h"
 #include <vector>
 #include <string>
 #include <memory>
+
+//class CUmlVisitor;
 
 /**
  * Class that descibes a single UML object on screen
@@ -26,14 +29,18 @@ public:
 	void SetBad(std::wstring bad) { mBad = bad; }
 
 	/// Getter for mBad
-	/// \returns The current vlaue of mBad
+	/// \returns The current value of mBad
 	std::wstring GetBad() { return mBad; }
+	
 
 	/// Draw this object
 	/// \param graphics The graphics device this object is being drawn on
 	virtual void Draw(Gdiplus::Graphics* graphics) {}
 
 	virtual void Update(double elapsed);
+
+	virtual void Accept(CGameObjectVisitor* visitor) override { visitor->VisitUMLPiece(this); }
+
 
 	bool LeaveScreenCheck();
 
@@ -42,7 +49,7 @@ public:
 	/// \param x X position of hit
 	/// \param y Y position of hit
 	/// \returns True if arguments hit a UMLPiece
-	virtual bool HitTest(int x, int y) { return false; }
+	bool HitTest(int x, int y) { return true; }
 
 	void DisplayHitMessage();
 
