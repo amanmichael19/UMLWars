@@ -10,7 +10,8 @@
 #pragma once
 #include <memory>
 #include "GameObject.h"
-#include "PenHandler.h"
+
+class CRedPen;
 
 
  /**
@@ -52,7 +53,7 @@ class CPlayer : public CGameObject
 		/// player image
 		std::unique_ptr<Gdiplus::Bitmap> mPlayerImage;
 		/// pen handler
-		std::shared_ptr<CPenHandler> mPenHandler;
+		std::shared_ptr<CRedPen> mPen;
 		/// angle of rotation
 		double mAngle = 0.0;
 

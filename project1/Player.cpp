@@ -9,6 +9,7 @@
 
 #include "pch.h"
 #include "Player.h"
+#include "RedPen.h"
 #include "Game.h"
 
 using namespace Gdiplus;
@@ -16,8 +17,6 @@ using namespace std;
 
 /// Constant ratio to convert radians to degrees
 const double RtoD = 57.295779513;
-/// pi constant
-const double PI = 3.141592653;
 
 CPlayer::CPlayer(CGame* game) : CGameObject(game)
 {
@@ -31,7 +30,8 @@ CPlayer::CPlayer(CGame* game) : CGameObject(game)
 	else
 	{
 		SetLocation(0, double(double(CGame::GetHeight()) - mPlayerImage->GetHeight()/2.0f));
-		mPenHandler = make_shared<CPenHandler>(game, GetX(), GetY());
+		mPen = make_shared<CRedPen>(game, GetX(), GetY());
+		game->Add(mPen);
 	}
 }
 
@@ -47,16 +47,13 @@ void CPlayer::OnMouseMove(double mouseX, double mouseY)
 			mAngle = PI / 2;
 		else if (mAngle < -PI / 2)
 			mAngle = -PI / 2;
-		mPenHandler->OnMouseMove(mAngle);
+		mPen->OnMouseMove(mAngle);
 	}
 }
 
 void CPlayer::OnLeftClick(double mouseX, double mouseY)
 {
-	if (mPenHandler->OnHand())
-	{
-		mPenHandler->FirePen(mouseX, mouseY);
-	}
+	mPen->FirePen(mouseX, mouseY);
 }
 
 void CPlayer::Draw(Gdiplus::Graphics* graphics)
