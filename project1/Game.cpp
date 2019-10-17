@@ -54,11 +54,17 @@ void CGame::OnLaunch()
 	Add(emitter->EmitPiece());
 }
 
+/**
+ * Draw the game area
+ * \param graphics The GDI+ graphics context to draw on
+ * \param width Width of the client window
+ * \param height Height of the client window
+ */
 void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 {
 	// Fill the background with black
-	SolidBrush brush(Color::Black);
-	graphics->FillRectangle(&brush, 0, 0, width, height);
+	/*SolidBrush brush(Color::Black);
+	graphics->FillRectangle(&brush, 0, 0, width, height);*/
 
 	//
 	// Automatic Scaling
@@ -67,7 +73,7 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 	float scaleY = float(height) / float(Height);
 	mScale = min(scaleX, scaleY);
 
-	mXOffset = width / 2.0;
+	mXOffset = width / 2.0f;
 	//mXOffset = (width - mScale * width) / 2 ;
 	mYOffset = 0;
 	if (height > Height * mScale) {
@@ -78,8 +84,8 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 	graphics->ScaleTransform(mScale, mScale);
 
 	// Fill the background with white
-	SolidBrush new_brush(Color::White);
-	graphics->FillRectangle(&new_brush, -Width/2.0, 0, Width, Height);
+	/*SolidBrush new_brush(Color::White);
+	graphics->FillRectangle(&new_brush, -Width/2.0, 0, Width, Height);*/
 	
 	/// TODO: EndScreen teasting.
 	//CEndScreen EndScreen();

@@ -43,6 +43,7 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_WM_MOUSEMOVE()
 	ON_WM_ERASEBKGND()
 	ON_WM_TIMER()
+	ON_WM_SIZE()
 END_MESSAGE_MAP()
 
 
@@ -144,4 +145,12 @@ void CChildView::OnTimer(UINT_PTR nIDEvent)
 {
 	CWnd::OnTimer(nIDEvent);
 	Invalidate();
+}
+
+
+void CChildView::OnSize(UINT nType, int cx, int cy)
+{
+	CWnd::OnSize(nType, cx, cy);
+	Invalidate();
+	// TODO: Add your message handler code here
 }
