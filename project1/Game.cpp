@@ -8,7 +8,6 @@
 #include "Game.h"
 #include "Player.h"
 #include "PlayerVisitor.h"
-#include "ScoreBoard.h"
 #include "CountDownTimer.h"
 #include "EndScreen.h"
 #include "UMLPieceEmitter.h"
@@ -16,6 +15,7 @@
 #include "UmlVisitor.h"
 #include "ScoreBoardVisitor.h"
 #include <vector>
+#include "UMLStruck.h"
 
 
 using namespace std;
@@ -43,8 +43,9 @@ void CGame::OnLaunch()
 	srand(unsigned(time(NULL)));
 
 	// Create the scoreboard
-	auto scoreBoard = make_shared<CScoreBoard>(this);
-	Add(scoreBoard);
+	mScoreBoard = make_shared<CScoreBoard>(this);
+	//mScoreBoard->Draw();
+	//Add(scoreBoard);
 
 	// Create the player
 	auto player = make_shared<CPlayer>(this);
@@ -56,6 +57,12 @@ void CGame::OnLaunch()
 
 	// Create emitter
 	mEmitter = make_shared<CUMLPieceEmitter>(this);
+
+	//auto struck = make_shared<CUMLStruck>(this);
+	//struck->Set(0, 0, L"Not good UML");
+	////auto mGame = CGameObject::GetGame();
+	////mGame->Add(struck);
+	//Add(struck);
 }
 
 /**
@@ -99,6 +106,7 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 	{
 		gameObjects->Draw(graphics);
 	}
+	mScoreBoard->Draw(graphics);
 }
 
 /**
@@ -192,29 +200,30 @@ void CGame::Update(double elapsed)
  * \param x X position of point
  * \param y Y position of point
  */
-void CGame::HitUml(int x, int y)
+void CGame::HitUml(CGameObject* pen)
 {
 	CUmlVisitor umlVisitor;
 	CScoreBoardVisitor scoVisitor;
+	//auto scoreBoard = make_shared<CScoreBoard>(this);
 	std::vector<std::shared_ptr<CGameObject> > hitUml;
 
+	double penX = pen->GetX();
+	double penY = pen->GetY();
 
-	for (auto object : mGameObjects)
+	// this is a very naive to solve it. We do not know the position of scoreboard.
+	// The other ways to solve: 1) always make sure the scorebaord is the first in the game object list 2) mScoreBoard
+	/*for (auto object : mGameObjects)
 	{
 		object->Accept(&scoVisitor);
-		if (scoVisitor.IsScoreboard())
-		{
-			break;
-		}
-	}
-
+	}*/
+	mScoreBoard->Accept(&scoVisitor);
 
 	for (auto object : mGameObjects)
 	{
 		object->Accept(&umlVisitor);
 		if (umlVisitor.IsUML())
 		{
-			if (umlVisitor.TryHit(x, y))
+			if (umlVisitor.TryHit(penX, penY))
 			{
 				if (std::find(hitUml.begin(), hitUml.end(), object) == 
 					hitUml.end())
@@ -224,10 +233,12 @@ void CGame::HitUml(int x, int y)
 					if (umlVisitor.IsBad())
 					{
 						scoVisitor.Increment(true);
+						break;
 					}
 					else
 					{
 						scoVisitor.Increment(false);
+						break;
 					}
 				}
 			}
@@ -235,5 +246,5 @@ void CGame::HitUml(int x, int y)
 		}
 	}
 
-	
+
 }
