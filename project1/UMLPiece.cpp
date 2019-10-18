@@ -8,8 +8,12 @@
 #include <vector>
 #include <memory>
 #include "UMLPiece.h"
+#include "UMLStruck.h"
+#include "Game.h"
+#include <memory>
 
 using namespace Gdiplus;
+using namespace std;
 
 /// The maximum Y value of the display
 const double SCREEN_SIZE_Y = 1000;
@@ -60,14 +64,9 @@ void CUMLPiece::DisplayHitMessage()
 	{
 		mBad = L"This was good UML.";
 	}
-
-	// Colors to be used
-	SolidBrush yellowBrush(Color(255, 255, 193));
-	SolidBrush blackBrush(Color(0, 0, 0));
-	Pen blackPen(Color(0, 0, 0));
-
-	// Font to be used
-	FontFamily fontFamily(L"Arial");
-	Gdiplus::Font font(&fontFamily, 13);
-
+	auto mGame = CGameObject::GetGame();
+	auto struck = make_shared<CUMLStruck>(mGame);
+	struck->Set(GetX(), GetY(), mBad);
+	mGame->Add(struck);
+	mSpeed = 0;
 }

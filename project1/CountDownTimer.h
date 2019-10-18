@@ -22,7 +22,7 @@ public:
 	/// default copy constructor disabled
 	CCountDownTimer(const CCountDownTimer&) = delete;
 
-	virtual void Update(double elapsed) { mTimeLeft = mTimeTotal - (clock() - start) / 1000; };
+	virtual void Update(double elapsed);
 
 	virtual void Accept(CGameObjectVisitor* visitor) override {}
 
@@ -33,6 +33,7 @@ public:
 
 	/// get reamining time
 	int GetRemainingTime() { return mTimeLeft; }
+
 private:
 	int mTimeTotal = 60;
 	int mTimeLeft = mTimeTotal;

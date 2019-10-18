@@ -7,6 +7,7 @@
 #include "pch.h"
 #include <string>
 #include "CountDownTimer.h"
+#include "Game.h"
 
 
 using namespace Gdiplus;
@@ -14,6 +15,17 @@ using namespace std;
 
 CCountDownTimer::CCountDownTimer(CGame* game) : CGameObject(game)
 {
+}
+
+void CCountDownTimer::Update(double elapsed)
+{
+
+	mTimeLeft = mTimeTotal - (clock() - start) / 1000;
+
+	if (mTimeLeft == 58)
+	{
+		GetGame()->SetGameOver(true);
+	}
 }
 
 void CCountDownTimer::Draw(Gdiplus::Graphics* graphics)

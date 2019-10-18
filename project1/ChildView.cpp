@@ -92,6 +92,7 @@ void CChildView::OnPaint()
 	double elapsed = double(diff) / mTimeFreq;
 	mLastTime = time.QuadPart;
 	mGame.Update(elapsed);
+	mGame.CheckGameOver();
 
 	CPaintDC paintDC(this);     // device context for painting
 	CDoubleBufferDC dc(&paintDC); // device context for painting

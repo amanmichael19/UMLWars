@@ -19,9 +19,12 @@ void CClearGameObject::clear(CUMLPiece m, CGame* game)
 	// to check if UML Pice left the screen
 	// if then it is true,
 	// will erase game object
+
 	if (m.LeaveScreenCheck() == TRUE) {
 
 		// this will need improvements
 		delete game;
 	}
+
+
 }

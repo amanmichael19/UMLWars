@@ -28,6 +28,9 @@ public:
 	/// \param graphics
 	virtual void Draw(Gdiplus::Graphics* graphics);
 
+	/// accepts visitor
+	virtual void Accept(CGameObjectVisitor* visitor) override {}
+
 private:
 	void DisplayRank();
 	int mFinalScore = 0; ///< The calculated final score achieved in the game, defaults to 0
