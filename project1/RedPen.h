@@ -53,7 +53,7 @@ public:
 	/// \param y
 	void SetLocation(double x, double y) override;
 
-	virtual void Accept(CGameObjectVisitor* visitor) override {}
+	virtual void Accept(CGameObjectVisitor* visitor) override { visitor->VisitPen(this); }
 
 
 

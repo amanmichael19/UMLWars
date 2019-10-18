@@ -8,7 +8,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "PlayerVisitor.h"
-#include "CountDownTimer.h"
+#include "DisplayTimer.h"
 #include "EndScreen.h"
 #include "UMLPieceEmitter.h"
 #include <cstdlib>
@@ -22,7 +22,7 @@ using namespace std;
 using namespace Gdiplus;
 
 /// Time between UMLPiece emissions
-const double EMITTER_INTERVAL = 5;
+const double EMITTER_INTERVAL = 4;
 
 /**
  * Game constructor
@@ -44,25 +44,18 @@ void CGame::OnLaunch()
 
 	// Create the scoreboard
 	mScoreBoard = make_shared<CScoreBoard>(this);
-	//mScoreBoard->Draw();
-	//Add(scoreBoard);
+	//Add(mScoreBoard);
 
 	// Create the player
-	auto player = make_shared<CPlayer>(this);
-	Add(player);
+	mPlayer = make_shared<CPlayer>(this);
+	Add(mPlayer);
 
 	// Create the countdown timer
-	auto countDownTimer = make_shared<CCountDownTimer>(this);
-	Add(countDownTimer);
+	auto DisplayTimer = make_shared<CDisplayTimer>(this);
+	Add(DisplayTimer);
 
 	// Create emitter
 	mEmitter = make_shared<CUMLPieceEmitter>(this);
-
-	//auto struck = make_shared<CUMLStruck>(this);
-	//struck->Set(0, 0, L"Not good UML");
-	////auto mGame = CGameObject::GetGame();
-	////mGame->Add(struck);
-	//Add(struck);
 }
 
 /**
@@ -106,11 +99,7 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 	{
 		gameObjects->Draw(graphics);
 	}
-	if (!mGameOver)
-	{
-		mScoreBoard->Draw(graphics);
-	}
-	
+	mScoreBoard->Draw(graphics);
 }
 
 /**
@@ -163,23 +152,6 @@ void CGame::Accept(CGameObjectVisitor* visitor)
 	}
 }
 
-void CGame::CheckGameOver()
-{
-	if (mGameOver) 
-	{
-		mGameObjects.clear();
-
-		auto theEnd = make_shared<CEndScreen>(this);
-
-		Add(theEnd);
-		
-	
-	}
-	
-
-	
-}
-
 /** Test an x,y click location to see if it clicked
 * on some GameObject.
 * \param x X location
@@ -200,19 +172,14 @@ std::shared_ptr<CGameObject> CGame::HitTest(int x, int y)
 
 void CGame::Update(double elapsed)
 {
-	if (!mGameOver)
+	mEmitterTime -= elapsed;
+
+	// Emits a new UMLPiece if the emit time interval is over
+	if (mEmitterTime <= 0)
 	{
-		mEmitterTime -= elapsed;
-
-		// Emits a new UMLPiece if the emit time interval is over
-		if (mEmitterTime <= 0)
-		{
-			Add(mEmitter->EmitPiece());
-
-			mEmitterTime += EMITTER_INTERVAL;
-		}
+		Add(mEmitter->EmitPiece());
+		mEmitterTime += EMITTER_INTERVAL;
 	}
-	
 
 	for (auto gameObjects : mGameObjects)
 	{
@@ -238,10 +205,10 @@ void CGame::HitUml(CGameObject* pen)
 
 	// this is a very naive to solve it. We do not know the position of scoreboard.
 	// The other ways to solve: 1) always make sure the scorebaord is the first in the game object list 2) mScoreBoard
-	/*for (auto object : mGameObjects)
-	{
-		object->Accept(&scoVisitor);
-	}*/
+	//for (auto object : mGameObjects)
+	//{
+	//	object->Accept(&scoVisitor);
+	//}
 	mScoreBoard->Accept(&scoVisitor);
 
 	for (auto object : mGameObjects)

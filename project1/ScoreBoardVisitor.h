@@ -12,15 +12,6 @@
 
 class CScoreBoardVisitor : public CGameObjectVisitor
 {
-	/** Visit a CGameObject object
-	* \param object we are visiting
-	*/
-	void CScoreBoardVisitor::VisitUML(CUMLPiece* UML)
-	{
-		// I need to wait for the hitting and reutrning status of good, bad or missing to update the statusof the board.
-	}
-
-
 	public:
 		void CScoreBoardVisitor::VisitScoreBoard(CScoreBoard* scoreBoard) override { 
 			if (mBoard == false) {

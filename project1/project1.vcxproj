@@ -189,7 +189,7 @@
   <ItemGroup>
     <ClInclude Include="ChildView.h" />
     <ClInclude Include="ClearGameObject.h" />
-    <ClInclude Include="CountDownTimer.h" />
+    <ClInclude Include="DisplayTimer.h" />
     <ClInclude Include="DoubleBufferDC.h" />
     <ClInclude Include="EndScreen.h" />
     <ClInclude Include="framework.h" />
@@ -203,10 +203,12 @@
     <ClInclude Include="PlayerVisitor.h" />
     <ClInclude Include="project1.h" />
     <ClInclude Include="RedPen.h" />
+    <ClInclude Include="RedPenVisitor.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ScoreBoard.h" />
     <ClInclude Include="ScoreBoardVisitor.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="UMLAttribute.h" />
     <ClInclude Include="UMLClass.h" />
     <ClInclude Include="UMLComponent.h" />
@@ -225,7 +227,7 @@
   <ItemGroup>
     <ClCompile Include="ChildView.cpp" />
     <ClCompile Include="ClearGameObject.cpp" />
-    <ClCompile Include="CountDownTimer.cpp" />
+    <ClCompile Include="DisplayTimer.cpp" />
     <ClCompile Include="EndScreen.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -242,8 +244,10 @@
     <ClCompile Include="PlayerVisitor.cpp" />
     <ClCompile Include="project1.cpp" />
     <ClCompile Include="RedPen.cpp" />
+    <ClCompile Include="RedPenVisitor.cpp" />
     <ClCompile Include="ScoreBoard.cpp" />
     <ClCompile Include="ScoreBoardVisitor.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UMLAttribute.cpp" />
     <ClCompile Include="UMLClass.cpp" />
     <ClCompile Include="UMLComponent.cpp" />

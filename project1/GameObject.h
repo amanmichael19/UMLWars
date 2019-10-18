@@ -74,7 +74,7 @@ public:
 	/** draws game objects
 	* \param graphics
 	*/
-	virtual void Draw(Gdiplus::Graphics* graphics) {};
+	virtual void Draw(Gdiplus::Graphics* graphics) = 0;
 
 	/** Accept a visitor
 	* \param visitor

@@ -27,10 +27,11 @@
     <ClCompile Include="EndScreen.cpp" />
     <ClCompile Include="RedPen.cpp" />
     <ClCompile Include="UMLStruck.cpp" />
-    <ClCompile Include="CountDownTimer.cpp" />
     <ClCompile Include="ScoreBoardVisitor.cpp" />
     <ClCompile Include="ClearGameObject.cpp" />
-    <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="RedPenVisitor.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="DisplayTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChildView.h" />
@@ -63,10 +64,11 @@
     <ClInclude Include="EndScreen.h" />
     <ClInclude Include="RedPen.h" />
     <ClInclude Include="UMLStruck.h" />
-    <ClInclude Include="CountDownTimer.h" />
     <ClInclude Include="ScoreBoardVisitor.h" />
     <ClInclude Include="ClearGameObject.h" />
-    <ClInclude Include="GameOver.h" />
+    <ClInclude Include="RedPenVisitor.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="DisplayTimer.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="project1.rc" />
