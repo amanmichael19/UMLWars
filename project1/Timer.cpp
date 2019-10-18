@@ -21,9 +21,9 @@ void CTimer::Update(double elapsed)
 	else {
 		start = clock();
 	}
-
-	if (mTimeLeft == 0)
-	{
-		GetGame()->SetGameOver(true);
-	}
 }
+
+//if (mTimeLeft == 0)
+//{
+//	GetGame()->SetGameOver(true);
+//}

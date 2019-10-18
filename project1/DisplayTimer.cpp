@@ -15,7 +15,7 @@ using namespace std;
 CDisplayTimer::CDisplayTimer(CGame* game) : CTimer(game)
 {
 	SetIsUpdate(true);
-	SetTotalTime(60);
+	SetTotalTime(10);
 }
 
 
@@ -30,3 +30,15 @@ void CDisplayTimer::Draw(Gdiplus::Graphics* graphics)
 	wstring output(&buffer[0], &buffer[14]);
 	graphics->DrawString(output.c_str(), -1, &font, PointF(-600, 10), &heavyGreen);
 }
+
+void CDisplayTimer::Update(double elapsed)
+{
+	CTimer::Update(elapsed);
+	if (IsTimeUp())
+	{
+		GetGame()->SetGameOver(true);
+	}
+}
+
+
+

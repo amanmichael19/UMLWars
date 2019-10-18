@@ -28,6 +28,8 @@ public:
 	/// \param graphics
 	virtual void Draw(Gdiplus::Graphics* graphics);
 
+	virtual void Update(double elapsed);
+
 	virtual void Accept(CGameObjectVisitor* visitor) override {}
 };
 
