@@ -78,15 +78,14 @@ void CRedPen::FirePen(double xDirection, double yDirection)
 		mYDirection = (yDirection - mLoadY)/sqrtVecorSum;
 		mOnHand = false;
 		mAngleOnAir = mAngleOfRotation;
-		//mTimer->SetIsUpdate(true);
 	}
 }
 
-void CRedPen::ReLoad()
-{
-	mOnHand = true;
-	TrackHand();
-}
+//void CRedPen::ReLoad()
+//{
+//	mOnHand = true;
+//	TrackHand();
+//}
 
 void CRedPen::Update(double elapsed)
 {
@@ -97,9 +96,8 @@ void CRedPen::Update(double elapsed)
 		// temporary - create constants file
 		if (x < -1250 / 2 || x > 1250 / 2 || y > 1000 || y < 0)
 		{
-			//mIsDraw = false;
+			mIsDraw = false;
 			mSpeed = 0;
-				//ReLoad();
 		}
 		else
 		{

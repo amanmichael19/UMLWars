@@ -209,7 +209,7 @@ void CGame::Update(double elapsed)
 		mPlayer->GetAPen();
 	}
 
-	// can not do Add during looping
+	// Do not do ADD or DELETE during looping, will cause crashing
 	for (auto gameObjects : mGameObjects)
 	{
 		gameObjects->Update(elapsed);
