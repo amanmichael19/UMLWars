@@ -11,18 +11,18 @@
 #include "Game.h"
 
 
-class CCountDownTimer : public CTimer
+class CDisplayTimer : public CTimer
 {
 public:
 	/// scroreboard constructor
 	/// \param game
-	CCountDownTimer(CGame* game);
+	CDisplayTimer(CGame* game);
 
 	/// default constructor disabled
-	CCountDownTimer() = delete;
+	CDisplayTimer() = delete;
 
 	/// default copy constructor disabled
-	CCountDownTimer(const CCountDownTimer&) = delete;
+	CDisplayTimer(const CDisplayTimer&) = delete;
 
 	/// draw
 	/// \param graphics

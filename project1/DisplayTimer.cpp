@@ -6,18 +6,18 @@
 
 #include "pch.h"
 #include <string>
-#include "CountDownTimer.h"
+#include "DisplayTimer.h"
 
 
 using namespace Gdiplus;
 using namespace std;
 
-CCountDownTimer::CCountDownTimer(CGame* game) : CTimer(game)
+CDisplayTimer::CDisplayTimer(CGame* game) : CTimer(game)
 {
 	SetTotalTime(60);
 }
 
-void CCountDownTimer::Draw(Gdiplus::Graphics* graphics)
+void CDisplayTimer::Draw(Gdiplus::Graphics* graphics)
 {
 	FontFamily fontFamily(L"Arial");
 	Gdiplus::Font font(&fontFamily, 20);

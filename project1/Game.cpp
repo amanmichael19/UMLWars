@@ -8,7 +8,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "PlayerVisitor.h"
-#include "CountDownTimer.h"
+#include "DisplayTimer.h"
 #include "EndScreen.h"
 #include "UMLPieceEmitter.h"
 #include <cstdlib>
@@ -51,8 +51,8 @@ void CGame::OnLaunch()
 	Add(mPlayer);
 
 	// Create the countdown timer
-	auto countDownTimer = make_shared<CCountDownTimer>(this);
-	Add(countDownTimer);
+	auto DisplayTimer = make_shared<CDisplayTimer>(this);
+	Add(DisplayTimer);
 
 	// Create emitter
 	mEmitter = make_shared<CUMLPieceEmitter>(this);
