@@ -32,10 +32,6 @@ mXOrigin(xlocation), mYOrigin(ylocation)
 	mLoadX = mXOrigin + mXOffset;
 	mLoadY = mYOrigin - mYOffset;
 	SetLocation(mLoadX, mLoadY);
-
-	mTimer = make_shared<CTimer>(game);
-	mTimer->SetTotalTime(2);
-	game->Add(mTimer);
 }
 
 void CRedPen::SetLocation(double x, double y) {
@@ -50,24 +46,27 @@ void CRedPen::SetLocation(double x, double y) {
 
 void CRedPen::Draw(Gdiplus::Graphics* graphics)
 {
-	float wid = (float)mPenImage->GetWidth();
-	float hit = (float)mPenImage->GetHeight();
-	float x = float(GetX() - wid / 2);
-	float y = float(GetY() - hit / 2);
+	if (mIsDraw) {
+		float wid = (float)mPenImage->GetWidth();
+		float hit = (float)mPenImage->GetHeight();
+		float x = float(GetX() - wid / 2);
+		float y = float(GetY() - hit / 2);
 
-	auto state = graphics->Save();
-	graphics->TranslateTransform((float)GetX(), (float)GetY());
-	if (mOnHand)
-	{
-		graphics->RotateTransform((float)(-mAngleOfRotation * RtoD));
-		
+		auto state = graphics->Save();
+		graphics->TranslateTransform((float)GetX(), (float)GetY());
+		if (mOnHand)
+		{
+			graphics->RotateTransform((float)(-mAngleOfRotation * RtoD));
+
+		}
+		else
+		{
+			graphics->RotateTransform((float)(-mAngleOnAir * RtoD));
+		}
+		graphics->DrawImage(mPenImage.get(), -wid / 2, -hit / 2, wid, hit);
+		graphics->Restore(state);
 	}
-	else
-	{
-		graphics->RotateTransform((float)(-mAngleOnAir * RtoD));		
-	}
-	graphics->DrawImage(mPenImage.get(), -wid / 2, -hit / 2, wid, hit);
-	graphics->Restore(state);
+
 }
 
 void CRedPen::FirePen(double xDirection, double yDirection)
@@ -79,15 +78,12 @@ void CRedPen::FirePen(double xDirection, double yDirection)
 		mYDirection = (yDirection - mLoadY)/sqrtVecorSum;
 		mOnHand = false;
 		mAngleOnAir = mAngleOfRotation;
-		mTimer->SetIsUpdate(true);
+		//mTimer->SetIsUpdate(true);
 	}
 }
 
 void CRedPen::ReLoad()
 {
-	mTimer->SetTotalTime(2);
-	mTimer->SetIsUpdate(false);
-
 	mOnHand = true;
 	TrackHand();
 }
@@ -99,11 +95,11 @@ void CRedPen::Update(double elapsed)
 		double x = elapsed * mSpeed * mXDirection + GetX();
 		double y = elapsed * mSpeed * mYDirection + GetY();
 		// temporary - create constants file
-		//if (x < -1250 / 2 || x > 1250 / 2 || y > 1000 || y < 0)
-		//{
-			if (mTimer->IsTimeUp()) {
-				ReLoad();
-			//}
+		if (x < -1250 / 2 || x > 1250 / 2 || y > 1000 || y < 0)
+		{
+			//mIsDraw = false;
+			mSpeed = 0;
+				//ReLoad();
 		}
 		else
 		{

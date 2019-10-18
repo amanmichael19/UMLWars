@@ -44,12 +44,12 @@ void CGame::OnLaunch()
 	srand(unsigned(time(NULL)));
 
 	// Create the scoreboard
-	auto scoreBoard = make_shared<CScoreBoard>(this);
-	Add(scoreBoard);
+	mScoreBoard = make_shared<CScoreBoard>(this);
+	//Add(scoreBoard);
 
 	// Create the player
 	mPlayer = make_shared<CPlayer>(this);
-	Add(mPlayer);
+	//Add(mPlayer);
 
 	// Create the countdown timer
 	auto DisplayTimer = make_shared<CDisplayTimer>(this);
@@ -106,6 +106,8 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 	{
 		gameObjects->Draw(graphics);
 	}
+	mPlayer->Draw(graphics);
+	mScoreBoard->Draw(graphics);
 }
 
 /**
@@ -137,7 +139,7 @@ void CGame::OnMouseMove(int x, int y)
 	double mouseY = (y - mYOffset) / mScale;
 
 	CPlayerVisitor visitor(mouseX, mouseY, false);
-	Accept(&visitor);
+	mPlayer->Accept(&visitor);
 }
 
 void CGame::OnLeftClick(int x, int y)
@@ -146,7 +148,7 @@ void CGame::OnLeftClick(int x, int y)
 	double mouseY = (y - mYOffset) / mScale;
 
 	CPlayerVisitor visitor(mouseX, mouseY, true);
-	Accept(&visitor);
+	mPlayer->Accept(&visitor);
 
 }
 
@@ -202,8 +204,12 @@ void CGame::Update(double elapsed)
 			mEmitterTime += EMITTER_INTERVAL;
 		}
 	}
-	
 
+	if (mPlayer->IfGetPen()) {
+		mPlayer->GetAPen();
+	}
+
+	// can not do Add during looping
 	for (auto gameObjects : mGameObjects)
 	{
 		gameObjects->Update(elapsed);
@@ -227,11 +233,14 @@ void CGame::HitUml(CGameObject* pen)
 	double penY = pen->GetY();
 
 	// this is a very naive to solve it. We do not know the position of scoreboard.
-	// The other ways to solve: 1) always make sure the scorebaord is the first in the game object list 2) mScoreBoard
-	for (auto object : mGameObjects)
-	{
-		object->Accept(&scoVisitor);
-	}
+	// The other ways to solve: 
+	// 1) always make sure the scorebaord is the first in the game object list 
+	// 2)
+		//for (auto object : mGameObjects)
+		//{
+		//	object->Accept(&scoVisitor);
+		//}
+	mScoreBoard->Accept(&scoVisitor);
 
 	for (auto object : mGameObjects)
 	{

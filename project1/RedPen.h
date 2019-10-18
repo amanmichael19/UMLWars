@@ -11,7 +11,6 @@
 #include "GameObject.h"
 #include "Game.h"
 #include <memory>
-#include "Timer.h"
 
 const double PI = 3.141592653;
 
@@ -88,10 +87,9 @@ private:
 	/// y direction
 	double mYDirection = 0.0;
 	/// speed
-	double mSpeed = 1000.0;
-	///
-	std::shared_ptr<CTimer>	 mTimer;
+	double mSpeed = 100.0;
 
+	bool mIsDraw = true;
 };
 
 

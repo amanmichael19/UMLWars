@@ -109,6 +109,7 @@ class CGame
 
 		/// Time until emitter emits next piece
 		double mEmitterTime = 0;
+
 		/// game over check
 		bool mGameOver = false;
 };

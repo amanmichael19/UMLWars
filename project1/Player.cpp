@@ -30,9 +30,16 @@ CPlayer::CPlayer(CGame* game) : CGameObject(game)
 	else
 	{
 		SetLocation(0, double(double(CGame::GetHeight()) - mPlayerImage->GetHeight()/2.0f));
+		
+		mGame = game;
+		mTimer = make_shared<CTimer>(mGame);
+		mGame->Add(mTimer);
 
-		auto pen = make_shared<CRedPen>(game, GetX(), GetY());
-		game->Add(pen);
+		//GetAPen();
+
+		auto pen = make_shared<CRedPen>(mGame, GetX(), GetY());
+		mGame->Add(pen);
+		mPenOnHand = pen;
 	}
 }
 
@@ -48,13 +55,16 @@ void CPlayer::OnMouseMove(double mouseX, double mouseY)
 			mAngle = PI / 2;
 		else if (mAngle < -PI / 2)
 			mAngle = -PI / 2;
-		//mPen->OnMouseMove(mAngle);
+		mPenOnHand->OnMouseMove(mAngle);
 	}
 }
 
 void CPlayer::OnLeftClick(double mouseX, double mouseY)
 {
-	//mPen->FirePen(mouseX, mouseY);
+	mPenOnHand->FirePen(mouseX, mouseY);
+	mTimer->SetTotalTime(1);
+	mTimer->SetIsUpdate(true);
+	mIsPenOnHand = false;
 }
 
 void CPlayer::Draw(Gdiplus::Graphics* graphics)
@@ -67,5 +77,25 @@ void CPlayer::Draw(Gdiplus::Graphics* graphics)
 	graphics->RotateTransform((float)(-mAngle * RtoD));
 	graphics->DrawImage(mPlayerImage.get(), -wid / 2, -hit / 2, wid, hit);
 	graphics->Restore(state);
+}
+
+void CPlayer::GetAPen() {
+	auto pen = make_shared<CRedPen>(mGame, GetX(), GetY());
+	mGame->Add(pen);
+	mPenOnHand = pen;
+
+	mTimer->SetTotalTime(1);
+	mTimer->SetIsUpdate(false);
+
+	mIsPenOnHand = true;
+}
+
+bool CPlayer::IfGetPen() {
+	if (mIsPenOnHand == false && mTimer->IsTimeUp()) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 

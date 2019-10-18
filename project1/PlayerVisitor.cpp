@@ -2,6 +2,8 @@
 #include "PlayerVisitor.h"
 #include "Player.h"
 
+using namespace std;
+
 void CPlayerVisitor::VisitPlayer(CPlayer* player)
 {
 	mIsPlayer = true;

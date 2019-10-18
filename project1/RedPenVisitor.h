@@ -1,3 +1,11 @@
+/**
+ * \file RedPenVisitor.h
+ *
+ * \author Ziyuan Zhang
+ *
+ * 
+ */
+
 #pragma once
 #include "GameObjectVisitor.h"
 class CRedPenVisitor :
@@ -5,15 +13,16 @@ class CRedPenVisitor :
 {
 public:
 	void CRedPenVisitor::VisitPen(CRedPen* pen) override {
+
+
 	}
 
 	/// Report if object was a scoreboard
 	/// \return bool
-	bool IsPen() { return mBoard; }
+	bool IsPen() { return mIsPen; }
 
 private:
-	bool mBoard = false; ///Boolean for IsScoreboard
-	long TinyTimer;
+	bool mIsPen = false; ///Boolean for IsScoreboard
 	//CScoreBoard* mSB = nullptr;
 };
 

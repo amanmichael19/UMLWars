@@ -38,7 +38,7 @@ public:
 	virtual void Draw(Gdiplus::Graphics* graphics) {};
 
 	/// set total time
-	virtual void SetTotalTime(int time) { mTimeLeft = time;  mTimeTotal = time; }
+	virtual void SetTotalTime(int time) { mTimeLeft = time;  mTimeTotal = time;}
 
 	/// get reamining time
 	virtual int GetRemainingTime() { return mTimeLeft; }
