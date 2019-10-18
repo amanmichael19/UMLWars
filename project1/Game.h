@@ -14,7 +14,6 @@
 #include "ScoreBoard.h"
 
 class CGameObject;
-//class CScoreBoard;
 class CGameObjectVisitor;
 class CUMLPieceEmitter;
 class CUmlHitDetector;
@@ -79,6 +78,8 @@ class CGame
 
 		void SetGameOver(bool gameover) { mGameOver = gameover; }
 
+		auto GetPenImage() {return mPenImage; }
+
 		/// Increments missed counter when bad UML leaves screen
 		void UMLMissed() { mScoreBoard->IncrementMissedScore(); };
 
@@ -92,6 +93,8 @@ class CGame
 		std::shared_ptr<CScoreBoard> mScoreBoard;
 
 		std::shared_ptr<CPlayer> mPlayer;
+
+		std::shared_ptr<Gdiplus::Bitmap> mPenImage;
 
 
 		/// Game area in virtual pixels

@@ -38,5 +38,6 @@ private:
 	int mX = 0;
 	int mY = 0;
 	std::wstring mMsg;
+	bool mIfDraw = false;
 };
 

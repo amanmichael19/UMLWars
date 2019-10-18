@@ -38,7 +38,7 @@ public:
 	/// set Rotation
 	void FirePen(double xDirection, double yDirection);
 	/// reload
-	void ReLoad();
+	//void ReLoad();
 
 	/// update time counter
 	/// \param elapsed time
@@ -87,7 +87,7 @@ private:
 	/// y direction
 	double mYDirection = 0.0;
 	/// speed
-	double mSpeed = 100.0;
+	double mSpeed = 300.0;
 
 	bool mIsDraw = true;
 };

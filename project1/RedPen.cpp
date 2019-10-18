@@ -24,11 +24,8 @@ const double RADIUS = 61.3;
 CRedPen::CRedPen(CGame* game, double xlocation, double ylocation) : CGameObject(game),
 mXOrigin(xlocation), mYOrigin(ylocation)
 {
-	mPenImage = shared_ptr<Bitmap>(Bitmap::FromFile(L"images/images/redpen.png"));
-	if (mPenImage->GetLastStatus() != Ok)
-	{
-		AfxMessageBox(L"Failed to open images/redpen.png");
-	}
+	mPenImage = game->GetPenImage();
+
 	mLoadX = mXOrigin + mXOffset;
 	mLoadY = mYOrigin - mYOffset;
 	SetLocation(mLoadX, mLoadY);
@@ -78,15 +75,14 @@ void CRedPen::FirePen(double xDirection, double yDirection)
 		mYDirection = (yDirection - mLoadY)/sqrtVecorSum;
 		mOnHand = false;
 		mAngleOnAir = mAngleOfRotation;
-		//mTimer->SetIsUpdate(true);
 	}
 }
 
-void CRedPen::ReLoad()
-{
-	mOnHand = true;
-	TrackHand();
-}
+//void CRedPen::ReLoad()
+//{
+//	mOnHand = true;
+//	TrackHand();
+//}
 
 void CRedPen::Update(double elapsed)
 {
@@ -97,9 +93,8 @@ void CRedPen::Update(double elapsed)
 		// temporary - create constants file
 		if (x < -1250 / 2 || x > 1250 / 2 || y > 1000 || y < 0)
 		{
-			//mIsDraw = false;
+			mIsDraw = false;
 			mSpeed = 0;
-				//ReLoad();
 		}
 		else
 		{

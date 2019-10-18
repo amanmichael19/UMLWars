@@ -30,6 +30,9 @@ CUMLPiece::CUMLPiece(CGame* game, double x, double y, int speed) : CGameObject(g
 	mXDirection = x;
 	mYDirection = y;
 	mSpeed = speed;
+	auto mGame = CGameObject::GetGame();
+	mStruck = make_shared<CUMLStruck>(mGame);
+	game->Add(mStruck);
 }
 
 /**
@@ -76,9 +79,6 @@ void CUMLPiece::DisplayHitMessage()
 	{
 		mBad = L"This was good UML.";
 	}
-	auto mGame = CGameObject::GetGame();
-	auto struck = make_shared<CUMLStruck>(mGame);
-	struck->Set(GetX(), GetY(), mBad);
-	mGame->Add(struck);
+	mStruck->Set(GetX()+ GetWidth(), GetY() + GetHeight(), mBad);
 	mSpeed = 0;
 }

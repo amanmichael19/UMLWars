@@ -19,7 +19,6 @@
 #include "UMLStruck.h"
 #include <algorithm>
 
-
 using namespace std;
 using namespace Gdiplus;
 
@@ -43,6 +42,13 @@ void CGame::OnLaunch()
 {
 	// Seed random for the game using time
 	srand(unsigned(time(NULL)));
+
+	// Load pen image
+	mPenImage = std::shared_ptr<Bitmap>(Bitmap::FromFile(L"images/images/redpen.png"));
+	if (mPenImage->GetLastStatus() != Ok)
+	{
+		AfxMessageBox(L"Failed to open images/redpen.png");
+	}
 
 	// Create the scoreboard
 	mScoreBoard = make_shared<CScoreBoard>(this);
@@ -252,7 +258,7 @@ void CGame::Update(double elapsed)
 		mPlayer->GetAPen();
 	}
 
-	// can not do Add during looping
+	// Do not do ADD or DELETE during looping, will cause crashing
 	for (auto gameObjects : mGameObjects)
 	{
 		gameObjects->Update(elapsed);
