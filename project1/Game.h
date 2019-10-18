@@ -14,7 +14,6 @@
 #include "ScoreBoard.h"
 
 class CGameObject;
-//class CScoreBoard;
 class CGameObjectVisitor;
 class CUMLPieceEmitter;
 class CUmlHitDetector;
@@ -79,6 +78,8 @@ class CGame
 
 		void SetGameOver(bool gameover) { mGameOver = gameover; }
 
+		auto GetPenImage() {return mPenImage; }
+
 	private:
 
 		/// All of the gameobjects to populate our game
@@ -87,6 +88,8 @@ class CGame
 		std::shared_ptr<CScoreBoard> mScoreBoard;
 
 		std::shared_ptr<CPlayer> mPlayer;
+
+		std::shared_ptr<Gdiplus::Bitmap> mPenImage;
 
 
 		/// Game area in virtual pixels

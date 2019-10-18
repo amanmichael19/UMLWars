@@ -18,7 +18,6 @@
 #include <vector>
 #include "UMLStruck.h"
 
-
 using namespace std;
 using namespace Gdiplus;
 
@@ -42,6 +41,13 @@ void CGame::OnLaunch()
 {
 	// Seed random for the game using time
 	srand(unsigned(time(NULL)));
+
+	// Load pen image
+	mPenImage = std::shared_ptr<Bitmap>(Bitmap::FromFile(L"images/images/redpen.png"));
+	if (mPenImage->GetLastStatus() != Ok)
+	{
+		AfxMessageBox(L"Failed to open images/redpen.png");
+	}
 
 	// Create the scoreboard
 	mScoreBoard = make_shared<CScoreBoard>(this);
