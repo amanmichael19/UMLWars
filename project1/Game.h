@@ -78,7 +78,12 @@ class CGame
 
 		/// All of the gameobjects to populate our game
 		std::vector<std::shared_ptr<CGameObject> > mGameObjects;
+
+
 		std::shared_ptr<CScoreBoard> mScoreBoard;
+
+		std::shared_ptr<CPlayer> mPlayer;
+
 
 		/// Game area in virtual pixels
 		const static int Width = 1250;

@@ -7,9 +7,11 @@
  */
 
 #pragma once
-#include "GameObject.h"
+#include "Timer.h"
+#include "Game.h"
 
-class CCountDownTimer : public CGameObject
+
+class CCountDownTimer : public CTimer
 {
 public:
 	/// scroreboard constructor
@@ -22,20 +24,8 @@ public:
 	/// default copy constructor disabled
 	CCountDownTimer(const CCountDownTimer&) = delete;
 
-	virtual void Update(double elapsed) { mTimeLeft = mTimeTotal - (clock() - start) / 1000; };
-
-	virtual void Accept(CGameObjectVisitor* visitor) override {}
-
-
 	/// draw
 	/// \param graphics
 	virtual void Draw(Gdiplus::Graphics* graphics);
-
-	/// get reamining time
-	int GetRemainingTime() { return mTimeLeft; }
-private:
-	int mTimeTotal = 60;
-	int mTimeLeft = mTimeTotal;
-	clock_t start = clock();
 };
 

@@ -44,12 +44,11 @@ void CGame::OnLaunch()
 
 	// Create the scoreboard
 	mScoreBoard = make_shared<CScoreBoard>(this);
-	//mScoreBoard->Draw();
-	//Add(scoreBoard);
+	//Add(mScoreBoard);
 
 	// Create the player
-	auto player = make_shared<CPlayer>(this);
-	Add(player);
+	mPlayer = make_shared<CPlayer>(this);
+	Add(mPlayer);
 
 	// Create the countdown timer
 	auto countDownTimer = make_shared<CCountDownTimer>(this);
@@ -57,12 +56,6 @@ void CGame::OnLaunch()
 
 	// Create emitter
 	mEmitter = make_shared<CUMLPieceEmitter>(this);
-
-	//auto struck = make_shared<CUMLStruck>(this);
-	//struck->Set(0, 0, L"Not good UML");
-	////auto mGame = CGameObject::GetGame();
-	////mGame->Add(struck);
-	//Add(struck);
 }
 
 /**
@@ -212,10 +205,10 @@ void CGame::HitUml(CGameObject* pen)
 
 	// this is a very naive to solve it. We do not know the position of scoreboard.
 	// The other ways to solve: 1) always make sure the scorebaord is the first in the game object list 2) mScoreBoard
-	/*for (auto object : mGameObjects)
-	{
-		object->Accept(&scoVisitor);
-	}*/
+	//for (auto object : mGameObjects)
+	//{
+	//	object->Accept(&scoVisitor);
+	//}
 	mScoreBoard->Accept(&scoVisitor);
 
 	for (auto object : mGameObjects)
