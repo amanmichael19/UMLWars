@@ -27,5 +27,7 @@ public:
 	/// draw
 	/// \param graphics
 	virtual void Draw(Gdiplus::Graphics* graphics);
+
+	virtual void Accept(CGameObjectVisitor* visitor) override {}
 };
 
