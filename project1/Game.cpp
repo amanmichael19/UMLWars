@@ -17,6 +17,7 @@
 #include "ScoreBoardVisitor.h"
 #include <vector>
 #include "UMLStruck.h"
+#include <algorithm>
 
 
 using namespace std;
@@ -171,15 +172,48 @@ void CGame::Accept(CGameObjectVisitor* visitor)
 
 void CGame::CheckGameOver()
 {
-	if (mGameOver) 
+	if (mGameOver && !mEndScreenDisplayed) 
 	{
-		mGameObjects.clear();
+		mEndScreenDisplayed = true;
 
 		auto theEnd = make_shared<CEndScreen>(this);
 
+		theEnd->SetFinalScore(mScoreBoard->GetCorrect(), mScoreBoard->GetMissed(), mScoreBoard->GetUnfair());
+		
+		mGameObjects.clear();
+		
 		Add(theEnd);
 	}
 }
+
+/**
+ * Adds a GameObject to the list of GameObjects to be destroyed at the end of the next update call.
+ * \param object Pointer to the GameObject to be deleted.
+ */
+void CGame::QueueFree(CGameObject* object)
+{
+	// Cast raw pointer argument to shared pointer
+	shared_ptr<CGameObject> deleteObject(object);
+
+	mDeleteQueue.push_back(deleteObject);
+}
+
+/**
+ * Deletes all GameObjects that needed to be destroyed during the most recent Update call
+ */
+void CGame::ClearQueue()
+{
+	// Loops for every object that needs to be deleted
+	for (unsigned i = 0; i < mDeleteQueue.size(); i++)
+	{
+		auto inGameObjects = std::find(mGameObjects.begin(), mGameObjects.end(), mDeleteQueue[i]);
+		if (inGameObjects != mGameObjects.end())
+		{
+			mGameObjects.erase(inGameObjects);
+		}
+	}
+}
+
 
 /** Test an x,y click location to see if it clicked
 * on some GameObject.
@@ -223,6 +257,9 @@ void CGame::Update(double elapsed)
 	{
 		gameObjects->Update(elapsed);
 	}
+
+	// Delete any objects from the game that are ready to be deleted.
+	ClearQueue();
 }
 
 

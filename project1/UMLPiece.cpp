@@ -43,7 +43,19 @@ void CUMLPiece::Update(double elapsed)
 
 	CGameObject::SetLocation(newX, newY);
 
-	LeaveScreenCheck();
+	// Checks if object has left screen
+	if (LeaveScreenCheck())
+	{
+		// If piece was bad signal missed
+		if (mBad != L"")
+		{
+			GetGame()->UMLMissed();
+		}
+
+		// Queue object for deletion at end of update
+		GetGame()->QueueFree(this);
+	}
+
 }
 
 
