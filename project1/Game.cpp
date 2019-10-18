@@ -8,7 +8,8 @@
 #include "Game.h"
 #include "Player.h"
 #include "PlayerVisitor.h"
-#include "DisplayTimer.h"
+#include "ScoreBoard.h"
+#include "CountDownTimer.h"
 #include "EndScreen.h"
 #include "UMLPieceEmitter.h"
 #include <cstdlib>
@@ -43,8 +44,8 @@ void CGame::OnLaunch()
 	srand(unsigned(time(NULL)));
 
 	// Create the scoreboard
-	mScoreBoard = make_shared<CScoreBoard>(this);
-	//Add(mScoreBoard);
+	auto scoreBoard = make_shared<CScoreBoard>(this);
+	Add(scoreBoard);
 
 	// Create the player
 	mPlayer = make_shared<CPlayer>(this);
@@ -56,6 +57,12 @@ void CGame::OnLaunch()
 
 	// Create emitter
 	mEmitter = make_shared<CUMLPieceEmitter>(this);
+
+	//auto struck = make_shared<CUMLStruck>(this);
+	//struck->Set(0, 0, L"Not good UML");
+	////auto mGame = CGameObject::GetGame();
+	////mGame->Add(struck);
+	//Add(struck);
 }
 
 /**
@@ -99,7 +106,6 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 	{
 		gameObjects->Draw(graphics);
 	}
-	mScoreBoard->Draw(graphics);
 }
 
 /**
@@ -152,6 +158,23 @@ void CGame::Accept(CGameObjectVisitor* visitor)
 	}
 }
 
+void CGame::CheckGameOver()
+{
+	if (mGameOver) 
+	{
+		mGameObjects.clear();
+
+		auto theEnd = make_shared<CEndScreen>(this);
+
+		Add(theEnd);
+		
+	
+	}
+	
+
+	
+}
+
 /** Test an x,y click location to see if it clicked
 * on some GameObject.
 * \param x X location
@@ -172,14 +195,19 @@ std::shared_ptr<CGameObject> CGame::HitTest(int x, int y)
 
 void CGame::Update(double elapsed)
 {
-	mEmitterTime -= elapsed;
-
-	// Emits a new UMLPiece if the emit time interval is over
-	if (mEmitterTime <= 0)
+	if (!mGameOver)
 	{
-		Add(mEmitter->EmitPiece());
-		mEmitterTime += EMITTER_INTERVAL;
+		mEmitterTime -= elapsed;
+
+		// Emits a new UMLPiece if the emit time interval is over
+		if (mEmitterTime <= 0)
+		{
+			Add(mEmitter->EmitPiece());
+
+			mEmitterTime += EMITTER_INTERVAL;
+		}
 	}
+	
 
 	for (auto gameObjects : mGameObjects)
 	{
@@ -205,11 +233,10 @@ void CGame::HitUml(CGameObject* pen)
 
 	// this is a very naive to solve it. We do not know the position of scoreboard.
 	// The other ways to solve: 1) always make sure the scorebaord is the first in the game object list 2) mScoreBoard
-	//for (auto object : mGameObjects)
-	//{
-	//	object->Accept(&scoVisitor);
-	//}
-	mScoreBoard->Accept(&scoVisitor);
+	for (auto object : mGameObjects)
+	{
+		object->Accept(&scoVisitor);
+	}
 
 	for (auto object : mGameObjects)
 	{
