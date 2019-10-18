@@ -8,6 +8,7 @@
 
 #pragma once
 #include "GameObject.h"
+#include "Game.h"
 #include <ctime>
 
 class CTimer : public CGameObject
@@ -23,15 +24,7 @@ public:
 	/// default copy constructor disabled
 	CTimer(const CTimer&) = delete;
 
-	virtual void Update(double elapsed) { 
-		if (mIsUpdate) {
-			mTimeLeft = mTimeTotal - (clock() - start) / 1000;
-			if (mTimeLeft < 0) { mTimeLeft = 0; }
-		}
-		else {
-			start = clock();
-		}
-	};
+	virtual void Update(double elapsed);
 
 	virtual void Accept(CGameObjectVisitor* visitor) override {}
 

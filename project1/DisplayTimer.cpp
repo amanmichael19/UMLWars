@@ -18,6 +18,7 @@ CDisplayTimer::CDisplayTimer(CGame* game) : CTimer(game)
 	SetTotalTime(60);
 }
 
+
 void CDisplayTimer::Draw(Gdiplus::Graphics* graphics)
 {
 	FontFamily fontFamily(L"Arial");
