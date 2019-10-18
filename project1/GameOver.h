@@ -2,7 +2,7 @@
 
 #pragma once
 #include "GameObject.h"
-#include "CountDownTimer.h"
+#include "DisplayTimer.h"
 #include <memory>
 #include <string>
 
@@ -22,7 +22,7 @@ class CGameOver : public CGameObject
 	CGameOver(const CGameOver&) = delete;
 
 
-	void clear(CCountDownTimer t, CGame* game);
+	void clear(CDisplayTimer t, CGame* game);
 
 private:
 	
