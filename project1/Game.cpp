@@ -107,7 +107,16 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 		gameObjects->Draw(graphics);
 	}
 	mPlayer->Draw(graphics);
-	mScoreBoard->Draw(graphics);
+
+	// This will prevent the scoreboard 
+	//to be Drawn at the end of the game
+	// when the end screen gets drawm
+	if (!mGameOver)
+	{
+		mScoreBoard->Draw(graphics);
+	}
+
+
 }
 
 /**
