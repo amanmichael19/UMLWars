@@ -1,3 +1,9 @@
+/**
+ * \file Timer.cpp
+ *
+ * \author Ziyuan Zhang
+ */
+
 #include "pch.h"
 #include "Timer.h"
 

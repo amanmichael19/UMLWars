@@ -152,6 +152,10 @@ void CGame::Accept(CGameObjectVisitor* visitor)
 	}
 }
 
+void CGame::CheckGameOver()
+{
+}
+
 /** Test an x,y click location to see if it clicked
 * on some GameObject.
 * \param x X location

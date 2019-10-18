@@ -30,8 +30,9 @@ CPlayer::CPlayer(CGame* game) : CGameObject(game)
 	else
 	{
 		SetLocation(0, double(double(CGame::GetHeight()) - mPlayerImage->GetHeight()/2.0f));
-		mPen = make_shared<CRedPen>(game, GetX(), GetY());
-		game->Add(mPen);
+
+		auto pen = make_shared<CRedPen>(game, GetX(), GetY());
+		game->Add(pen);
 	}
 }
 
@@ -47,13 +48,13 @@ void CPlayer::OnMouseMove(double mouseX, double mouseY)
 			mAngle = PI / 2;
 		else if (mAngle < -PI / 2)
 			mAngle = -PI / 2;
-		mPen->OnMouseMove(mAngle);
+		//mPen->OnMouseMove(mAngle);
 	}
 }
 
 void CPlayer::OnLeftClick(double mouseX, double mouseY)
 {
-	mPen->FirePen(mouseX, mouseY);
+	//mPen->FirePen(mouseX, mouseY);
 }
 
 void CPlayer::Draw(Gdiplus::Graphics* graphics)

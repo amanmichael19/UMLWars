@@ -53,7 +53,7 @@ class CPlayer : public CGameObject
 		/// player image
 		std::unique_ptr<Gdiplus::Bitmap> mPlayerImage;
 		/// pen handler
-		std::shared_ptr<CRedPen> mPen;
+		//std::shared_ptr<CRedPen> mPen;
 		/// angle of rotation
 		double mAngle = 0.0;
 

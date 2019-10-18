@@ -32,6 +32,10 @@ mXOrigin(xlocation), mYOrigin(ylocation)
 	mLoadX = mXOrigin + mXOffset;
 	mLoadY = mYOrigin - mYOffset;
 	SetLocation(mLoadX, mLoadY);
+
+	mTimer = make_shared<CTimer>(game);
+	mTimer->SetTotalTime(2);
+	game->Add(mTimer);
 }
 
 void CRedPen::SetLocation(double x, double y) {
@@ -75,11 +79,15 @@ void CRedPen::FirePen(double xDirection, double yDirection)
 		mYDirection = (yDirection - mLoadY)/sqrtVecorSum;
 		mOnHand = false;
 		mAngleOnAir = mAngleOfRotation;
+		mTimer->SetIsUpdate(true);
 	}
 }
 
 void CRedPen::ReLoad()
 {
+	mTimer->SetTotalTime(2);
+	mTimer->SetIsUpdate(false);
+
 	mOnHand = true;
 	TrackHand();
 }
@@ -91,9 +99,11 @@ void CRedPen::Update(double elapsed)
 		double x = elapsed * mSpeed * mXDirection + GetX();
 		double y = elapsed * mSpeed * mYDirection + GetY();
 		// temporary - create constants file
-		if (x < -1250 / 2 || x > 1250 / 2 || y > 1000 || y < 0)
-		{
-			ReLoad();
+		//if (x < -1250 / 2 || x > 1250 / 2 || y > 1000 || y < 0)
+		//{
+			if (mTimer->IsTimeUp()) {
+				ReLoad();
+			//}
 		}
 		else
 		{
