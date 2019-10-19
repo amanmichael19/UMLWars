@@ -52,9 +52,6 @@
     <ClCompile Include="ScoreBoardVisitor.cpp">
       <Filter>Visitor</Filter>
     </ClCompile>
-    <ClCompile Include="RedPenVisitor.cpp">
-      <Filter>Visitor</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerVisitor.cpp">
       <Filter>Visitor</Filter>
     </ClCompile>
@@ -148,9 +145,6 @@
       <Filter>Visitor\Others</Filter>
     </ClInclude>
     <ClInclude Include="ScoreBoardVisitor.h">
-      <Filter>Visitor</Filter>
-    </ClInclude>
-    <ClInclude Include="RedPenVisitor.h">
       <Filter>Visitor</Filter>
     </ClInclude>
     <ClInclude Include="PlayerVisitor.h">
