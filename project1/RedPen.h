@@ -88,8 +88,6 @@ private:
 	double mYDirection = 0.0;
 	/// speed
 	double mSpeed = 300.0;
-
-	bool mIsDraw = true;
 };
 
 

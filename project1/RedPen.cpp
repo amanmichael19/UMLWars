@@ -43,7 +43,7 @@ void CRedPen::SetLocation(double x, double y) {
 
 void CRedPen::Draw(Gdiplus::Graphics* graphics)
 {
-	if (mIsDraw) {
+	
 		float wid = (float)mPenImage->GetWidth();
 		float hit = (float)mPenImage->GetHeight();
 		float x = float(GetX() - wid / 2);
@@ -62,8 +62,6 @@ void CRedPen::Draw(Gdiplus::Graphics* graphics)
 		}
 		graphics->DrawImage(mPenImage.get(), -wid / 2, -hit / 2, wid, hit);
 		graphics->Restore(state);
-	}
-
 }
 
 void CRedPen::FirePen(double xDirection, double yDirection)
@@ -78,12 +76,6 @@ void CRedPen::FirePen(double xDirection, double yDirection)
 	}
 }
 
-//void CRedPen::ReLoad()
-//{
-//	mOnHand = true;
-//	TrackHand();
-//}
-
 void CRedPen::Update(double elapsed)
 {
 	if (!mOnHand)
@@ -93,8 +85,7 @@ void CRedPen::Update(double elapsed)
 		// temporary - create constants file
 		if (x < -1250 / 2 || x > 1250 / 2 || y > 1000 || y < 0)
 		{
-			mIsDraw = false;
-			mSpeed = 0;
+			GetGame()->QueueFree(this);
 		}
 		else
 		{

@@ -301,6 +301,7 @@ void CGame::HitUml(CGameObject* pen)
 		{
 			if (umlVisitor.TryHit(penX, penY))
 			{
+				QueueFree(pen); //delete this pen if it hit any UML
 				if (std::find(hitUml.begin(), hitUml.end(), object) == 
 					hitUml.end())
 				{
