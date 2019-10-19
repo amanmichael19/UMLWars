@@ -32,11 +32,13 @@ public:
 	/// \param operation The operation being added
 	void AddOperation(std::wstring operation) { mOperations.push_back(operation); }
 
+	void SetUmlStruck(std::wstring msg) { mMessage = msg; };
+
 	void Draw(Gdiplus::Graphics* graphics, double x, double y);
 
 	void SetDimensions(Gdiplus::Graphics* graphics);
 
-	void UMLStruck(int x, int y, std::wstring msg);
+	//void UMLStruck(int x, int y, std::wstring msg);
 
 	/// Getter for mWidth
 	/// \returns The width of the display

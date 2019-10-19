@@ -9,7 +9,6 @@
 #pragma once
 #include "GameObject.h"
 #include "UmlVisitor.h"
-#include "UMLStruck.h"
 #include <vector>
 #include <string>
 #include <memory>
@@ -58,6 +57,5 @@ private:
 	double mXDirection; ///< The X direction this UMLPiece is moving
 	double mYDirection; ///< The Y direction this UMLPiece is moving
 	int mSpeed; ///< The speed at which this UMLPiece is moving
-	std::shared_ptr<CUMLStruck> mStruck;
 };
 

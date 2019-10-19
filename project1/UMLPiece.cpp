@@ -8,7 +8,6 @@
 #include <vector>
 #include <memory>
 #include "UMLPiece.h"
-#include "UMLStruck.h"
 #include "Game.h"
 #include <memory>
 
@@ -79,6 +78,6 @@ void CUMLPiece::DisplayHitMessage()
 	{
 		mBad = L"This was good UML.";
 	}
-	mStruck->Set(GetX()+ GetWidth(), GetY() + GetHeight(), mBad);
+	
 	mSpeed = 0;
 }
