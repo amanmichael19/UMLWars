@@ -50,6 +50,7 @@ private:
 	std::wstring mName; ///< The class name of this UMLPiece
 	std::vector<std::wstring> mAttributes; ///< The attributes this UMLPiece has, if any
 	std::vector<std::wstring> mOperations; ///< The operations this UMLPiece has, if any
+	std::wstring mMessage; ///< The messages this UMLPiece has, if any
 	double mHeight = 0; ///< Total height of UML in virtual pixels
 	double mWidth = 0; ///< Maximum width of UML in virtual pixels
 	double mNameHeight; ///< Height of name in virtual pixels

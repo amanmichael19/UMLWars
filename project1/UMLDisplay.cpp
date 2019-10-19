@@ -73,6 +73,11 @@ void CUMLDisplay::Draw(Gdiplus::Graphics* graphics, double x, double y)
 
 	}
 
+	mMessage = L"MESSAGE";
+	SolidBrush redBrush(Color(255, 0, 0));
+	Gdiplus::Font messageFont(&fontFamily, 20);
+	graphics->DrawString(mMessage.c_str(), -1, &messageFont, PointF(x + mWidth/2, y + mHeight/2-20/2), &redBrush);
+
 	graphics->Restore(state);
 }
 
