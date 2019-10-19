@@ -74,5 +74,6 @@ void CUMLPiece::DisplayHitMessage()
 	{
 		mBad = L"This was good UML.";
 	}
+	//GetGame()->QueueFree(this);
 	mSpeed = 0;
 }

@@ -25,7 +25,6 @@ CRedPen::CRedPen(CGame* game, double xlocation, double ylocation) : CGameObject(
 mXOrigin(xlocation), mYOrigin(ylocation)
 {
 	mPenImage = game->GetPenImage();
-
 	mLoadX = mXOrigin + mXOffset;
 	mLoadY = mYOrigin - mYOffset;
 	SetLocation(mLoadX, mLoadY);

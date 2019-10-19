@@ -12,6 +12,7 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include "Timer.h"
 
 
 /**
@@ -57,5 +58,7 @@ private:
 	double mXDirection; ///< The X direction this UMLPiece is moving
 	double mYDirection; ///< The Y direction this UMLPiece is moving
 	int mSpeed; ///< The speed at which this UMLPiece is moving
+	//bool mIsHit = false;
+	//std::shared_ptr<CTimer>	 mTimer;
 };
 

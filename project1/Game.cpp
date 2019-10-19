@@ -254,14 +254,14 @@ void CGame::Update(double elapsed)
 		}
 	}
 
-	if (mPlayer->IfGetPen()) {
-		mPlayer->GetAPen();
-	}
-
 	// Do not do ADD or DELETE during looping, will cause crashing
 	for (auto gameObjects : mGameObjects)
 	{
 		gameObjects->Update(elapsed);
+	}
+
+	if (mPlayer->IfGetPen()) {
+		mPlayer->GetAPen();
 	}
 
 	// Delete any objects from the game that are ready to be deleted.
