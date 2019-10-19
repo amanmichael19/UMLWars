@@ -34,9 +34,6 @@
     <ClCompile Include="UMLStruck.cpp">
       <Filter>UML</Filter>
     </ClCompile>
-    <ClCompile Include="UmlVisitor.cpp">
-      <Filter>UML</Filter>
-    </ClCompile>
     <ClCompile Include="XMLReader.cpp">
       <Filter>XML</Filter>
     </ClCompile>
@@ -91,6 +88,9 @@
     <ClCompile Include="project1.cpp">
       <Filter>Others</Filter>
     </ClCompile>
+    <ClCompile Include="UmlVisitor.cpp">
+      <Filter>Visitor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UMLAttribute.h">
@@ -126,9 +126,6 @@
     <ClInclude Include="UMLStruck.h">
       <Filter>UML</Filter>
     </ClInclude>
-    <ClInclude Include="UmlVisitor.h">
-      <Filter>UML</Filter>
-    </ClInclude>
     <ClInclude Include="XMLReader.h">
       <Filter>XML</Filter>
     </ClInclude>
@@ -140,9 +137,6 @@
     </ClInclude>
     <ClInclude Include="DisplayTimer.h">
       <Filter>Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>Visitor\Others</Filter>
     </ClInclude>
     <ClInclude Include="ScoreBoardVisitor.h">
       <Filter>Visitor</Filter>
@@ -195,6 +189,9 @@
     <ClInclude Include="targetver.h">
       <Filter>Others</Filter>
     </ClInclude>
+    <ClInclude Include="UmlVisitor.h">
+      <Filter>Visitor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\project1.ico">
@@ -219,9 +216,6 @@
     </Filter>
     <Filter Include="Timer">
       <UniqueIdentifier>{4c36b85c-d279-4632-8fff-be53671a1e3c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Visitor\Others">
-      <UniqueIdentifier>{85c9dbdb-5d89-47fe-8823-637eb21744ea}</UniqueIdentifier>
     </Filter>
     <Filter Include="Others">
       <UniqueIdentifier>{3337d0c9-9963-4235-979b-71751e6d4313}</UniqueIdentifier>
