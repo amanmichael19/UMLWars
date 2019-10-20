@@ -14,7 +14,6 @@
 #include "ScoreBoard.h"
 
 class CGameObject;
-//class CScoreBoard;
 class CGameObjectVisitor;
 class CUMLPieceEmitter;
 class CUmlHitDetector;
@@ -79,6 +78,13 @@ class CGame
 
 		void SetGameOver(bool gameover) { mGameOver = gameover; }
 
+		auto GetPenImage() {return mPenImage; }
+
+		/// Increments missed counter when bad UML leaves screen
+		void UMLMissed() { mScoreBoard->IncrementMissedScore(); };
+
+		void QueueFree(CGameObject* object);
+
 	private:
 
 		/// All of the gameobjects to populate our game
@@ -87,6 +93,8 @@ class CGame
 		std::shared_ptr<CScoreBoard> mScoreBoard;
 
 		std::shared_ptr<CPlayer> mPlayer;
+
+		std::shared_ptr<Gdiplus::Bitmap> mPenImage;
 
 
 		/// Game area in virtual pixels
@@ -112,5 +120,13 @@ class CGame
 
 		/// game over check
 		bool mGameOver = false;
+
+		/// Queue of objects to be deleted from the game, initialize to empty vector
+		std::vector<std::shared_ptr<CGameObject>> mDeleteQueue = std::vector<std::shared_ptr<CGameObject>>();
+
+		void ClearQueue();
+
+		/// Indicates if the end screen is already being displayed.
+		bool mEndScreenDisplayed = false;
 };
 

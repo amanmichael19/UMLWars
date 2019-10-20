@@ -12,8 +12,8 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include "Timer.h"
 
-//class CUmlVisitor;
 
 /**
  * Class that descibes a single UML object on screen
@@ -58,6 +58,7 @@ private:
 	double mXDirection; ///< The X direction this UMLPiece is moving
 	double mYDirection; ///< The Y direction this UMLPiece is moving
 	int mSpeed; ///< The speed at which this UMLPiece is moving
-	bool mHit = false;
+	//bool mIsHit = false;
+	//std::shared_ptr<CTimer>	 mTimer;
 };
 

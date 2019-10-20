@@ -8,7 +8,6 @@
 #include <vector>
 #include <memory>
 #include "UMLPiece.h"
-#include "UMLStruck.h"
 #include "Game.h"
 #include <memory>
 
@@ -43,7 +42,18 @@ void CUMLPiece::Update(double elapsed)
 
 	CGameObject::SetLocation(newX, newY);
 
-	LeaveScreenCheck();
+	// Checks if object has left screen
+	if (LeaveScreenCheck())
+	{
+		// If piece was bad signal missed
+		if (mBad != L"")
+		{
+			GetGame()->UMLMissed();
+		}
+
+		// Queue object for deletion at end of update
+		GetGame()->QueueFree(this);
+	}
 }
 
 
@@ -59,17 +69,11 @@ bool CUMLPiece::LeaveScreenCheck()
 
 void CUMLPiece::DisplayHitMessage()
 {
-	if (!mHit)
+
+	if (mBad == L"")
 	{
-		if (mBad == L"")
-		{
-			mBad = L"This was good UML.";
-		}
-		auto mGame = CGameObject::GetGame();
-		auto struck = make_shared<CUMLStruck>(mGame);
-		struck->Set(GetX(), GetY(), mBad);
-		mGame->Add(struck);
-		mSpeed = 0;
-		mHit = true;
+		mBad = L"This was good UML.";
 	}
+	//GetGame()->QueueFree(this);
+	mSpeed = 0;
 }

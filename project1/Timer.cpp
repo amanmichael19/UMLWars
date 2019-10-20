@@ -15,15 +15,11 @@ void CTimer::Update(double elapsed)
 {
 
 	if (mIsUpdate) {
-		mTimeLeft = mTimeTotal - (clock() - start) / 1000;
+		auto a = (clock() - mStart);
+		mTimeLeft = (mTimeTotal * 1000 - (clock() - mStart)) / 1000;
 		if (mTimeLeft < 0) { mTimeLeft = 0; }
 	}
 	else {
-		start = clock();
+		mStart = clock();
 	}
 }
-
-//if (mTimeLeft == 0)
-//{
-//	GetGame()->SetGameOver(true);
-//}

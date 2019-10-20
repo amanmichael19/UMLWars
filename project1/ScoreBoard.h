@@ -42,6 +42,18 @@ class CScoreBoard : public CGameObject
 		/// increment missed score
 		void IncrementMissedScore() { mMissed++; }
 
+		/// Getter for mCorrect
+		/// \returns Number of correct UML hits
+		int GetCorrect() { return mCorrect; }
+
+		/// Getter for mUnfair
+		/// \returns Number of unfair UML hits
+		int GetUnfair() { return mUnfair; }
+
+		/// Getter for mMissed
+		/// \returns Number of bad UML missed
+		int GetMissed() { return mMissed; }
+
 	private:
 		int mCorrect = 0;
 		int mUnfair = 0;

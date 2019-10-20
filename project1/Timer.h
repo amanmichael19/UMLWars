@@ -31,7 +31,7 @@ public:
 	virtual void Draw(Gdiplus::Graphics* graphics) {};
 
 	/// set total time
-	virtual void SetTotalTime(int time) { mTimeLeft = time;  mTimeTotal = time;}
+	virtual void SetTotalTime(int time) { mTimeLeft = time;  mTimeTotal = time; mStart = clock();}
 
 	/// get reamining time
 	virtual int GetRemainingTime() { return mTimeLeft; }
@@ -39,12 +39,15 @@ public:
 	/// get reamining time
 	virtual int IsTimeUp() { return mTimeLeft == 0; }
 
-	virtual void SetIsUpdate(bool is) { mIsUpdate = is; }
+	virtual void SetIsUpdate(bool is) { 
+		mIsUpdate = is; 
+		if (is == false) { mTimeLeft = 60; }
+	}
 
 private:
-	int mTimeTotal = 0;
-	int mTimeLeft = mTimeTotal;
+	double mTimeTotal = 60;
+	double mTimeLeft = mTimeTotal;
 	bool mIsUpdate = false;
-	clock_t start = clock();;
+	clock_t mStart;
 };
 

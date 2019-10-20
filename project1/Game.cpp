@@ -17,7 +17,7 @@
 #include "ScoreBoardVisitor.h"
 #include <vector>
 #include "UMLStruck.h"
-
+#include <algorithm>
 
 using namespace std;
 using namespace Gdiplus;
@@ -42,6 +42,13 @@ void CGame::OnLaunch()
 {
 	// Seed random for the game using time
 	srand(unsigned(time(NULL)));
+
+	// Load pen image
+	mPenImage = std::shared_ptr<Bitmap>(Bitmap::FromFile(L"images/images/redpen.png"));
+	if (mPenImage->GetLastStatus() != Ok)
+	{
+		AfxMessageBox(L"Failed to open images/redpen.png");
+	}
 
 	// Create the scoreboard
 	mScoreBoard = make_shared<CScoreBoard>(this);
@@ -171,15 +178,48 @@ void CGame::Accept(CGameObjectVisitor* visitor)
 
 void CGame::CheckGameOver()
 {
-	if (mGameOver) 
+	if (mGameOver && !mEndScreenDisplayed) 
 	{
-		mGameObjects.clear();
+		mEndScreenDisplayed = true;
 
 		auto theEnd = make_shared<CEndScreen>(this);
 
+		theEnd->SetFinalScore(mScoreBoard->GetCorrect(), mScoreBoard->GetMissed(), mScoreBoard->GetUnfair());
+		
+		mGameObjects.clear();
+		
 		Add(theEnd);
 	}
 }
+
+/**
+ * Adds a GameObject to the list of GameObjects to be destroyed at the end of the next update call.
+ * \param object Pointer to the GameObject to be deleted.
+ */
+void CGame::QueueFree(CGameObject* object)
+{
+	// Cast raw pointer argument to shared pointer
+	shared_ptr<CGameObject> deleteObject(object);
+
+	mDeleteQueue.push_back(deleteObject);
+}
+
+/**
+ * Deletes all GameObjects that needed to be destroyed during the most recent Update call
+ */
+void CGame::ClearQueue()
+{
+	// Loops for every object that needs to be deleted
+	for (unsigned i = 0; i < mDeleteQueue.size(); i++)
+	{
+		auto inGameObjects = std::find(mGameObjects.begin(), mGameObjects.end(), mDeleteQueue[i]);
+		if (inGameObjects != mGameObjects.end())
+		{
+			mGameObjects.erase(inGameObjects);
+		}
+	}
+}
+
 
 /** Test an x,y click location to see if it clicked
 * on some GameObject.
@@ -214,15 +254,18 @@ void CGame::Update(double elapsed)
 		}
 	}
 
-	if (mPlayer->IfGetPen()) {
-		mPlayer->GetAPen();
-	}
-
-	// can not do Add during looping
+	// Do not do ADD or DELETE during looping, will cause crashing
 	for (auto gameObjects : mGameObjects)
 	{
 		gameObjects->Update(elapsed);
 	}
+
+	if (mPlayer->IfGetPen()) {
+		mPlayer->GetAPen();
+	}
+
+	// Delete any objects from the game that are ready to be deleted.
+	ClearQueue();
 }
 
 
@@ -258,6 +301,7 @@ void CGame::HitUml(CGameObject* pen)
 		{
 			if (umlVisitor.TryHit(penX, penY))
 			{
+				QueueFree(pen); //delete this pen if it hit any UML
 				if (std::find(hitUml.begin(), hitUml.end(), object) == 
 					hitUml.end())
 				{
