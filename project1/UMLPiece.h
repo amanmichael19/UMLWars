@@ -58,5 +58,6 @@ private:
 	double mXDirection; ///< The X direction this UMLPiece is moving
 	double mYDirection; ///< The Y direction this UMLPiece is moving
 	int mSpeed; ///< The speed at which this UMLPiece is moving
+	bool mHit = false;
 };
 

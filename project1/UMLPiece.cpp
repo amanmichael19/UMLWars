@@ -59,14 +59,17 @@ bool CUMLPiece::LeaveScreenCheck()
 
 void CUMLPiece::DisplayHitMessage()
 {
-
-	if (mBad == L"")
+	if (!mHit)
 	{
-		mBad = L"This was good UML.";
+		if (mBad == L"")
+		{
+			mBad = L"This was good UML.";
+		}
+		auto mGame = CGameObject::GetGame();
+		auto struck = make_shared<CUMLStruck>(mGame);
+		struck->Set(GetX(), GetY(), mBad);
+		mGame->Add(struck);
+		mSpeed = 0;
+		mHit = true;
 	}
-	auto mGame = CGameObject::GetGame();
-	auto struck = make_shared<CUMLStruck>(mGame);
-	struck->Set(GetX(), GetY(), mBad);
-	mGame->Add(struck);
-	mSpeed = 0;
 }
