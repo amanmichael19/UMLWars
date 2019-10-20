@@ -118,6 +118,9 @@ class CGame
 		/// Time until emitter emits next piece
 		double mEmitterTime = 0;
 
+		/// Total elapsed time
+		double mTimePassed = 0;
+
 		/// game over check
 		bool mGameOver = false;
 

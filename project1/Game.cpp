@@ -23,7 +23,7 @@ using namespace std;
 using namespace Gdiplus;
 
 /// Time between UMLPiece emissions
-const double EMITTER_INTERVAL = 4;
+const double EMITTER_INTERVAL = 5;
 
 /**
  * Game constructor
@@ -245,12 +245,14 @@ void CGame::Update(double elapsed)
 	{
 		mEmitterTime -= elapsed;
 
+
 		// Emits a new UMLPiece if the emit time interval is over
 		if (mEmitterTime <= 0)
 		{
 			Add(mEmitter->EmitPiece());
 
-			mEmitterTime += EMITTER_INTERVAL;
+			int reduce = mEmitter->SpeedChange();
+			mEmitterTime += EMITTER_INTERVAL - reduce;
 		}
 	}
 

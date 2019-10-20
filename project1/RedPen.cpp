@@ -36,7 +36,10 @@ void CRedPen::SetLocation(double x, double y) {
 
 	auto mGame = CGameObject::GetGame();
 
-	mGame->HitUml(this);
+	if (!mOnHand)
+	{
+		mGame->HitUml(this);
+	}
 
 }
 
