@@ -254,6 +254,10 @@ void CGame::Update(double elapsed)
 			int reduce = mEmitter->SpeedChange();
 			mEmitterTime += EMITTER_INTERVAL - reduce;
 		}
+
+		if (mPlayer->IfGetPen()) {
+			mPlayer->GetAPen();
+		}
 	}
 
 	// Do not do ADD or DELETE during looping, will cause crashing
@@ -262,12 +266,11 @@ void CGame::Update(double elapsed)
 		gameObjects->Update(elapsed);
 	}
 
-	if (mPlayer->IfGetPen()) {
-		mPlayer->GetAPen();
-	}
 
+
+	//TO-DO: There is a bug causing the pen can not be reloaded if I use QueueFree(this) for pens
 	// Delete any objects from the game that are ready to be deleted.
-	ClearQueue();
+	//ClearQueue();
 }
 
 
@@ -312,12 +315,12 @@ void CGame::HitUml(CGameObject* pen)
 					if (umlVisitor.IsBad())
 					{
 						scoVisitor.Increment(true);
-						break;
+						//break;
 					}
 					else
 					{
 						scoVisitor.Increment(false);
-						break;
+						//break;
 					}
 				}
 			}
