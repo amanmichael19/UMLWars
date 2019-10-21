@@ -35,20 +35,20 @@ const int RANK_THREE_CUTOFF = 15;
 const int RANK_FOUR_CUTOFF = 20;
 
 /// Text for Rank 1
-const wstring RANK_ONE_TEXT = L"A SQUIRREL WITH A PEN\nSquirrels are good at many things, but grading UML is not one of them.";
-
+const wstring RANK_ONE_TEXT = L"A SQUIRREL WITH A PEN";
+const wstring DESCRIPTION_RANK_ONE = L"Squirrels are good at many things,\nbut grading UML is not one of them.";
 /// Text for Rank 2
-const wstring RANK_TWO_TEXT = L"A FIRST YEAR CS STUDENT\nA good try, but a lot of room for improvement.";
-
+const wstring RANK_TWO_TEXT = L"A FIRST YEAR CS STUDENT";
+const wstring DESCRIPTION_RANK_TWO = L"A good try, but a lot\nof room for improvement.";
 /// Text for Rank 3
-const wstring RANK_THREE_TEXT = L"A SEASONED ULA\nYou have seen your fair share of UML, but your not quite an expert yet.";
-
+const wstring RANK_THREE_TEXT = L"A SEASONED ULA";
+const wstring DESCRIPTION_RANK_THREE = L"You have seen your fair share of\nUML, but your not quite an expert yet.";
 /// Text for Rank 4
-const wstring RANK_FOUR_TEXT = L"THE HEAD TA\nAn impressive display. Surely this is the final rank?";
-
+const wstring RANK_FOUR_TEXT = L"THE HEAD TA";
+const wstring DESCRIPTION_RANK_FOUR = L"An impressive display.\nSurely this is the final rank?";
 /// Text for Rank 5
-const wstring RANK_FIVE_TEXT = L"LIVING LEGEND : GRADY BOOCH\nIt was not.";
-
+const wstring RANK_FIVE_TEXT = L"LIVING LEGEND";
+const wstring DESCRIPTION_RANK_FIVE = L"GRADY BOOCH\nIt was not.";
 /**
  * Constructor for CEndScreen
  * \param game The game this end screen is part of
@@ -96,6 +96,7 @@ void CEndScreen::DisplayRank()
 	if (mFinalScore < RANK_ONE_CUTOFF)
 	{
 		mRankText = RANK_ONE_TEXT;
+		mDescription = DESCRIPTION_RANK_ONE;
 	}
 
 	// Rank 2
@@ -127,14 +128,22 @@ void CEndScreen::DisplayRank()
 void CEndScreen::Draw(Gdiplus::Graphics* graphics)
 {
 	FontFamily fontFamily(L"Arial");
-	Gdiplus::Font font(&fontFamily, 100);
+	Gdiplus::Font font(&fontFamily, 40);
+	Gdiplus::Font font2(&fontFamily, 30);
 	SolidBrush heavyGreen(Color(256, 256, 256));
+	SolidBrush red(Color(255, 0, 0));
 
 	/// TODO: clean all other objects and display inthe center, wii finish this when the time of score is done.
 	graphics->DrawString(L"Final Score:", -1, &font, PointF(-500, 200), &heavyGreen);
 
-	graphics->DrawString(to_wstring(mFinalScore).c_str(), -1, &font, PointF(500, 200), &heavyGreen);
+	graphics->DrawString(to_wstring(mFinalScore).c_str(), -1, &font, PointF(-130, 200), &red);
 
-	graphics->DrawString(L"RANK:", -1, &font, PointF(-500, 500), &heavyGreen);
-	graphics->DrawString(mRankText.c_str(), -1, &font, PointF(-200, 500), &heavyGreen);
+	graphics->DrawString(L"RANK:", -1, &font, PointF(-500, 350), &heavyGreen);
+
+	graphics->DrawString( mRankText.c_str(), -1, &font, PointF(-130, 350), &red);
+
+	graphics->DrawString(mDescription.c_str(), -1, &font2, PointF(-300, 650), &heavyGreen);
+
+
+	
 }

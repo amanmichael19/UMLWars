@@ -114,16 +114,16 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 		gameObjects->Draw(graphics);
 	}
 
-
-	// This will prevent the scoreboard 
+	// Prevent the Harold
 	//to be Drawn at the end of the game
-	// when the end screen gets drawm
+	// when the end screen gets drawn
 	if (!mGameOver)
 	{
 		mPlayer->Draw(graphics);
 		mScoreBoard->Draw(graphics);
-	}
 
+		
+	}
 
 }
 
