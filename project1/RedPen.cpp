@@ -84,7 +84,9 @@ void CRedPen::Update(double elapsed)
 		double x = elapsed * mSpeed * mXDirection + GetX();
 		double y = elapsed * mSpeed * mYDirection + GetY();
 		// TODO: temporary - create constants file
-		if (x < -1250 / 2 || x > 1250 / 2 || y > 1000 || y < 0)
+		double gameWidth = GetGame()->GetWidth();
+		double gameHeight = GetGame()->GetHeight();
+		if (x < -gameWidth / 2 || x > gameWidth / 2 || y > gameHeight || y < 0)
 		{
 			MarkForDelete(true);
 		}

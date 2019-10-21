@@ -16,7 +16,6 @@ using namespace std;
 
 CDisplayTimer::CDisplayTimer(CGame* game, double duration) : CTimer(game, duration)
 {
-	SetUp(duration);
 	Start();
 }
 

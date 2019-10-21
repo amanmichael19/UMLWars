@@ -56,7 +56,10 @@ void CPlayer::OnMouseMove(double mouseX, double mouseY)
 void CPlayer::OnLeftClick(double mouseX, double mouseY)
 {
 	mPenOnHand->FirePen(mouseX, mouseY);
-	mPenTimer->Start();
+	if (mIsPenOnHand)
+	{
+		mPenTimer->Start();
+	}
 	mIsPenOnHand = false;
 }
 
