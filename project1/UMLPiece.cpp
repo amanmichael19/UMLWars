@@ -53,7 +53,6 @@ void CUMLPiece::Update(double elapsed)
 		if (mHitUMLTimer->IsTimeUp() || GetGame()->IsGameOver())
 		{
 			MarkForDelete(true);
-			mUMLStruck->MarkForDelete(true);
 		}
 	}
 	// Checks if object has left screen
@@ -77,11 +76,8 @@ void CUMLPiece::Update(double elapsed)
 void CUMLPiece::MarkHit(bool status)
 {
 	mWasHit = status;
+	mHitUMLTimer = make_shared<CTimer>(GetGame(), StuckDuration);
 	mHitUMLTimer->StartTimer();
-	wstring msg = mBad == L"" ? L"Unfair" : mBad;
-	mUMLStruck = make_shared<CUMLStruck>(GetGame(), msg);
-	mUMLStruck->SetLocation(GetX(), GetY());
-	GetGame()->AddToWaitingBuffer(mUMLStruck);
 }
 
 /**

@@ -58,8 +58,6 @@ public:
 	/// \param y Y position of hit
 	bool HitTest(int x, int y) = 0;
 
-	void DisplayHitMessage();
-
 private:
 	std::wstring mBad = L""; ///< The reason, if any, why this UMLPiece is bad
 	double mXDirection; ///< The X direction this UMLPiece is moving
@@ -67,10 +65,6 @@ private:
 	int mSpeed; ///< The speed at which this UMLPiece is moving
 	bool mWasHit = false;
 	std::shared_ptr<CTimer> mHitUMLTimer;
-
-	/// name might be confusing but apparently it is a class implementing error message not a UML
-	std::shared_ptr<CUMLStruck> mUMLStruck;
-	//std::shared_ptr<CTimer>	 mTimer;
 
 protected:
 	virtual void DisplayHitMessage(Gdiplus::Graphics* graphics, double& x, double& y);
