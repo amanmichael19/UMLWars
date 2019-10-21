@@ -7,14 +7,16 @@
  */
 
 #pragma once
-#include <ctime>
 #include "GameObject.h"
+#include "Game.h"
+#include <ctime>
 
 class CTimer : public CGameObject
 {
 public:
 	/// timer constructor
 	/// \param game
+	/// \param duration
 	CTimer(CGame* game, double duration): CGameObject(game), mTimeTotal(duration), mTimeLeft(duration) {}
 
 	/// default constructor disabled
@@ -30,24 +32,26 @@ public:
 	virtual void Draw(Gdiplus::Graphics* graphics) {};
 
 	/// set total time
-	virtual void SetTotalTime(int time) { mTimeLeft = time;  mTimeTotal = time; mStart = clock(); }
+	virtual void SetUp(double time) {
+		mTimeLeft = time;
+		mTimeTotal = time;
+	}
 
 	/// get reamining time
 	virtual double GetRemainingTime() { return mTimeLeft; }
 
-	/// is time up
+	/// get reamining time
 	virtual bool IsTimeUp() { return mTimeLeft == 0.0; }
 
-	virtual void StartTimer() { mIsStarted = true; }
-
-	virtual void ResetTimer() { mTimeLeft = 60; }
-	
+	virtual void Start() {
+		mIsStart = true;
+		mStart = clock();
+	}
 
 private:
-	double mTimeTotal = 60;
-	double mTimeLeft = 60;;
-	bool mIsStarted = false;
-	/// initializing mStart 
+	double mTimeTotal = 0;
+	double mTimeLeft = 0;
+	bool mIsStart = false;
+	// initializing to remove warnings
 	clock_t mStart = clock();
 };
-

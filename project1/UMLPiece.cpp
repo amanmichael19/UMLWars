@@ -34,6 +34,8 @@ CUMLPiece::CUMLPiece(CGame* game, double x, double y, int speed) : CGameObject(g
 	mXDirection = x;
 	mYDirection = y;
 	mSpeed = speed;
+	mHitUMLTimer = make_shared<CTimer>(GetGame(), StuckDuration);
+	GetGame()->Add(mHitUMLTimer);
 }
 
 /**
@@ -76,11 +78,7 @@ void CUMLPiece::Update(double elapsed)
 void CUMLPiece::MarkHit(bool status)
 {
 	mWasHit = status;
-	mHitUMLTimer = make_shared<CTimer>(GetGame(), StuckDuration);
-	// should be added so that its update function can be called
-	// To avoid crash it should be added to waiting buffer
-	GetGame()->AddToWaitingBuffer(mHitUMLTimer);
-	mHitUMLTimer->StartTimer();
+	mHitUMLTimer->Start();
 }
 
 /**

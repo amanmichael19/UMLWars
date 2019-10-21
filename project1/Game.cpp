@@ -217,18 +217,6 @@ void CGame::PrepareDeleteQueue()
 
 }
 
-void CGame::AddToWaitingBuffer(shared_ptr<CGameObject> gameobject)
-{
-	mWaitingBuffer.push_back(gameobject);
-}
-
-void CGame::AddWaitingToMainList()
-{
-	for (auto gameobjects : mWaitingBuffer)
-	{
-		Add(gameobjects);
-	}
-}
 
 /**
  * Deletes all GameObjects that needed to be destroyed during the most recent Update call
@@ -292,9 +280,6 @@ void CGame::Update(double elapsed)
 	{
 		gameObjects->Update(elapsed);
 	}
-
-	// add any gameobjects in waiting list to gameobject vector
-	AddWaitingToMainList();
 
 	PrepareDeleteQueue();
 	// TODO: There is a bug causing the pen can not be reloaded if I use QueueFree(this) for pens

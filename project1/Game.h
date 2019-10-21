@@ -88,17 +88,10 @@ public:
 
 	void PrepareDeleteQueue();
 
-	void AddToWaitingBuffer(std::shared_ptr<CGameObject> gameobject);
-
-	void AddWaitingToMainList();
-
 private:
 
 	/// All of the gameobjects to populate our game
 	std::vector<std::shared_ptr<CGameObject> > mGameObjects;
-
-	/// vector containg game objects waiting to be added after latest update
-	std::vector<std::shared_ptr<CGameObject>> mWaitingBuffer;
 
 	std::shared_ptr<CScoreBoard> mScoreBoard;
 
