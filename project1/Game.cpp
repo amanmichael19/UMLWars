@@ -16,7 +16,6 @@
 #include <cstdlib>
 #include "UmlVisitor.h"
 #include <vector>
-#include "UMLStruck.h"
 #include <algorithm>
 
 using namespace std;
@@ -268,6 +267,10 @@ void CGame::Update(double elapsed)
 
 			int reduce = mEmitter->SpeedChange();
 			mEmitterTime += EMITTER_INTERVAL - reduce;
+			if (mEmitterTime < 1)
+			{
+				mEmitterTime = 1;
+			}
 		}
 
 		if (mPlayer->ReloadPen()) {

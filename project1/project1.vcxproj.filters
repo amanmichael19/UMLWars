@@ -31,9 +31,6 @@
     <ClCompile Include="UMLPieceEmitter.cpp">
       <Filter>UML</Filter>
     </ClCompile>
-    <ClCompile Include="UMLStruck.cpp">
-      <Filter>UML</Filter>
-    </ClCompile>
     <ClCompile Include="XMLReader.cpp">
       <Filter>XML</Filter>
     </ClCompile>
@@ -59,9 +56,6 @@
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
-    <ClCompile Include="GameOver.cpp">
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
@@ -117,9 +111,6 @@
     <ClInclude Include="UMLPieceEmitter.h">
       <Filter>UML</Filter>
     </ClInclude>
-    <ClInclude Include="UMLStruck.h">
-      <Filter>UML</Filter>
-    </ClInclude>
     <ClInclude Include="XMLReader.h">
       <Filter>XML</Filter>
     </ClInclude>
@@ -145,9 +136,6 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOver.h">
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
