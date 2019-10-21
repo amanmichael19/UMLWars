@@ -43,7 +43,9 @@ public:
 
 	/// Draw this object
 	/// \param graphics The graphics device this object is being drawn on
-	virtual void Draw(Gdiplus::Graphics* graphics) {}
+	virtual void Draw(Gdiplus::Graphics* graphics);
+		
+	
 
 	virtual void Update(double elapsed);
 
