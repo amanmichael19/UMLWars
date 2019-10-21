@@ -79,6 +79,8 @@ public:
 
 	void SetGameOver(bool gameover) { mGameOver = gameover; }
 
+	bool IsGameOver() { return mGameOver; }
+
 	auto GetPenImage() { return mPenImage; }
 
 	/// Increments missed counter when bad UML leaves screen

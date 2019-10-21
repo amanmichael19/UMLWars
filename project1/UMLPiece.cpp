@@ -17,6 +17,8 @@ using namespace std;
 
 /// The maximum Y value of the display
 const double SCREEN_SIZE_Y = 1000;
+/// umlpiece duration after hit
+const double StuckDuration = 1.0;
 
 /**
  * CUMLPiece Constructor
@@ -30,10 +32,8 @@ CUMLPiece::CUMLPiece(CGame* game, double x, double y, int speed) : CGameObject(g
 	mXDirection = x;
 	mYDirection = y;
 	mSpeed = speed;
-	mHitUMLTimer = make_shared<CTimer>(game);
+	mHitUMLTimer = make_shared<CTimer>(game, StuckDuration);
 	game->Add(mHitUMLTimer);
-	mHitUMLTimer->SetIsUpdate(false);
-	mHitUMLTimer->SetTotalTime(1);
 }
 
 /**
@@ -50,7 +50,7 @@ void CUMLPiece::Update(double elapsed)
 	}
 	else
 	{
-		if (mHitUMLTimer->IsTimeUp())
+		if (mHitUMLTimer->IsTimeUp() || GetGame()->IsGameOver())
 		{
 			MarkForDelete(true);
 			mUMLStruck->MarkForDelete(true);
@@ -77,7 +77,7 @@ void CUMLPiece::Update(double elapsed)
 void CUMLPiece::MarkHit(bool status)
 {
 	mWasHit = status;
-	mHitUMLTimer->SetIsUpdate(true);
+	mHitUMLTimer->StartTimer();
 	wstring msg = mBad == L"" ? L"Unfair" : mBad;
 	mUMLStruck = make_shared<CUMLStruck>(GetGame(), msg);
 	mUMLStruck->SetLocation(GetX(), GetY());
@@ -93,14 +93,4 @@ bool CUMLPiece::LeaveScreenCheck()
 {
 	// Could be used to signal missed/correct and indicate that this object should be destroyed
 	return GetY() > SCREEN_SIZE_Y;
-}
-
-void CUMLPiece::DisplayHitMessage()
-{
-
-	if (mBad == L"")
-	{
-		mBad = L"This was good UML.";
-	}
-	mSpeed = 0;
 }

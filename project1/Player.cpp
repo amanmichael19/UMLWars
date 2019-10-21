@@ -18,6 +18,8 @@ using namespace std;
 
 /// Constant ratio to convert radians to degrees
 const double RtoD = 57.295779513;
+/// constant pen reload duration
+const double ReloadDuration = 1.0;
 
 CPlayer::CPlayer(CGame* game) : CGameObject(game)
 {
@@ -54,7 +56,7 @@ void CPlayer::OnMouseMove(double mouseX, double mouseY)
 void CPlayer::OnLeftClick(double mouseX, double mouseY)
 {
 	mPenOnHand->FirePen(mouseX, mouseY);
-	mPenTimer->SetIsUpdate(true);
+	mPenTimer->StartTimer();
 	mIsPenOnHand = false;
 }
 
@@ -78,10 +80,8 @@ void CPlayer::MakeAPen()
 	mPenOnHand->OnMouseMove(mAngle);
 	mIsPenOnHand = true;
 
-	mPenTimer = make_shared<CTimer>(game);
+	mPenTimer = make_shared<CTimer>(game, ReloadDuration);
 	game->Add(mPenTimer);
-	mPenTimer->SetIsUpdate(false);
-	mPenTimer->SetTotalTime(1);
 }
 
 void CPlayer::DestroyPen()

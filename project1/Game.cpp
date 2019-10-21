@@ -25,6 +25,9 @@ using namespace Gdiplus;
 /// Time between UMLPiece emissions
 const double EMITTER_INTERVAL = 5;
 
+/// game duration
+const double GameDuration = 60.0;
+
 /**
  * Game constructor
  */
@@ -59,17 +62,12 @@ void CGame::OnLaunch()
 	//Add(mPlayer);
 
 	// Create the countdown timer
-	auto DisplayTimer = make_shared<CDisplayTimer>(this);
+	auto DisplayTimer = make_shared<CDisplayTimer>(this, GameDuration);
 	Add(DisplayTimer);
 
 	// Create emitter
 	mEmitter = make_shared<CUMLPieceEmitter>(this);
 
-	//auto struck = make_shared<CUMLStruck>(this);
-	//struck->Set(0, 0, L"Not good UML");
-	////auto mGame = CGameObject::GetGame();
-	////mGame->Add(struck);
-	//Add(struck);
 }
 
 /**
@@ -198,7 +196,7 @@ void CGame::UMLMissed()
  */
 void CGame::PrepareDeleteQueue()
 {
-	// ******  deleteObject being initialized with a raw ptr 
+	// ******  deleteObject was being initialized with a raw ptr 
 	// ******* that has already a shared_ptr in the gameobjects list
 	// *******  and these two shared_ptrs dont know each other 
 	// *****    so deleting the queue will cause double deleting
@@ -206,6 +204,9 @@ void CGame::PrepareDeleteQueue()
 	 //shared_ptr<CGameObject> deleteObject(object);
 
 	// mDeleteQueue.push_back(deleteObject);
+
+	// this solves the problem by basically copying a shared pointer
+	// to the queue. The two shared ptrs know each other 
 	for (auto gameobject : mGameObjects)
 	{
 		if (gameobject->IsMarkedForDelete())
@@ -281,7 +282,7 @@ void CGame::Update(double elapsed)
 			mEmitterTime += EMITTER_INTERVAL - reduce;
 		}
 
-		if (mPlayer->IfGetPen()) {
+		if (mPlayer->ReloadPen()) {
 			mPlayer->MakeAPen();
 		}
 	}

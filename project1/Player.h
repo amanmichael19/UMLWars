@@ -40,7 +40,7 @@ class CPlayer : public CGameObject
 
 		void DestroyPen();
 
-		bool IfGetPen() { return mPenTimer->IsTimeUp() ? true : false; }
+		bool ReloadPen() { return mPenTimer->IsTimeUp(); }
 
 		/// compute angle
 		/// \param mouseX

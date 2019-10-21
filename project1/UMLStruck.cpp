@@ -21,7 +21,7 @@ void CUMLStruck::Draw(Gdiplus::Graphics* graphics)
 
 	// Font to be used
 	FontFamily fontFamily(L"Arial");
-	Gdiplus::Font font(&fontFamily, 17);
+	Gdiplus::Font font(&fontFamily, 18);
 
 	graphics->DrawString(mMsg.c_str(), -1, &font, PointF(GetX(), GetY()), &yellowBrush);
 	
