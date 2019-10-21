@@ -127,7 +127,7 @@ void CEndScreen::DisplayRank()
 void CEndScreen::Draw(Gdiplus::Graphics* graphics)
 {
 	FontFamily fontFamily(L"Arial");
-	Gdiplus::Font font(&fontFamily, 100);
+	Gdiplus::Font font(&fontFamily, 40);
 	SolidBrush heavyGreen(Color(256, 256, 256));
 
 	/// TODO: clean all other objects and display inthe center, wii finish this when the time of score is done.
@@ -136,5 +136,6 @@ void CEndScreen::Draw(Gdiplus::Graphics* graphics)
 	graphics->DrawString(to_wstring(mFinalScore).c_str(), -1, &font, PointF(500, 200), &heavyGreen);
 
 	graphics->DrawString(L"RANK:", -1, &font, PointF(-500, 500), &heavyGreen);
-	graphics->DrawString(mRankText.c_str(), -1, &font, PointF(-200, 500), &heavyGreen);
+
+	graphics->DrawString(mRankText.c_str(), -1, &font, PointF(-500, 700), &heavyGreen);
 }
