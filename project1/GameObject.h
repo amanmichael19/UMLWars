@@ -54,7 +54,7 @@ public:
 	virtual void SetDimensions(double wid, double hit) { mWidth = wid; mHeight = hit; }
 
 	/** The Width of the item
-	 * \returns double of Width 
+	 * \returns double of Width
 	 */
 	double GetWidth() const { return mWidth; }
 
@@ -84,7 +84,7 @@ public:
 
 	/// update time counter
 	/// \param elapsed time
-	virtual void Update(double elapsed) = 0;
+	virtual void Update(double elapsed) {}
 
 	/// Get the game this item is in
 	/// \returns game pointer

@@ -104,7 +104,7 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 	// Fill the background with white
 	/*SolidBrush new_brush(Color::White);
 	graphics->FillRectangle(&new_brush, -Width/2.0, 0, Width, Height);*/
-	
+
 	/// TODO: EndScreen teasting.
 	//CEndScreen EndScreen();
 	//EndScreen->Draw(graphics);
@@ -114,27 +114,14 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 		gameObjects->Draw(graphics);
 	}
 
-<<<<<<< HEAD
 	// This will prevent the harold and scoreboard 
 	//to be Drawn at the end of the game
 	// when the end screen gets drawm
-=======
-	// Prevent the Harold
-	//to be Drawn at the end of the game
-	// when the end screen gets drawn
->>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
 	if (!mGameOver)
 	{
 		mPlayer->Draw(graphics);
 		mScoreBoard->Draw(graphics);
-<<<<<<< HEAD
 	}
-=======
-
-		
-	}
-
->>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
 }
 
 /**
@@ -157,7 +144,7 @@ void CGame::Add(std::shared_ptr<CGameObject> gob)
 		mGameObjects.push_back(gob);
 		mGameObjects.push_back(lastObject);
 	}
-	
+
 }
 
 void CGame::OnMouseMove(int x, int y)
@@ -186,16 +173,16 @@ void CGame::Accept(CGameObjectVisitor* visitor)
 
 void CGame::CheckGameOver()
 {
-	if (mGameOver && !mEndScreenDisplayed) 
+	if (mGameOver && !mEndScreenDisplayed)
 	{
 		mEndScreenDisplayed = true;
 
 		auto theEnd = make_shared<CEndScreen>(this);
 
 		theEnd->SetFinalScore(mScoreBoard->GetCorrect(), mScoreBoard->GetMissed(), mScoreBoard->GetUnfair());
-		
+
 		mGameObjects.clear();
-		
+
 		Add(theEnd);
 	}
 }
@@ -216,7 +203,6 @@ void CGame::PrepareDeleteQueue()
 	// *******  and these two shared_ptrs dont know each other 
 	// *****    so deleting the queue will cause double deleting
 	// Cast raw pointer argument to shared pointer
-<<<<<<< HEAD
 	 //shared_ptr<CGameObject> deleteObject(object);
 
 	// mDeleteQueue.push_back(deleteObject);
@@ -227,7 +213,7 @@ void CGame::PrepareDeleteQueue()
 			mDeleteQueue.push_back(gameobject);
 		}
 	}
-	
+
 }
 
 void CGame::AddToWaitingBuffer(shared_ptr<CGameObject> gameobject)
@@ -241,13 +227,6 @@ void CGame::AddWaitingToMainList()
 	{
 		Add(gameobjects);
 	}
-=======
-	
-	
-	shared_ptr<CGameObject> deleteObject(object);
-	
-	mDeleteQueue.push_back(deleteObject);
->>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
 }
 
 /**
@@ -305,7 +284,6 @@ void CGame::Update(double elapsed)
 		if (mPlayer->IfGetPen()) {
 			mPlayer->MakeAPen();
 		}
-
 	}
 
 	// Do not do ADD or DELETE during looping, will cause crashing
@@ -332,13 +310,7 @@ void CGame::Update(double elapsed)
 void CGame::HitUml(CGameObject* pen)
 {
 	CUmlVisitor umlVisitor;
-<<<<<<< HEAD
 	std::vector<std::shared_ptr<CGameObject> > hitUml;
-=======
-	CScoreBoardVisitor scoVisitor;
-	//auto scoreBoard = make_shared<CScoreBoard>(this);
-	//std::vector<std::shared_ptr<CGameObject> > hitUml;
->>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
 
 	double penX = pen->GetX();
 	double penY = pen->GetY();
@@ -357,13 +329,10 @@ void CGame::HitUml(CGameObject* pen)
 		object->Accept(&umlVisitor);
 		if (umlVisitor.IsUML())
 		{
-			
-			//mPenOnFire.reset(pen);
 			if (umlVisitor.TryHit(penX, penY))
 			{
-<<<<<<< HEAD
 				pen->MarkForDelete(true);
-				if (std::find(hitUml.begin(), hitUml.end(), object) == 
+				if (std::find(hitUml.begin(), hitUml.end(), object) ==
 					hitUml.end())
 				{
 					hitUml.push_back(object);
@@ -377,27 +346,10 @@ void CGame::HitUml(CGameObject* pen)
 					{
 						mScoreBoard->IncrementUnfairScore();
 						//break;
-=======
-				QueueFree(pen); //delete this pen if it hit any UML
-				//if (std::find(hitUml.begin(), hitUml.end(), object) == 
-				//	hitUml.end())
-				//{
-				//	hitUml.push_back(object);
-
-					if (umlVisitor.IsBad())
-					{
-						scoVisitor.Increment(true);
-						break;
 					}
-					else
-					{
-						scoVisitor.Increment(false);
-						break;
->>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
-					}
-				//}
+				}
 			}
-			//umlVisitor.Reset();
+			umlVisitor.Reset();
 		}
 	}
 }

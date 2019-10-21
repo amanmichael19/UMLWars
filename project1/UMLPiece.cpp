@@ -57,7 +57,7 @@ void CUMLPiece::Update(double elapsed)
 		}
 	}
 	// Checks if object has left screen
-	else if (LeaveScreenCheck())
+	else (LeaveScreenCheck())
 	{
 		// If piece was bad signal missed
 		if (mBad != L"")

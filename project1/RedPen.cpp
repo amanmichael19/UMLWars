@@ -70,8 +70,8 @@ void CRedPen::FirePen(double xDirection, double yDirection)
 	if (mOnHand)
 	{
 		double sqrtVecorSum = sqrt(pow(xDirection - mLoadX, 2) + pow(yDirection - mLoadY, 2));
-		mXDirection = (xDirection - mLoadX)/sqrtVecorSum;
-		mYDirection = (yDirection - mLoadY)/sqrtVecorSum;
+		mXDirection = (xDirection - mLoadX) / sqrtVecorSum;
+		mYDirection = (yDirection - mLoadY) / sqrtVecorSum;
 		mOnHand = false;
 		mAngleOnAir = mAngleOfRotation;
 	}
@@ -86,19 +86,13 @@ void CRedPen::Update(double elapsed)
 		// TODO: temporary - create constants file
 		if (x < -1250 / 2 || x > 1250 / 2 || y > 1000 || y < 0)
 		{
-<<<<<<< HEAD
 			MarkForDelete(true);
-=======
-			
-			GetGame()->QueueFree(this);
-
->>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
 		}
 		else
 		{
 			SetLocation(x, y);
 		}
-		
+
 	}
 }
 

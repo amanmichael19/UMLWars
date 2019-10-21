@@ -14,13 +14,8 @@ using namespace std;
 
 CDisplayTimer::CDisplayTimer(CGame* game) : CTimer(game)
 {
-<<<<<<< HEAD
 	SetIsUpdate(true);
 	SetTotalTime(60);
-=======
-	SetUp(5);
-	Start();
->>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
 }
 
 
