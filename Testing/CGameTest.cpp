@@ -32,8 +32,7 @@ namespace Testing
 		TEST_METHOD(TestCGameAddPen)
 		{
 			shared_ptr<CGame> game = make_shared<CGame>();
-			shared_ptr<Bitmap> penImage = shared_ptr<Bitmap>(Bitmap::FromFile(L"images/images/redpen.png"));
-			shared_ptr<CRedPen> pen = make_shared<CRedPen>(game.get(), penImage);
+			shared_ptr<CRedPen> pen = make_shared<CRedPen>(game.get(), 100, 200);
 			game->Add(pen);
 		}
 

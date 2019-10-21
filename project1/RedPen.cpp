@@ -45,25 +45,24 @@ void CRedPen::SetLocation(double x, double y) {
 
 void CRedPen::Draw(Gdiplus::Graphics* graphics)
 {
-	
-		float wid = (float)mPenImage->GetWidth();
-		float hit = (float)mPenImage->GetHeight();
-		float x = float(GetX() - wid / 2);
-		float y = float(GetY() - hit / 2);
+	float wid = (float)mPenImage->GetWidth();
+	float hit = (float)mPenImage->GetHeight();
+	float x = float(GetX() - wid / 2);
+	float y = float(GetY() - hit / 2);
 
-		auto state = graphics->Save();
-		graphics->TranslateTransform((float)GetX(), (float)GetY());
-		if (mOnHand)
-		{
-			graphics->RotateTransform((float)(-mAngleOfRotation * RtoD));
+	auto state = graphics->Save();
+	graphics->TranslateTransform((float)GetX(), (float)GetY());
+	if (mOnHand)
+	{
+		graphics->RotateTransform((float)(-mAngleOfRotation * RtoD));
 
-		}
-		else
-		{
-			graphics->RotateTransform((float)(-mAngleOnAir * RtoD));
-		}
-		graphics->DrawImage(mPenImage.get(), -wid / 2, -hit / 2, wid, hit);
-		graphics->Restore(state);
+	}
+	else
+	{
+		graphics->RotateTransform((float)(-mAngleOnAir * RtoD));
+	}
+	graphics->DrawImage(mPenImage.get(), -wid / 2, -hit / 2, wid, hit);
+	graphics->Restore(state);
 }
 
 void CRedPen::FirePen(double xDirection, double yDirection)
@@ -71,8 +70,8 @@ void CRedPen::FirePen(double xDirection, double yDirection)
 	if (mOnHand)
 	{
 		double sqrtVecorSum = sqrt(pow(xDirection - mLoadX, 2) + pow(yDirection - mLoadY, 2));
-		mXDirection = (xDirection - mLoadX)/sqrtVecorSum;
-		mYDirection = (yDirection - mLoadY)/sqrtVecorSum;
+		mXDirection = (xDirection - mLoadX) / sqrtVecorSum;
+		mYDirection = (yDirection - mLoadY) / sqrtVecorSum;
 		mOnHand = false;
 		mAngleOnAir = mAngleOfRotation;
 	}
@@ -84,16 +83,16 @@ void CRedPen::Update(double elapsed)
 	{
 		double x = elapsed * mSpeed * mXDirection + GetX();
 		double y = elapsed * mSpeed * mYDirection + GetY();
-		// temporary - create constants file
+		// TODO: temporary - create constants file
 		if (x < -1250 / 2 || x > 1250 / 2 || y > 1000 || y < 0)
 		{
-			GetGame()->QueueFree(this);
+			MarkForDelete(true);
 		}
 		else
 		{
 			SetLocation(x, y);
 		}
-		
+
 	}
 }
 

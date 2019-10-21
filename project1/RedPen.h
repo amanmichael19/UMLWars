@@ -53,6 +53,8 @@ public:
 	/// \param y
 	void SetLocation(double x, double y) override;
 
+	/// accept
+	/// \param visitor
 	virtual void Accept(CGameObjectVisitor* visitor) override {}
 
 private:
@@ -85,7 +87,7 @@ private:
 	/// y direction
 	double mYDirection = 0.0;
 	/// speed
-	double mSpeed = 300.0;
+	double mSpeed = 1000.0;
 };
 
 

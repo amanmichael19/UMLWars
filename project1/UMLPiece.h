@@ -36,10 +36,10 @@ public:
 	/// \returns the value of mWasHit
 	bool GetWasHit() { return mWasHit; }
 
-	/// Setter for HitStatus
+	/// mark hit and start timer
 	/// \param status bool  to set to
-	void SetWasHit(bool status) { mWasHit = status; }
-	
+	void MarkHit(bool status);
+
 
 	/// Draw this object
 	/// \param graphics The graphics device this object is being drawn on
@@ -58,12 +58,18 @@ public:
 	/// \param y Y position of hit
 	bool HitTest(int x, int y) = 0;
 
+	void DisplayHitMessage();
+
 private:
 	std::wstring mBad = L""; ///< The reason, if any, why this UMLPiece is bad
 	double mXDirection; ///< The X direction this UMLPiece is moving
 	double mYDirection; ///< The Y direction this UMLPiece is moving
 	int mSpeed; ///< The speed at which this UMLPiece is moving
 	bool mWasHit = false;
+	std::shared_ptr<CTimer> mHitUMLTimer;
+
+	/// name might be confusing but apparently it is a class implementing error message not a UML
+	std::shared_ptr<CUMLStruck> mUMLStruck;
 	//std::shared_ptr<CTimer>	 mTimer;
 
 protected:

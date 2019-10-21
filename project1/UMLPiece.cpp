@@ -16,6 +16,8 @@ using namespace std;
 
 /// The maximum Y value of the display
 const double SCREEN_SIZE_Y = 1000;
+/// umlpiece duration after hit
+const double StuckDuration = 1.0;
 
 /// The size of the font on the UML hit message
 const int FONT_SIZE = 25;
@@ -40,16 +42,20 @@ CUMLPiece::CUMLPiece(CGame* game, double x, double y, int speed) : CGameObject(g
  */
 void CUMLPiece::Update(double elapsed)
 {
-	if (GetWasHit())
-	{
-		mSpeed = 0;
-	}
-
 	double newX = elapsed * mSpeed * mXDirection + GetX();
 	double newY = elapsed * mSpeed * mYDirection + GetY();
-
-	CGameObject::SetLocation(newX, newY);
-
+	if (!mWasHit)
+	{
+		CGameObject::SetLocation(newX, newY);
+	}
+	else
+	{
+		if (mHitUMLTimer->IsTimeUp() || GetGame()->IsGameOver())
+		{
+			MarkForDelete(true);
+			mUMLStruck->MarkForDelete(true);
+		}
+	}
 	// Checks if object has left screen
 	if (LeaveScreenCheck())
 	{
@@ -60,10 +66,23 @@ void CUMLPiece::Update(double elapsed)
 		}
 
 		// Queue object for deletion at end of update
-		GetGame()->QueueFree(this);
+		MarkForDelete(true);
 	}
 }
 
+/**
+ * Marks uml hit and starts timer
+ * \param status hit status
+ */
+void CUMLPiece::MarkHit(bool status)
+{
+	mWasHit = status;
+	mHitUMLTimer->StartTimer();
+	wstring msg = mBad == L"" ? L"Unfair" : mBad;
+	mUMLStruck = make_shared<CUMLStruck>(GetGame(), msg);
+	mUMLStruck->SetLocation(GetX(), GetY());
+	GetGame()->AddToWaitingBuffer(mUMLStruck);
+}
 
 /**
  * Checks if the UMLPiece has left the screen
