@@ -46,12 +46,6 @@
     <ClCompile Include="DisplayTimer.cpp">
       <Filter>Timer</Filter>
     </ClCompile>
-    <ClCompile Include="ScoreBoardVisitor.cpp">
-      <Filter>Visitor</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerVisitor.cpp">
-      <Filter>Visitor</Filter>
-    </ClCompile>
     <ClCompile Include="GameObjectVisitor.cpp">
       <Filter>Visitor</Filter>
     </ClCompile>
@@ -137,12 +131,6 @@
     </ClInclude>
     <ClInclude Include="DisplayTimer.h">
       <Filter>Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreBoardVisitor.h">
-      <Filter>Visitor</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerVisitor.h">
-      <Filter>Visitor</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectVisitor.h">
       <Filter>Visitor</Filter>

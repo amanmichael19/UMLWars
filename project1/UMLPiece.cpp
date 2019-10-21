@@ -10,6 +10,7 @@
 #include "UMLPiece.h"
 #include "Game.h"
 #include <memory>
+#include "UMLStruck.h"
 
 using namespace Gdiplus;
 using namespace std;
@@ -29,6 +30,10 @@ CUMLPiece::CUMLPiece(CGame* game, double x, double y, int speed) : CGameObject(g
 	mXDirection = x;
 	mYDirection = y;
 	mSpeed = speed;
+	mHitUMLTimer = make_shared<CTimer>(game);
+	game->Add(mHitUMLTimer);
+	mHitUMLTimer->SetIsUpdate(false);
+	mHitUMLTimer->SetTotalTime(1);
 }
 
 /**
@@ -39,9 +44,18 @@ void CUMLPiece::Update(double elapsed)
 {
 	double newX = elapsed * mSpeed * mXDirection + GetX();
 	double newY = elapsed * mSpeed * mYDirection + GetY();
-
-	CGameObject::SetLocation(newX, newY);
-
+	if (!mWasHit)
+	{
+		CGameObject::SetLocation(newX, newY);
+	}
+	else
+	{
+		if (mHitUMLTimer->IsTimeUp())
+		{
+			MarkForDelete(true);
+			mUMLStruck->MarkForDelete(true);
+		}
+	}
 	// Checks if object has left screen
 	if (LeaveScreenCheck())
 	{
@@ -52,8 +66,22 @@ void CUMLPiece::Update(double elapsed)
 		}
 
 		// Queue object for deletion at end of update
-		GetGame()->QueueFree(this);
+		MarkForDelete(true);
 	}
+}
+
+/**
+ * Marks uml hit and starts timer
+ * \param status hit status
+ */
+void CUMLPiece::MarkHit(bool status)
+{
+	mWasHit = status;
+	mHitUMLTimer->SetIsUpdate(true);
+	wstring msg = L"Bad UML";
+	mUMLStruck = make_shared<CUMLStruck>(GetGame(), msg);
+	mUMLStruck->SetLocation(GetX(), GetY());
+	GetGame()->AddToWaitingBuffer(mUMLStruck);
 }
 
 
@@ -74,6 +102,5 @@ void CUMLPiece::DisplayHitMessage()
 	{
 		mBad = L"This was good UML.";
 	}
-	//GetGame()->QueueFree(this);
 	mSpeed = 0;
 }

@@ -11,12 +11,13 @@
 #pragma once
 #include <vector>
 #include <memory>
-#include "ScoreBoard.h"
 
 class CGameObject;
 class CGameObjectVisitor;
 class CUMLPieceEmitter;
 class CUmlHitDetector;
+class CScoreBoard;
+class CPlayer;
 
 class CGame
 {
@@ -40,7 +41,7 @@ class CGame
 		/// \param elapsed time
 		void Update(double elapsed);
 
-		void HitUml(CGameObject* fire);
+		void HitUml(CGameObject* pen);
 
 		//void HitUml(int x, int y);
 
@@ -78,24 +79,30 @@ class CGame
 
 		void SetGameOver(bool gameover) { mGameOver = gameover; }
 
-		auto GetPenImage() {return mPenImage; }
+		auto GetPenImage() { return mPenImage; }
 
 		/// Increments missed counter when bad UML leaves screen
-		void UMLMissed() { mScoreBoard->IncrementMissedScore(); };
+		void UMLMissed();
 
-		void QueueFree(CGameObject* object);
+		void PrepareDeleteQueue();
+
+		void AddToWaitingBuffer(std::shared_ptr<CGameObject> gameobject);
+
+		void AddWaitingToMainList();
 
 	private:
 
 		/// All of the gameobjects to populate our game
 		std::vector<std::shared_ptr<CGameObject> > mGameObjects;
 
+		/// vector containg game objects waiting to be added after latest update
+		std::vector<std::shared_ptr<CGameObject>> mWaitingBuffer;
+
 		std::shared_ptr<CScoreBoard> mScoreBoard;
 
 		std::shared_ptr<CPlayer> mPlayer;
 
 		std::shared_ptr<Gdiplus::Bitmap> mPenImage;
-
 
 		/// Game area in virtual pixels
 		const static int Width = 1250;

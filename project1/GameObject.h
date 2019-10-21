@@ -74,12 +74,12 @@ public:
 	/** draws game objects
 	* \param graphics
 	*/
-	virtual void Draw(Gdiplus::Graphics* graphics) = 0;
+	virtual void Draw(Gdiplus::Graphics* graphics) {};
 
 	/** Accept a visitor
 	* \param visitor
 	*/
-	virtual void Accept(CGameObjectVisitor* visitor) = 0;
+	virtual void Accept(CGameObjectVisitor* visitor) {};
 
 
 	/// update time counter
@@ -90,6 +90,12 @@ public:
 	/// \returns game pointer
 	CGame* GetGame() const { return mGame; }
 
+	/// is marked for delete
+	virtual bool IsMarkedForDelete() { return mMarkedForDelete; }
+
+	/// set marked for delete
+	/// \param markDelete
+	virtual void MarkForDelete(bool markDelete) { mMarkedForDelete = markDelete; }
 
 private:
 
@@ -105,5 +111,7 @@ private:
 	CGame* mGame;
 
 	bool mHit = false;
+
+	bool mMarkedForDelete = false;
 };
 

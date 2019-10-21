@@ -36,9 +36,11 @@ class CPlayer : public CGameObject
 		*/
 		virtual void Draw(Gdiplus::Graphics* graphics) override;
 
-		void GetAPen();
+		void MakeAPen();
 
-		bool IfGetPen();
+		void DestroyPen();
+
+		bool IfGetPen() { return mPenTimer->IsTimeUp() ? true : false; }
 
 		/// compute angle
 		/// \param mouseX
@@ -62,13 +64,12 @@ class CPlayer : public CGameObject
 		std::unique_ptr<Gdiplus::Bitmap> mPlayerImage;
 		/// pen handler
 		std::shared_ptr<CRedPen> mPenOnHand;
+		// is pen on hand
 		bool mIsPenOnHand;
 		/// angle of rotation
 		double mAngle = 0.0;
-		
-		CGame* mGame;
-
-		std::shared_ptr<CTimer>	 mTimer;
+		/// pen timer
+		std::shared_ptr<CTimer>	 mPenTimer;
 
 };
 

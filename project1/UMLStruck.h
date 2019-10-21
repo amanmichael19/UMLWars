@@ -16,7 +16,7 @@ class CUMLStruck : public CGameObject
 public:
 	/// scroreboard constructor
 	/// \param game
-	CUMLStruck(CGame* game);
+	CUMLStruck(CGame* game, std::wstring msg): CGameObject(game), mMsg(msg) {}
 
 	/// default constructor disabled
 	CUMLStruck() = delete;
@@ -31,13 +31,9 @@ public:
 	/// \param graphics
 	virtual void Draw(Gdiplus::Graphics* graphics);
 
-	/// draw
-	/// \param graphics
-	void Set(int x, int y, std::wstring msg);
 private:
-	int mX = 0;
-	int mY = 0;
+	double mX = 0;
+	double mY = 0;
 	std::wstring mMsg;
-	bool mIfDraw = false;
 };
 

@@ -114,8 +114,6 @@ void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	// TODO: Add your message handler code here and/or call default
-
 	CWnd::OnLButtonUp(nFlags, point);
 }
 

@@ -14,6 +14,8 @@
 #include <memory>
 #include "Timer.h"
 
+class CUMLStruck;
+
 
 /**
  * Class that descibes a single UML object on screen
@@ -36,9 +38,9 @@ public:
 	/// \returns the value of mWasHit
 	bool GetWasHit() { return mWasHit; }
 
-	/// Setter for HitStatus
+	/// mark hit and start timer
 	/// \param status bool  to set to
-	void SetWasHit(bool status) { mWasHit = status; }
+	void MarkHit(bool status);
 	
 
 	/// Draw this object
@@ -67,6 +69,8 @@ private:
 	double mYDirection; ///< The Y direction this UMLPiece is moving
 	int mSpeed; ///< The speed at which this UMLPiece is moving
 	bool mWasHit = false;
+	std::shared_ptr<CTimer> mHitUMLTimer;
+	std::shared_ptr<CUMLStruck> mUMLStruck;
 	//std::shared_ptr<CTimer>	 mTimer;
 };
 

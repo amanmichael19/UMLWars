@@ -7,14 +7,13 @@
  */
 
 #pragma once
-#include "GameObject.h"
-#include "Game.h"
 #include <ctime>
+#include "GameObject.h"
 
 class CTimer : public CGameObject
 {
 public:
-	/// scroreboard constructor
+	/// timer constructor
 	/// \param game
 	CTimer(CGame* game);
 
@@ -41,7 +40,7 @@ public:
 
 	virtual void SetIsUpdate(bool is) { 
 		mIsUpdate = is; 
-		if (is == false) { mTimeLeft = 60; }
+		if (!is) { mTimeLeft = 60; }
 	}
 
 private:

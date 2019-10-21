@@ -14,7 +14,7 @@
 class CDisplayTimer : public CTimer
 {
 public:
-	/// scroreboard constructor
+	/// Display timer constructor
 	/// \param game
 	CDisplayTimer(CGame* game);
 

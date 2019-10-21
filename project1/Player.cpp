@@ -12,6 +12,7 @@
 #include "RedPen.h"
 #include "Game.h"
 
+
 using namespace Gdiplus;
 using namespace std;
 
@@ -30,12 +31,7 @@ CPlayer::CPlayer(CGame* game) : CGameObject(game)
 	else
 	{
 		SetLocation(0, double(double(CGame::GetHeight()) - mPlayerImage->GetHeight()/2.0f));
-		
-		mGame = game;
-		mTimer = make_shared<CTimer>(mGame);
-		mGame->Add(mTimer);
-
-		GetAPen();
+		MakeAPen();
 	}
 }
 
@@ -58,8 +54,7 @@ void CPlayer::OnMouseMove(double mouseX, double mouseY)
 void CPlayer::OnLeftClick(double mouseX, double mouseY)
 {
 	mPenOnHand->FirePen(mouseX, mouseY);
-	mTimer->SetTotalTime(1);
-	mTimer->SetIsUpdate(true);
+	mPenTimer->SetIsUpdate(true);
 	mIsPenOnHand = false;
 }
 
@@ -75,25 +70,23 @@ void CPlayer::Draw(Gdiplus::Graphics* graphics)
 	graphics->Restore(state);
 }
 
-void CPlayer::GetAPen() {
-	auto pen = make_shared<CRedPen>(mGame, GetX(), GetY());
-	mGame->Add(pen);
-	mPenOnHand = pen;
-
-	mTimer->SetIsUpdate(false);
-	mTimer->SetTotalTime(1);
-	
+void CPlayer::MakeAPen() 
+{
+	auto game = GetGame();
+	mPenOnHand = make_shared<CRedPen>(game, GetX(), GetY());
+	game->Add(mPenOnHand);
+	mPenOnHand->OnMouseMove(mAngle);
 	mIsPenOnHand = true;
 
-	mPenOnHand->OnMouseMove(mAngle);
+	mPenTimer = make_shared<CTimer>(game);
+	game->Add(mPenTimer);
+	mPenTimer->SetIsUpdate(false);
+	mPenTimer->SetTotalTime(1);	
 }
 
-bool CPlayer::IfGetPen() {
-	if (mTimer->IsTimeUp()) {
-		return true;
-	}
-	else {
-		return false;
-	}
+void CPlayer::DestroyPen()
+{
+	mPenOnHand->MarkForDelete(true);
 }
+
 
