@@ -10,12 +10,11 @@
 #pragma once
 #include "GameObjectVisitor.h"
 #include <string>
-#include "UMLPiece.h"
 
 class CUMLPiece;
 
  /**
-  * class implementing player visitor
+  * class implementing uml visitor visitor
   */
 class CUmlVisitor : public CGameObjectVisitor
 {

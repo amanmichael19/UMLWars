@@ -31,7 +31,17 @@ CPlayer::CPlayer(CGame* game) : CGameObject(game)
 	else
 	{
 		SetLocation(0, double(double(CGame::GetHeight()) - mPlayerImage->GetHeight()/2.0f));
+<<<<<<< HEAD
 		MakeAPen();
+=======
+		
+		mGame = game;
+		mTimer = make_shared<CTimer>(mGame);
+		mGame->Add(mTimer);
+
+		GetAPen();
+
+>>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
 	}
 }
 
@@ -54,7 +64,12 @@ void CPlayer::OnMouseMove(double mouseX, double mouseY)
 void CPlayer::OnLeftClick(double mouseX, double mouseY)
 {
 	mPenOnHand->FirePen(mouseX, mouseY);
+<<<<<<< HEAD
 	mPenTimer->SetIsUpdate(true);
+=======
+	mTimer->SetUp(1);
+	mTimer->Start();
+>>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
 	mIsPenOnHand = false;
 }
 
@@ -70,12 +85,20 @@ void CPlayer::Draw(Gdiplus::Graphics* graphics)
 	graphics->Restore(state);
 }
 
+<<<<<<< HEAD
 void CPlayer::MakeAPen() 
 {
 	auto game = GetGame();
 	mPenOnHand = make_shared<CRedPen>(game, GetX(), GetY());
 	game->Add(mPenOnHand);
 	mPenOnHand->OnMouseMove(mAngle);
+=======
+void CPlayer::GetAPen() {
+	auto pen = make_shared<CRedPen>(mGame, GetX(), GetY());
+	mGame->Add(pen);
+	mPenOnHand = pen;
+	
+>>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
 	mIsPenOnHand = true;
 
 	mPenTimer = make_shared<CTimer>(game);
@@ -84,9 +107,13 @@ void CPlayer::MakeAPen()
 	mPenTimer->SetTotalTime(1);	
 }
 
+<<<<<<< HEAD
 void CPlayer::DestroyPen()
 {
 	mPenOnHand->MarkForDelete(true);
 }
+=======
+bool CPlayer::IfGetPen() {return !mIsPenOnHand && mTimer->IsTimeUp();}
+>>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
 
 

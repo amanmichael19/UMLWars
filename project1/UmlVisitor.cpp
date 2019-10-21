@@ -6,6 +6,7 @@
 
 #include "pch.h"
 #include "UmlVisitor.h"
+#include "UMLPiece.h"
 
 using namespace std;
 

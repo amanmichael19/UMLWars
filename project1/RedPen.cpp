@@ -86,7 +86,13 @@ void CRedPen::Update(double elapsed)
 		// TODO: temporary - create constants file
 		if (x < -1250 / 2 || x > 1250 / 2 || y > 1000 || y < 0)
 		{
+<<<<<<< HEAD
 			MarkForDelete(true);
+=======
+			
+			GetGame()->QueueFree(this);
+
+>>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
 		}
 		else
 		{

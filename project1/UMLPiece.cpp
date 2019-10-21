@@ -57,7 +57,7 @@ void CUMLPiece::Update(double elapsed)
 		}
 	}
 	// Checks if object has left screen
-	if (LeaveScreenCheck())
+	else if (LeaveScreenCheck())
 	{
 		// If piece was bad signal missed
 		if (mBad != L"")
@@ -78,7 +78,7 @@ void CUMLPiece::MarkHit(bool status)
 {
 	mWasHit = status;
 	mHitUMLTimer->SetIsUpdate(true);
-	wstring msg = L"Bad UML";
+	wstring msg = mBad != L"" ? l"Unfair" : mBad;
 	mUMLStruck = make_shared<CUMLStruck>(GetGame(), msg);
 	mUMLStruck->SetLocation(GetX(), GetY());
 	GetGame()->AddToWaitingBuffer(mUMLStruck);
@@ -93,14 +93,4 @@ bool CUMLPiece::LeaveScreenCheck()
 {
 	// Could be used to signal missed/correct and indicate that this object should be destroyed
 	return GetY() > SCREEN_SIZE_Y;
-}
-
-void CUMLPiece::DisplayHitMessage()
-{
-
-	if (mBad == L"")
-	{
-		mBad = L"This was good UML.";
-	}
-	mSpeed = 0;
 }

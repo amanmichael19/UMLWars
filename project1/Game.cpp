@@ -114,14 +114,27 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 		gameObjects->Draw(graphics);
 	}
 
+<<<<<<< HEAD
 	// This will prevent the harold and scoreboard 
 	//to be Drawn at the end of the game
 	// when the end screen gets drawm
+=======
+	// Prevent the Harold
+	//to be Drawn at the end of the game
+	// when the end screen gets drawn
+>>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
 	if (!mGameOver)
 	{
 		mPlayer->Draw(graphics);
 		mScoreBoard->Draw(graphics);
+<<<<<<< HEAD
 	}
+=======
+
+		
+	}
+
+>>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
 }
 
 /**
@@ -203,6 +216,7 @@ void CGame::PrepareDeleteQueue()
 	// *******  and these two shared_ptrs dont know each other 
 	// *****    so deleting the queue will cause double deleting
 	// Cast raw pointer argument to shared pointer
+<<<<<<< HEAD
 	 //shared_ptr<CGameObject> deleteObject(object);
 
 	// mDeleteQueue.push_back(deleteObject);
@@ -227,6 +241,13 @@ void CGame::AddWaitingToMainList()
 	{
 		Add(gameobjects);
 	}
+=======
+	
+	
+	shared_ptr<CGameObject> deleteObject(object);
+	
+	mDeleteQueue.push_back(deleteObject);
+>>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
 }
 
 /**
@@ -284,6 +305,7 @@ void CGame::Update(double elapsed)
 		if (mPlayer->IfGetPen()) {
 			mPlayer->MakeAPen();
 		}
+
 	}
 
 	// Do not do ADD or DELETE during looping, will cause crashing
@@ -310,7 +332,13 @@ void CGame::Update(double elapsed)
 void CGame::HitUml(CGameObject* pen)
 {
 	CUmlVisitor umlVisitor;
+<<<<<<< HEAD
 	std::vector<std::shared_ptr<CGameObject> > hitUml;
+=======
+	CScoreBoardVisitor scoVisitor;
+	//auto scoreBoard = make_shared<CScoreBoard>(this);
+	//std::vector<std::shared_ptr<CGameObject> > hitUml;
+>>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
 
 	double penX = pen->GetX();
 	double penY = pen->GetY();
@@ -329,8 +357,11 @@ void CGame::HitUml(CGameObject* pen)
 		object->Accept(&umlVisitor);
 		if (umlVisitor.IsUML())
 		{
+			
+			//mPenOnFire.reset(pen);
 			if (umlVisitor.TryHit(penX, penY))
 			{
+<<<<<<< HEAD
 				pen->MarkForDelete(true);
 				if (std::find(hitUml.begin(), hitUml.end(), object) == 
 					hitUml.end())
@@ -346,10 +377,27 @@ void CGame::HitUml(CGameObject* pen)
 					{
 						mScoreBoard->IncrementUnfairScore();
 						//break;
+=======
+				QueueFree(pen); //delete this pen if it hit any UML
+				//if (std::find(hitUml.begin(), hitUml.end(), object) == 
+				//	hitUml.end())
+				//{
+				//	hitUml.push_back(object);
+
+					if (umlVisitor.IsBad())
+					{
+						scoVisitor.Increment(true);
+						break;
 					}
-				}
+					else
+					{
+						scoVisitor.Increment(false);
+						break;
+>>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
+					}
+				//}
 			}
-			umlVisitor.Reset();
+			//umlVisitor.Reset();
 		}
 	}
 }

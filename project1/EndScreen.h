@@ -31,9 +31,13 @@ public:
 	/// accepts visitor
 	virtual void Accept(CGameObjectVisitor* visitor) override {}
 
+	virtual void Update(double elapsed) {}
+
+
 private:
 	void DisplayRank();
 	int mFinalScore = 0; ///< The calculated final score achieved in the game, defaults to 0
 	std::wstring mRankText = L""; ///< The ranking text to be displayed on the screen
+	std::wstring mDescription = L""; ///< Description of ranking text to be displayed on the screen
 };
 

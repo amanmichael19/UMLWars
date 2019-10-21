@@ -84,7 +84,7 @@ public:
 
 	/// update time counter
 	/// \param elapsed time
-	virtual void Update(double elapsed) {}
+	virtual void Update(double elapsed) = 0;
 
 	/// Get the game this item is in
 	/// \returns game pointer

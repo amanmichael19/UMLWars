@@ -40,6 +40,7 @@ public:
 
 	/// mark hit and start timer
 	/// \param status bool  to set to
+
 	void MarkHit(bool status);
 	
 
@@ -61,7 +62,6 @@ public:
 	/// \returns True if arguments hit a UMLPiece
 	//bool HitTest(int x, int y) {}
 
-	void DisplayHitMessage();
 
 private:
 	std::wstring mBad = L""; ///< The reason, if any, why this UMLPiece is bad
@@ -71,6 +71,6 @@ private:
 	bool mWasHit = false;
 	std::shared_ptr<CTimer> mHitUMLTimer;
 	std::shared_ptr<CUMLStruck> mUMLStruck;
-	//std::shared_ptr<CTimer>	 mTimer;
+
 };
 

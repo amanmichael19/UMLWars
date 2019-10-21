@@ -104,6 +104,12 @@ class CGame
 
 		std::shared_ptr<Gdiplus::Bitmap> mPenImage;
 
+<<<<<<< HEAD
+=======
+		std::shared_ptr<CGameObject> mPenOnFire;
+
+
+>>>>>>> 8f87c7502a50a239d96fd3bd0dea7f049a83d859
 		/// Game area in virtual pixels
 		const static int Width = 1250;
 
