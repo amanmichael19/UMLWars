@@ -16,7 +16,6 @@
 #include <cstdlib>
 #include "UmlVisitor.h"
 #include <vector>
-#include "UMLStruck.h"
 #include <algorithm>
 
 using namespace std;
