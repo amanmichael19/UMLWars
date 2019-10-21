@@ -42,7 +42,7 @@ const wstring RANK_TWO_TEXT = L"A FIRST YEAR CS STUDENT";
 const wstring DESCRIPTION_RANK_TWO = L"A good try, but a lot\nof room for improvement.";
 /// Text for Rank 3
 const wstring RANK_THREE_TEXT = L"A SEASONED ULA";
-const wstring DESCRIPTION_RANK_THREE = L"You have seen your fair share of\nUML, but your not quite an expert yet.";
+const wstring DESCRIPTION_RANK_THREE = L"You have seen your fair share of\nUML, but you're not quite an expert yet.";
 /// Text for Rank 4
 const wstring RANK_FOUR_TEXT = L"THE HEAD TA";
 const wstring DESCRIPTION_RANK_FOUR = L"An impressive display.\nSurely this is the final rank?";
