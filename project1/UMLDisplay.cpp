@@ -39,8 +39,6 @@ void CUMLDisplay::Draw(Gdiplus::Graphics* graphics, double x, double y)
 	FontFamily fontFamily(L"Arial");
 	Gdiplus::Font font(&fontFamily, FONT_SIZE);
 
-	auto state = graphics->Save();
-
 	// Rectangle that contains UML
 	Gdiplus::Rect rect(x, y, mWidth, mHeight);
 	graphics->FillRectangle(&yellowBrush, rect);
@@ -72,13 +70,7 @@ void CUMLDisplay::Draw(Gdiplus::Graphics* graphics, double x, double y)
 		yOffset += (double)size.Height;
 
 	}
-
-	////mMessage = L"MESSAGE";
-	//SolidBrush redBrush(Color(255, 0, 0));
-	//Gdiplus::Font messageFont(&fontFamily, 20);
-	//graphics->DrawString(mMessage.c_str(), -1, &messageFont, PointF(x + mWidth/2-(mMessage.size()/2), y + mHeight/2-20/2), &redBrush);
-
-	graphics->Restore(state);
+	
 }
 
 /**

@@ -7,14 +7,14 @@
 #include "pch.h"
 #include "Game.h"
 #include "Player.h"
-#include "PlayerVisitor.h"
+#include "RedPen.h"
+#include "ScoreBoard.h"
 #include "ScoreBoard.h"
 #include "DisplayTimer.h"
 #include "EndScreen.h"
 #include "UMLPieceEmitter.h"
 #include <cstdlib>
 #include "UmlVisitor.h"
-#include "ScoreBoardVisitor.h"
 #include <vector>
 #include "UMLStruck.h"
 #include <algorithm>
@@ -24,6 +24,9 @@ using namespace Gdiplus;
 
 /// Time between UMLPiece emissions
 const double EMITTER_INTERVAL = 5;
+
+/// game duration
+const double GameDuration = 60.0;
 
 /**
  * Game constructor
@@ -47,7 +50,7 @@ void CGame::OnLaunch()
 	mPenImage = std::shared_ptr<Bitmap>(Bitmap::FromFile(L"images/images/redpen.png"));
 	if (mPenImage->GetLastStatus() != Ok)
 	{
-		AfxMessageBox(L"Failed to open images/redpen.png");
+		AfxMessageBox(L"Failed to open images/images/redpen.png");
 	}
 
 	// Create the scoreboard
@@ -59,17 +62,12 @@ void CGame::OnLaunch()
 	//Add(mPlayer);
 
 	// Create the countdown timer
-	auto DisplayTimer = make_shared<CDisplayTimer>(this);
+	auto DisplayTimer = make_shared<CDisplayTimer>(this, GameDuration);
 	Add(DisplayTimer);
 
 	// Create emitter
 	mEmitter = make_shared<CUMLPieceEmitter>(this);
 
-	//auto struck = make_shared<CUMLStruck>(this);
-	//struck->Set(0, 0, L"Not good UML");
-	////auto mGame = CGameObject::GetGame();
-	////mGame->Add(struck);
-	//Add(struck);
 }
 
 /**
@@ -104,7 +102,7 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 	// Fill the background with white
 	/*SolidBrush new_brush(Color::White);
 	graphics->FillRectangle(&new_brush, -Width/2.0, 0, Width, Height);*/
-	
+
 	/// TODO: EndScreen teasting.
 	//CEndScreen EndScreen();
 	//EndScreen->Draw(graphics);
@@ -114,26 +112,14 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 		gameObjects->Draw(graphics);
 	}
 
-
-	// Prevent the Harold
-	//to be Drawn at the end of the game
-	// when the end screen gets drawn
-	if (!mGameOver)
-	{
-		mPlayer->Draw(graphics);
-		
-	}
-	
-
-	// This will prevent the scoreboard 
+	// This will prevent the harold and scoreboard 
 	//to be Drawn at the end of the game
 	// when the end screen gets drawm
 	if (!mGameOver)
 	{
+		mPlayer->Draw(graphics);
 		mScoreBoard->Draw(graphics);
 	}
-
-
 }
 
 /**
@@ -156,7 +142,7 @@ void CGame::Add(std::shared_ptr<CGameObject> gob)
 		mGameObjects.push_back(gob);
 		mGameObjects.push_back(lastObject);
 	}
-	
+
 }
 
 void CGame::OnMouseMove(int x, int y)
@@ -164,8 +150,7 @@ void CGame::OnMouseMove(int x, int y)
 	double mouseX = (x - mXOffset) / mScale;
 	double mouseY = (y - mYOffset) / mScale;
 
-	CPlayerVisitor visitor(mouseX, mouseY, false);
-	mPlayer->Accept(&visitor);
+	mPlayer->OnMouseMove(mouseX, mouseY);
 }
 
 void CGame::OnLeftClick(int x, int y)
@@ -173,9 +158,7 @@ void CGame::OnLeftClick(int x, int y)
 	double mouseX = (x - mXOffset) / mScale;
 	double mouseY = (y - mYOffset) / mScale;
 
-	CPlayerVisitor visitor(mouseX, mouseY, true);
-	mPlayer->Accept(&visitor);
-
+	mPlayer->OnLeftClick(mouseX, mouseY);
 }
 
 void CGame::Accept(CGameObjectVisitor* visitor)
@@ -188,30 +171,63 @@ void CGame::Accept(CGameObjectVisitor* visitor)
 
 void CGame::CheckGameOver()
 {
-	if (mGameOver && !mEndScreenDisplayed) 
+	if (mGameOver && !mEndScreenDisplayed)
 	{
 		mEndScreenDisplayed = true;
 
 		auto theEnd = make_shared<CEndScreen>(this);
 
 		theEnd->SetFinalScore(mScoreBoard->GetCorrect(), mScoreBoard->GetMissed(), mScoreBoard->GetUnfair());
-		
+
 		mGameObjects.clear();
-		
+
 		Add(theEnd);
 	}
+}
+
+void CGame::UMLMissed()
+{
+	mScoreBoard->IncrementMissedScore();
 }
 
 /**
  * Adds a GameObject to the list of GameObjects to be destroyed at the end of the next update call.
  * \param object Pointer to the GameObject to be deleted.
  */
-void CGame::QueueFree(CGameObject* object)
+void CGame::PrepareDeleteQueue()
 {
+	// ******  deleteObject was being initialized with a raw ptr 
+	// ******* that has already a shared_ptr in the gameobjects list
+	// *******  and these two shared_ptrs dont know each other 
+	// *****    so deleting the queue will cause double deleting
 	// Cast raw pointer argument to shared pointer
-	shared_ptr<CGameObject> deleteObject(object);
+	 //shared_ptr<CGameObject> deleteObject(object);
 
-	mDeleteQueue.push_back(deleteObject);
+	// mDeleteQueue.push_back(deleteObject);
+
+	// this solves the problem by basically copying a shared pointer
+	// to the queue. The two shared ptrs know each other 
+	for (auto gameobject : mGameObjects)
+	{
+		if (gameobject->IsMarkedForDelete())
+		{
+			mDeleteQueue.push_back(gameobject);
+		}
+	}
+
+}
+
+void CGame::AddToWaitingBuffer(shared_ptr<CGameObject> gameobject)
+{
+	mWaitingBuffer.push_back(gameobject);
+}
+
+void CGame::AddWaitingToMainList()
+{
+	for (auto gameobjects : mWaitingBuffer)
+	{
+		Add(gameobjects);
+	}
 }
 
 /**
@@ -228,6 +244,7 @@ void CGame::ClearQueue()
 			mGameObjects.erase(inGameObjects);
 		}
 	}
+	mDeleteQueue.clear();
 }
 
 
@@ -265,8 +282,8 @@ void CGame::Update(double elapsed)
 			mEmitterTime += EMITTER_INTERVAL - reduce;
 		}
 
-		if (mPlayer->IfGetPen()) {
-			mPlayer->GetAPen();
+		if (mPlayer->ReloadPen()) {
+			mPlayer->MakeAPen();
 		}
 	}
 
@@ -276,11 +293,13 @@ void CGame::Update(double elapsed)
 		gameObjects->Update(elapsed);
 	}
 
+	// add any gameobjects in waiting list to gameobject vector
+	AddWaitingToMainList();
 
-
-	//TO-DO: There is a bug causing the pen can not be reloaded if I use QueueFree(this) for pens
+	PrepareDeleteQueue();
+	// TODO: There is a bug causing the pen can not be reloaded if I use QueueFree(this) for pens
 	// Delete any objects from the game that are ready to be deleted.
-	//ClearQueue();
+	ClearQueue();
 }
 
 
@@ -292,8 +311,6 @@ void CGame::Update(double elapsed)
 void CGame::HitUml(CGameObject* pen)
 {
 	CUmlVisitor umlVisitor;
-	CScoreBoardVisitor scoVisitor;
-	//auto scoreBoard = make_shared<CScoreBoard>(this);
 	std::vector<std::shared_ptr<CGameObject> > hitUml;
 
 	double penX = pen->GetX();
@@ -307,7 +324,6 @@ void CGame::HitUml(CGameObject* pen)
 		//{
 		//	object->Accept(&scoVisitor);
 		//}
-	mScoreBoard->Accept(&scoVisitor);
 
 	for (auto object : mGameObjects)
 	{
@@ -316,20 +332,20 @@ void CGame::HitUml(CGameObject* pen)
 		{
 			if (umlVisitor.TryHit(penX, penY))
 			{
-				QueueFree(pen); //delete this pen if it hit any UML
-				if (std::find(hitUml.begin(), hitUml.end(), object) == 
+				pen->MarkForDelete(true);
+				if (std::find(hitUml.begin(), hitUml.end(), object) ==
 					hitUml.end())
 				{
 					hitUml.push_back(object);
 
 					if (umlVisitor.IsBad())
 					{
-						scoVisitor.Increment(true);
+						mScoreBoard->IncrementCorrectScore();
 						//break;
 					}
 					else
 					{
-						scoVisitor.Increment(false);
+						mScoreBoard->IncrementUnfairScore();
 						//break;
 					}
 				}
@@ -337,6 +353,4 @@ void CGame::HitUml(CGameObject* pen)
 			umlVisitor.Reset();
 		}
 	}
-
-
 }

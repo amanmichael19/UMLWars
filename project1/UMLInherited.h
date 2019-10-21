@@ -31,5 +31,6 @@ private:
 	std::shared_ptr<CUMLDisplay> mDerivedDisplay; ///< The CUMLDisplay object that displays the derived class
 	std::wstring mArrowDirection;	///< The direction of the arrow
 	bool mFirstDraw = true; ///< Indicates if it is the first time the piece has been drawn
+
 };
 

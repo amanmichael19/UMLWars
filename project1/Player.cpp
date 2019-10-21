@@ -12,11 +12,14 @@
 #include "RedPen.h"
 #include "Game.h"
 
+
 using namespace Gdiplus;
 using namespace std;
 
 /// Constant ratio to convert radians to degrees
 const double RtoD = 57.295779513;
+/// constant pen reload duration
+const double ReloadDuration = 1.0;
 
 CPlayer::CPlayer(CGame* game) : CGameObject(game)
 {
@@ -29,19 +32,14 @@ CPlayer::CPlayer(CGame* game) : CGameObject(game)
 	}
 	else
 	{
-		SetLocation(0, double(double(CGame::GetHeight()) - mPlayerImage->GetHeight()/2.0f));
-		
-		mGame = game;
-		mTimer = make_shared<CTimer>(mGame);
-		mGame->Add(mTimer);
-
-		GetAPen();
+		SetLocation(0, double(double(CGame::GetHeight()) - mPlayerImage->GetHeight() / 2.0f));
+		MakeAPen();
 	}
 }
 
 void CPlayer::OnMouseMove(double mouseX, double mouseY)
 {
-	if (mouseY < GetY()) 
+	if (mouseY < GetY())
 	{
 		/// Did mouseX - GetX() instead of the other way around is to
 		/// make the player rotate to the direction of mouse movement
@@ -58,8 +56,7 @@ void CPlayer::OnMouseMove(double mouseX, double mouseY)
 void CPlayer::OnLeftClick(double mouseX, double mouseY)
 {
 	mPenOnHand->FirePen(mouseX, mouseY);
-	mTimer->SetTotalTime(1);
-	mTimer->SetIsUpdate(true);
+	mPenTimer->Start();
 	mIsPenOnHand = false;
 }
 
@@ -75,25 +72,21 @@ void CPlayer::Draw(Gdiplus::Graphics* graphics)
 	graphics->Restore(state);
 }
 
-void CPlayer::GetAPen() {
-	auto pen = make_shared<CRedPen>(mGame, GetX(), GetY());
-	mGame->Add(pen);
-	mPenOnHand = pen;
-
-	mTimer->SetIsUpdate(false);
-	mTimer->SetTotalTime(1);
-	
+void CPlayer::MakeAPen()
+{
+	auto game = GetGame();
+	mPenOnHand = make_shared<CRedPen>(game, GetX(), GetY());
+	game->Add(mPenOnHand);
+	mPenOnHand->OnMouseMove(mAngle);
 	mIsPenOnHand = true;
 
-	mPenOnHand->OnMouseMove(mAngle);
+	mPenTimer = make_shared<CTimer>(game, ReloadDuration);
+	game->Add(mPenTimer);
 }
 
-bool CPlayer::IfGetPen() {
-	if (mTimer->IsTimeUp()) {
-		return true;
-	}
-	else {
-		return false;
-	}
+void CPlayer::DestroyPen()
+{
+	mPenOnHand->MarkForDelete(true);
 }
+
 

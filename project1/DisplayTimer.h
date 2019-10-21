@@ -14,9 +14,9 @@
 class CDisplayTimer : public CTimer
 {
 public:
-	/// scroreboard constructor
+	/// Display timer constructor
 	/// \param game
-	CDisplayTimer(CGame* game);
+	CDisplayTimer(CGame* game, double duration);
 
 	/// default constructor disabled
 	CDisplayTimer() = delete;
