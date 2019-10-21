@@ -32,6 +32,8 @@ class CScoreBoard : public CGameObject
 		/// \param graphics
 		virtual void Draw(Gdiplus::Graphics* graphics);
 
+		virtual void Update(double elapsed) {}
+
 
 		/// increment correct score
 		void IncrementCorrectScore() { mCorrect++; }

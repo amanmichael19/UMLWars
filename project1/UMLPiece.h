@@ -38,7 +38,12 @@ public:
 
 	/// Setter for HitStatus
 	/// \param status bool  to set to
-	void SetWasHit(bool status) { mWasHit = status; }
+	void SetWasHit() { 
+			mWasHit = true;
+			mSpeed = 0;
+			mTimer->SetUp(1);
+			mTimer->Start();
+	}
 	
 
 	/// Draw this object
@@ -67,6 +72,6 @@ private:
 	double mYDirection; ///< The Y direction this UMLPiece is moving
 	int mSpeed; ///< The speed at which this UMLPiece is moving
 	bool mWasHit = false;
-	//std::shared_ptr<CTimer>	 mTimer;
+	std::shared_ptr<CTimer>	 mTimer;
 };
 

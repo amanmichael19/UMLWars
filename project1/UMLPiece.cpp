@@ -29,6 +29,8 @@ CUMLPiece::CUMLPiece(CGame* game, double x, double y, int speed) : CGameObject(g
 	mXDirection = x;
 	mYDirection = y;
 	mSpeed = speed;
+	mTimer = make_shared<CTimer>(game);
+	game->Add(mTimer);
 }
 
 /**
@@ -42,8 +44,15 @@ void CUMLPiece::Update(double elapsed)
 
 	CGameObject::SetLocation(newX, newY);
 
+	if (GetWasHit()) {
+		if (mTimer->IsTimeUp()) {
+			GetGame()->QueueFree(this);
+			GetGame()->QueueFree(mTimer.get());
+		}
+	}
+
 	// Checks if object has left screen
-	if (LeaveScreenCheck())
+	else if (LeaveScreenCheck())
 	{
 		// If piece was bad signal missed
 		if (mBad != L"")
@@ -53,6 +62,7 @@ void CUMLPiece::Update(double elapsed)
 
 		// Queue object for deletion at end of update
 		GetGame()->QueueFree(this);
+		GetGame()->QueueFree(mTimer.get());
 	}
 }
 
@@ -75,5 +85,4 @@ void CUMLPiece::DisplayHitMessage()
 		mBad = L"This was good UML.";
 	}
 	//GetGame()->QueueFree(this);
-	mSpeed = 0;
 }

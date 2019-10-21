@@ -36,6 +36,7 @@ CPlayer::CPlayer(CGame* game) : CGameObject(game)
 		mGame->Add(mTimer);
 
 		GetAPen();
+
 	}
 }
 
@@ -58,8 +59,8 @@ void CPlayer::OnMouseMove(double mouseX, double mouseY)
 void CPlayer::OnLeftClick(double mouseX, double mouseY)
 {
 	mPenOnHand->FirePen(mouseX, mouseY);
-	mTimer->SetTotalTime(1);
-	mTimer->SetIsUpdate(true);
+	mTimer->SetUp(1);
+	mTimer->Start();
 	mIsPenOnHand = false;
 }
 
@@ -79,21 +80,11 @@ void CPlayer::GetAPen() {
 	auto pen = make_shared<CRedPen>(mGame, GetX(), GetY());
 	mGame->Add(pen);
 	mPenOnHand = pen;
-
-	mTimer->SetIsUpdate(false);
-	mTimer->SetTotalTime(1);
 	
 	mIsPenOnHand = true;
 
 	mPenOnHand->OnMouseMove(mAngle);
 }
 
-bool CPlayer::IfGetPen() {
-	if (mTimer->IsTimeUp()) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}
+bool CPlayer::IfGetPen() {return !mIsPenOnHand && mTimer->IsTimeUp();}
 

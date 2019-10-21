@@ -87,7 +87,9 @@ void CRedPen::Update(double elapsed)
 		// temporary - create constants file
 		if (x < -1250 / 2 || x > 1250 / 2 || y > 1000 || y < 0)
 		{
+			
 			GetGame()->QueueFree(this);
+
 		}
 		else
 		{

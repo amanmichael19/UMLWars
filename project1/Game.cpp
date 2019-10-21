@@ -113,13 +113,14 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 	{
 		gameObjects->Draw(graphics);
 	}
-	mPlayer->Draw(graphics);
+
 
 	// This will prevent the scoreboard 
 	//to be Drawn at the end of the game
 	// when the end screen gets drawm
 	if (!mGameOver)
 	{
+		mPlayer->Draw(graphics);
 		mScoreBoard->Draw(graphics);
 	}
 
@@ -199,8 +200,10 @@ void CGame::CheckGameOver()
 void CGame::QueueFree(CGameObject* object)
 {
 	// Cast raw pointer argument to shared pointer
+	
+	
 	shared_ptr<CGameObject> deleteObject(object);
-
+	
 	mDeleteQueue.push_back(deleteObject);
 }
 
@@ -258,6 +261,7 @@ void CGame::Update(double elapsed)
 		if (mPlayer->IfGetPen()) {
 			mPlayer->GetAPen();
 		}
+
 	}
 
 	// Do not do ADD or DELETE during looping, will cause crashing
@@ -270,7 +274,7 @@ void CGame::Update(double elapsed)
 
 	//TO-DO: There is a bug causing the pen can not be reloaded if I use QueueFree(this) for pens
 	// Delete any objects from the game that are ready to be deleted.
-	//ClearQueue();
+	ClearQueue();
 }
 
 
@@ -284,7 +288,7 @@ void CGame::HitUml(CGameObject* pen)
 	CUmlVisitor umlVisitor;
 	CScoreBoardVisitor scoVisitor;
 	//auto scoreBoard = make_shared<CScoreBoard>(this);
-	std::vector<std::shared_ptr<CGameObject> > hitUml;
+	//std::vector<std::shared_ptr<CGameObject> > hitUml;
 
 	double penX = pen->GetX();
 	double penY = pen->GetY();
@@ -304,29 +308,29 @@ void CGame::HitUml(CGameObject* pen)
 		object->Accept(&umlVisitor);
 		if (umlVisitor.IsUML())
 		{
+			
+			//mPenOnFire.reset(pen);
 			if (umlVisitor.TryHit(penX, penY))
 			{
 				QueueFree(pen); //delete this pen if it hit any UML
-				if (std::find(hitUml.begin(), hitUml.end(), object) == 
-					hitUml.end())
-				{
-					hitUml.push_back(object);
+				//if (std::find(hitUml.begin(), hitUml.end(), object) == 
+				//	hitUml.end())
+				//{
+				//	hitUml.push_back(object);
 
 					if (umlVisitor.IsBad())
 					{
 						scoVisitor.Increment(true);
-						//break;
+						break;
 					}
 					else
 					{
 						scoVisitor.Increment(false);
-						//break;
+						break;
 					}
-				}
+				//}
 			}
-			umlVisitor.Reset();
+			//umlVisitor.Reset();
 		}
 	}
-
-
 }

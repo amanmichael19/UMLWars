@@ -24,14 +24,22 @@ public:
 	/// default copy constructor disabled
 	CTimer(const CTimer&) = delete;
 
-	virtual void Update(double elapsed);
+	virtual void Update(double elapsed) {
+		if (mIsStart) {
+			mTimeLeft = (mTimeTotal - (clock() - mStart)/1000) ;
+			if (mTimeLeft <= 0) { mTimeLeft = 0; mIsStart = false; }
+		}
+	}
 
 	virtual void Accept(CGameObjectVisitor* visitor) override {}
 
 	virtual void Draw(Gdiplus::Graphics* graphics) {};
 
 	/// set total time
-	virtual void SetTotalTime(int time) { mTimeLeft = time;  mTimeTotal = time; mStart = clock();}
+	virtual void SetUp(double time) { 
+		mTimeLeft = time;  
+		mTimeTotal = time;
+	}
 
 	/// get reamining time
 	virtual int GetRemainingTime() { return mTimeLeft; }
@@ -39,15 +47,15 @@ public:
 	/// get reamining time
 	virtual int IsTimeUp() { return mTimeLeft == 0; }
 
-	virtual void SetIsUpdate(bool is) { 
-		mIsUpdate = is; 
-		if (is == false) { mTimeLeft = 60; }
+	virtual void Start() { 
+		mIsStart = true;
+		mStart = clock();
 	}
 
 private:
-	double mTimeTotal = 60;
+	double mTimeTotal = 0;
 	double mTimeLeft = mTimeTotal;
-	bool mIsUpdate = false;
+	bool mIsStart = false;
 	clock_t mStart;
 };
 

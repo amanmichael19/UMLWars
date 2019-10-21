@@ -16,7 +16,7 @@ bool CUmlVisitor::TryHit(int x, int y)
 {
 	if (mPiece->HitTest(x, y) && !mPiece->GetWasHit())
 	{
-		mPiece->SetWasHit(true);
+		mPiece->SetWasHit();
 		mPiece->DisplayHitMessage();
 		return true;
 	}
