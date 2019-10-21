@@ -22,6 +22,10 @@ public:
 
 	std::shared_ptr<CUMLPiece> EmitPiece();
 
+	/// Sends the time difference based on number emitted
+	/// \return int value to change the emit interval by
+	int SpeedChange() { return (mTotalEmitted / 7); }
+
 private:
 	void CreateDisplay(std::shared_ptr<CUMLDisplay> display, bool name, int attributes, int operations);
 

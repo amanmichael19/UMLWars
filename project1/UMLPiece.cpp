@@ -8,7 +8,6 @@
 #include <vector>
 #include <memory>
 #include "UMLPiece.h"
-#include "UMLStruck.h"
 #include "Game.h"
 #include <memory>
 
@@ -30,9 +29,6 @@ CUMLPiece::CUMLPiece(CGame* game, double x, double y, int speed) : CGameObject(g
 	mXDirection = x;
 	mYDirection = y;
 	mSpeed = speed;
-	auto mGame = CGameObject::GetGame();
-	mStruck = make_shared<CUMLStruck>(mGame);
-	game->Add(mStruck);
 }
 
 /**
@@ -58,7 +54,6 @@ void CUMLPiece::Update(double elapsed)
 		// Queue object for deletion at end of update
 		GetGame()->QueueFree(this);
 	}
-
 }
 
 
@@ -79,6 +74,6 @@ void CUMLPiece::DisplayHitMessage()
 	{
 		mBad = L"This was good UML.";
 	}
-	mStruck->Set(GetX()+ GetWidth(), GetY() + GetHeight(), mBad);
+	//GetGame()->QueueFree(this);
 	mSpeed = 0;
 }

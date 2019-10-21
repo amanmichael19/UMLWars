@@ -14,8 +14,9 @@ using namespace std;
  */
 bool CUmlVisitor::TryHit(int x, int y)
 {
-	if (mPiece->HitTest(x, y))
+	if (mPiece->HitTest(x, y) && !mPiece->GetWasHit())
 	{
+		mPiece->SetWasHit(true);
 		mPiece->DisplayHitMessage();
 		return true;
 	}

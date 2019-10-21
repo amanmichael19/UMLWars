@@ -53,9 +53,7 @@ public:
 	/// \param y
 	void SetLocation(double x, double y) override;
 
-	virtual void Accept(CGameObjectVisitor* visitor) override { visitor->VisitPen(this); }
-
-
+	virtual void Accept(CGameObjectVisitor* visitor) override {}
 
 private:
 	/// pen image
@@ -88,8 +86,6 @@ private:
 	double mYDirection = 0.0;
 	/// speed
 	double mSpeed = 300.0;
-
-	bool mIsDraw = true;
 };
 
 

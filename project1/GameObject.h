@@ -103,5 +103,7 @@ private:
 
 	/// The Game for this object
 	CGame* mGame;
+
+	bool mHit = false;
 };
 

@@ -9,10 +9,10 @@
 #pragma once
 #include "GameObject.h"
 #include "UmlVisitor.h"
-#include "UMLStruck.h"
 #include <vector>
 #include <string>
 #include <memory>
+#include "Timer.h"
 
 
 /**
@@ -31,6 +31,14 @@ public:
 	/// Getter for mBad
 	/// \returns The current value of mBad
 	std::wstring GetBad() { return mBad; }
+
+	/// Getter for HitStatus
+	/// \returns the value of mWasHit
+	bool GetWasHit() { return mWasHit; }
+
+	/// Setter for HitStatus
+	/// \param status bool  to set to
+	void SetWasHit(bool status) { mWasHit = status; }
 	
 
 	/// Draw this object
@@ -58,6 +66,7 @@ private:
 	double mXDirection; ///< The X direction this UMLPiece is moving
 	double mYDirection; ///< The Y direction this UMLPiece is moving
 	int mSpeed; ///< The speed at which this UMLPiece is moving
-	std::shared_ptr<CUMLStruck> mStruck;
+	bool mWasHit = false;
+	//std::shared_ptr<CTimer>	 mTimer;
 };
 

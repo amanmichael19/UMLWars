@@ -23,7 +23,7 @@ using namespace std;
 using namespace Gdiplus;
 
 /// Time between UMLPiece emissions
-const double EMITTER_INTERVAL = 4;
+const double EMITTER_INTERVAL = 5;
 
 /**
  * Game constructor
@@ -255,17 +255,19 @@ void CGame::Update(double elapsed)
 	{
 		mEmitterTime -= elapsed;
 
+
 		// Emits a new UMLPiece if the emit time interval is over
 		if (mEmitterTime <= 0)
 		{
 			Add(mEmitter->EmitPiece());
 
-			mEmitterTime += EMITTER_INTERVAL;
+			int reduce = mEmitter->SpeedChange();
+			mEmitterTime += EMITTER_INTERVAL - reduce;
 		}
-	}
 
-	if (mPlayer->IfGetPen()) {
-		mPlayer->GetAPen();
+		if (mPlayer->IfGetPen()) {
+			mPlayer->GetAPen();
+		}
 	}
 
 	// Do not do ADD or DELETE during looping, will cause crashing
@@ -274,8 +276,11 @@ void CGame::Update(double elapsed)
 		gameObjects->Update(elapsed);
 	}
 
+
+
+	//TO-DO: There is a bug causing the pen can not be reloaded if I use QueueFree(this) for pens
 	// Delete any objects from the game that are ready to be deleted.
-	ClearQueue();
+	//ClearQueue();
 }
 
 
@@ -311,6 +316,7 @@ void CGame::HitUml(CGameObject* pen)
 		{
 			if (umlVisitor.TryHit(penX, penY))
 			{
+				QueueFree(pen); //delete this pen if it hit any UML
 				if (std::find(hitUml.begin(), hitUml.end(), object) == 
 					hitUml.end())
 				{
@@ -319,12 +325,12 @@ void CGame::HitUml(CGameObject* pen)
 					if (umlVisitor.IsBad())
 					{
 						scoVisitor.Increment(true);
-						break;
+						//break;
 					}
 					else
 					{
 						scoVisitor.Increment(false);
-						break;
+						//break;
 					}
 				}
 			}

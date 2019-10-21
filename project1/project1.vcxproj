@@ -191,7 +191,6 @@
     <ClInclude Include="DisplayTimer.h" />
     <ClInclude Include="DoubleBufferDC.h" />
     <ClInclude Include="EndScreen.h" />
-    <ClInclude Include="framework.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectVisitor.h" />
@@ -202,7 +201,6 @@
     <ClInclude Include="PlayerVisitor.h" />
     <ClInclude Include="project1.h" />
     <ClInclude Include="RedPen.h" />
-    <ClInclude Include="RedPenVisitor.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ScoreBoard.h" />
     <ClInclude Include="ScoreBoardVisitor.h" />
@@ -242,7 +240,6 @@
     <ClCompile Include="PlayerVisitor.cpp" />
     <ClCompile Include="project1.cpp" />
     <ClCompile Include="RedPen.cpp" />
-    <ClCompile Include="RedPenVisitor.cpp" />
     <ClCompile Include="ScoreBoard.cpp" />
     <ClCompile Include="ScoreBoardVisitor.cpp" />
     <ClCompile Include="Timer.cpp" />
