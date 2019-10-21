@@ -12,10 +12,10 @@ void CTimer::Update(double elapsed)
 {
 	if (mIsStarted) {
 		clock_t diff = clock() - mStart;
-		mTimeLeft = (mTimeTotal * 1000 - float(diff)) / 1000;
+		mTimeLeft = mTimeTotal - (float(diff)/ CLOCKS_PER_SEC);
 		if (mTimeLeft <= 0) 
 		{
-			mTimeLeft = 0; mIsStarted = false;
+			mTimeLeft = 0.0; mIsStarted = false;
 		}
 	}
 	else 

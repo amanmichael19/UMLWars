@@ -15,7 +15,7 @@ class CTimer : public CGameObject
 public:
 	/// timer constructor
 	/// \param game
-	CTimer(CGame* game, double duration): CGameObject(game), mTimeTotal(duration) {}
+	CTimer(CGame* game, double duration): CGameObject(game), mTimeTotal(duration), mTimeLeft(duration) {}
 
 	/// default constructor disabled
 	CTimer() = delete;
@@ -36,7 +36,7 @@ public:
 	virtual double GetRemainingTime() { return mTimeLeft; }
 
 	/// is time up
-	virtual bool IsTimeUp() { return mTimeLeft == 0; }
+	virtual bool IsTimeUp() { return mTimeLeft == 0.0; }
 
 	virtual void StartTimer() { mIsStarted = true; }
 
@@ -45,7 +45,7 @@ public:
 
 private:
 	double mTimeTotal = 60;
-	double mTimeLeft = mTimeTotal;
+	double mTimeLeft = 60;;
 	bool mIsStarted = false;
 	/// initializing mStart 
 	clock_t mStart = clock();
