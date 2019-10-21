@@ -31,21 +31,6 @@ CUMLPiece::CUMLPiece(CGame* game, double x, double y, int speed) : CGameObject(g
 	mSpeed = speed;
 }
 
-void CUMLPiece::Draw(Gdiplus::Graphics* graphics)
-{
-
-	FontFamily fontFamily(L"Arial");
-	Gdiplus::Font font(&fontFamily, 40);
-	SolidBrush red(Color(255, 0, 0));
-
-	/// TODO: clean all other objects and display inthe center, wii finish this when the time of score is done.
-
-
-	graphics->DrawString(mBad.c_str(), -1, &font, PointF(-130, 350), &red);
-
-
-}
-
 /**
  * Moves UMLPiece object according to its velocity
  * \param elapsed The amount of time passed since last update
@@ -87,11 +72,7 @@ void CUMLPiece::DisplayHitMessage()
 
 	if (mBad == L"")
 	{
-
-		
-
 		mBad = L"This was good UML.";
-
 	}
 	//GetGame()->QueueFree(this);
 	mSpeed = 0;

@@ -103,28 +103,24 @@ void CEndScreen::DisplayRank()
 	else if (mFinalScore < RANK_TWO_CUTOFF)
 	{
 		mRankText = RANK_TWO_TEXT;
-		mDescription = DESCRIPTION_RANK_TWO;
 	}
 
 	// Rank 3
 	else if (mFinalScore < RANK_THREE_CUTOFF)
 	{
 		mRankText = RANK_THREE_TEXT;
-		mDescription = DESCRIPTION_RANK_THREE;
 	}
 
 	// Rank 4
 	else if (mFinalScore < RANK_FOUR_CUTOFF)
 	{
 		mRankText = RANK_FOUR_TEXT;
-		mDescription = DESCRIPTION_RANK_FOUR;
 	}
 
 	// Rank 5
 	else
 	{
 		mRankText = RANK_FIVE_TEXT;
-		mDescription = DESCRIPTION_RANK_FIVE;
 	}
 }
 
