@@ -61,9 +61,6 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="GameOver.cpp">
-      <Filter>Object</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Object</Filter>
     </ClCompile>
@@ -145,9 +142,6 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>Object</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOver.h">
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
