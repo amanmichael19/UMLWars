@@ -14,9 +14,10 @@
 class CTimer : public CGameObject
 {
 public:
-	/// scroreboard constructor
+	/// timer constructor
 	/// \param game
-	CTimer(CGame* game, double duratio);
+	/// \param duration
+	CTimer(CGame* game, double duration): CGameObject(game), mTimeTotal(duration), mTimeLeft(duration) {}
 
 	/// default constructor disabled
 	CTimer() = delete;
@@ -24,12 +25,7 @@ public:
 	/// default copy constructor disabled
 	CTimer(const CTimer&) = delete;
 
-	virtual void Update(double elapsed) {
-		if (mIsStart) {
-			mTimeLeft = (mTimeTotal - (clock() - mStart) / 1000);
-			if (mTimeLeft <= 0) { mTimeLeft = 0; mIsStart = false; }
-		}
-	}
+	virtual void Update(double elapsed);
 
 	virtual void Accept(CGameObjectVisitor* visitor) override {}
 
@@ -42,10 +38,10 @@ public:
 	}
 
 	/// get reamining time
-	virtual int GetRemainingTime() { return mTimeLeft; }
+	virtual double GetRemainingTime() { return mTimeLeft; }
 
 	/// get reamining time
-	virtual int IsTimeUp() { return mTimeLeft == 0; }
+	virtual bool IsTimeUp() { return mTimeLeft == 0.0; }
 
 	virtual void Start() {
 		mIsStart = true;
@@ -54,7 +50,8 @@ public:
 
 private:
 	double mTimeTotal = 0;
-	double mTimeLeft = mTimeTotal;
+	double mTimeLeft = 0;
 	bool mIsStart = false;
-	clock_t mStart;
+	// initializing to remove warnings
+	clock_t mStart = clock();
 };
