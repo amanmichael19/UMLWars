@@ -31,9 +31,6 @@
     <ClCompile Include="UMLPieceEmitter.cpp">
       <Filter>UML</Filter>
     </ClCompile>
-    <ClCompile Include="UMLStruck.cpp">
-      <Filter>UML</Filter>
-    </ClCompile>
     <ClCompile Include="XMLReader.cpp">
       <Filter>XML</Filter>
     </ClCompile>
@@ -112,9 +109,6 @@
       <Filter>UML</Filter>
     </ClInclude>
     <ClInclude Include="UMLPieceEmitter.h">
-      <Filter>UML</Filter>
-    </ClInclude>
-    <ClInclude Include="UMLStruck.h">
       <Filter>UML</Filter>
     </ClInclude>
     <ClInclude Include="XMLReader.h">
