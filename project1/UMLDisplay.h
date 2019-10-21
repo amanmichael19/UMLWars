@@ -32,13 +32,9 @@ public:
 	/// \param operation The operation being added
 	void AddOperation(std::wstring operation) { mOperations.push_back(operation); }
 
-	void SetUmlStruck(std::wstring msg) { mMessage = msg; };
-
 	void Draw(Gdiplus::Graphics* graphics, double x, double y);
 
 	void SetDimensions(Gdiplus::Graphics* graphics);
-
-	//void UMLStruck(int x, int y, std::wstring msg);
 
 	/// Getter for mWidth
 	/// \returns The width of the display
@@ -52,7 +48,6 @@ private:
 	std::wstring mName; ///< The class name of this UMLPiece
 	std::vector<std::wstring> mAttributes; ///< The attributes this UMLPiece has, if any
 	std::vector<std::wstring> mOperations; ///< The operations this UMLPiece has, if any
-	std::wstring mMessage; ///< The messages this UMLPiece has, if any
 	double mHeight = 0; ///< Total height of UML in virtual pixels
 	double mWidth = 0; ///< Maximum width of UML in virtual pixels
 	double mNameHeight; ///< Height of name in virtual pixels

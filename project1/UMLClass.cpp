@@ -28,6 +28,20 @@ CUMLClass::CUMLClass(CGame* game, double x, double y, int speed) : CUMLPiece(gam
 void CUMLClass::Draw(Gdiplus::Graphics* graphics)
 {
 	mClassDisplay->Draw(graphics,GetX(),GetY());
+
+	// Display hit message
+	if (GetWasHit())
+	{
+		if (GetBad() == L"")
+		{
+			SetBad(L"Unfair");
+		}
+
+		double x = GetX() + (mClassDisplay->GetWidth() / 2);
+		double y = GetY() + (mClassDisplay->GetHeight() / 2);
+
+		DisplayHitMessage(graphics,x,y);
+	}
 }
 
 /**

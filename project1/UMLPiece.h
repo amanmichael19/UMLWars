@@ -53,13 +53,10 @@ public:
 	bool LeaveScreenCheck();
 
 	/// Hit Test override for UMLPiece
-	/// Since each derived class has its own way of handling hit detection, it's still virtual
+	/// Since each derived class has its own way of handling hit detection, it's pure virtual
 	/// \param x X position of hit
 	/// \param y Y position of hit
-	/// \returns True if arguments hit a UMLPiece
-	//bool HitTest(int x, int y) {}
-
-	void DisplayHitMessage();
+	bool HitTest(int x, int y) = 0;
 
 private:
 	std::wstring mBad = L""; ///< The reason, if any, why this UMLPiece is bad
@@ -68,5 +65,8 @@ private:
 	int mSpeed; ///< The speed at which this UMLPiece is moving
 	bool mWasHit = false;
 	//std::shared_ptr<CTimer>	 mTimer;
+
+protected:
+	virtual void DisplayHitMessage(Gdiplus::Graphics* graphics, double& x, double& y);
 };
 

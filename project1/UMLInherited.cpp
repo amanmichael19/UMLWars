@@ -96,6 +96,15 @@ void CUMLInherited::Draw(Gdiplus::Graphics* graphics)
 		graphics->DrawLine(&blackPen, leftBottom, rightBottom);
 		graphics->DrawLine(&eraser, tailPoint, bottomBase);
 	}
+
+	// Draw hit message if hit
+	if (GetWasHit())
+	{
+		double x = GetX() + mBaseDisplay->GetWidth() / 2;
+		double y = GetY() + mBaseDisplay->GetHeight() + Y_OFFSET;
+
+		DisplayHitMessage(graphics,x,y);
+	}
 }
 
 /**
@@ -188,3 +197,4 @@ bool CUMLInherited::HitTest(int x, int y)
 	// Returns tru if either base class, derived class, or arrow were hit
 	return (arrowHit || baseHit || derivedHit);
 }
+
