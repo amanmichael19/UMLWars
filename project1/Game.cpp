@@ -268,6 +268,10 @@ void CGame::Update(double elapsed)
 
 			int reduce = mEmitter->SpeedChange();
 			mEmitterTime += EMITTER_INTERVAL - reduce;
+			if (mEmitterTime < 1)
+			{
+				mEmitterTime = 1;
+			}
 		}
 
 		if (mPlayer->ReloadPen()) {
