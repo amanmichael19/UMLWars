@@ -10,10 +10,10 @@ using namespace std;
 const unsigned RANDOM_SEED = 8675309;
 
 // Number of pieces to emit in TestCUMLPieceEmitterEmitGoodUML 
-const int NUM_PIECES = 12;
+const int NUM_PIECES = 13;
 
 // Number of bad pieces to emit
-const int BAD_PIECES = 5;
+const int BAD_PIECES = 3;
 
 namespace Testing
 {
@@ -42,7 +42,7 @@ namespace Testing
 			// Seed random based on current time
 			srand((unsigned)time);
 
-			// Create 5 pieces and ensure that piece is false
+			// Create 3 pieces and ensure that piece is false
 			// This is done because the game should always start by emitting
 			// only bad UML
 			for (int i = 0; i < BAD_PIECES; i++)
@@ -72,9 +72,9 @@ namespace Testing
 			// Assert that piece is good
 			Assert::IsTrue(piece->GetBad() == L"");
 
-			// Assert that next piece is bad, the piece also happens to have an inheritance relationship
+			// Assert that next piece also happens to be good
 			piece = emitter->EmitPiece();
-			Assert::IsTrue(piece->GetBad() == L"Missing class name");
+			Assert::IsTrue(piece->GetBad() == L"");
 		}
 
 	};
