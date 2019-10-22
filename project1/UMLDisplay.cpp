@@ -40,32 +40,34 @@ void CUMLDisplay::Draw(Gdiplus::Graphics* graphics, double x, double y)
 	Gdiplus::Font font(&fontFamily, FONT_SIZE);
 
 	// Rectangle that contains UML
-	Gdiplus::Rect rect(x, y, mWidth, mHeight);
+	Gdiplus::Rect rect(int(x), int(y), (int)mWidth, (int)mHeight);
 	graphics->FillRectangle(&yellowBrush, rect);
 	graphics->DrawRectangle(&blackPen, rect);
 
 	// Draw name centered in UML
-	graphics->DrawString(mName.c_str(), -1, &font, PointF(x + (mWidth - mNameWidth) / 2, y), &blackBrush);
+	graphics->DrawString(mName.c_str(), -1, &font, PointF((Gdiplus::REAL)(x + (mWidth - mNameWidth) / 2), (Gdiplus::REAL)y), &blackBrush);
 
 	// Draw line between name and attributes
-	graphics->DrawLine(&blackPen, PointF(x, y + mNameHeight), PointF(x + mWidth, y + mNameHeight));
+	graphics->DrawLine(&blackPen, PointF((Gdiplus::REAL)x, (Gdiplus::REAL)(y + mNameHeight)), 
+		PointF((Gdiplus::REAL)(x + mWidth), (Gdiplus::REAL)(y + mNameHeight)));
 
 	// Draw Attributes
 	for (std::wstring att : mAttributes)
 	{
-		graphics->DrawString(att.c_str(), -1, &font, PointF(x, yOffset), &blackBrush);
+		graphics->DrawString(att.c_str(), -1, &font, PointF((Gdiplus::REAL)x, (Gdiplus::REAL)yOffset), &blackBrush);
 		graphics->MeasureString(att.c_str(), -1, &font, origin, &size);
 		yOffset += (double)size.Height;
 
 	}
 
 	// Draw line between attributes and operations
-	graphics->DrawLine(&blackPen, PointF(x, yOffset), PointF(x + mWidth, yOffset));
+	graphics->DrawLine(&blackPen, PointF((Gdiplus::REAL)x, (Gdiplus::REAL)yOffset), 
+		PointF((Gdiplus::REAL)(x + mWidth), (Gdiplus::REAL)yOffset));
 
 	// Draw operations
 	for (std::wstring op : mOperations)
 	{
-		graphics->DrawString(op.c_str(), -1, &font, PointF(x, yOffset), &blackBrush);
+		graphics->DrawString(op.c_str(), -1, &font, PointF((Gdiplus::REAL)x, (Gdiplus::REAL)yOffset), &blackBrush);
 		graphics->MeasureString(op.c_str(), -1, &font, origin, &size);
 		yOffset += (double)size.Height;
 

@@ -63,17 +63,17 @@ void CUMLInherited::Draw(Gdiplus::Graphics* graphics)
 	Gdiplus::Pen eraser(Gdiplus::Color(255, 255, 255));
 
 	// Draw shaft of arrow
-	PointF topPoint(derivedX + (mDerivedDisplay->GetWidth() / 2), derivedY - Y_OFFSET);
-	PointF tailPoint(derivedX + (mDerivedDisplay->GetWidth() / 2), derivedY);
+	PointF topPoint((Gdiplus::REAL)(derivedX + (mDerivedDisplay->GetWidth() / 2)), (Gdiplus::REAL)(derivedY - Y_OFFSET) );
+	PointF tailPoint((Gdiplus::REAL)(derivedX + (mDerivedDisplay->GetWidth() / 2)), (Gdiplus::REAL)(derivedY));
 	graphics->DrawLine(&blackPen, topPoint, tailPoint);
 
 	// Draw up arrow tip
 	if (mArrowDirection == L"up")
 	{
 		// Points needed to draw up arrow
-		PointF leftTop(topPoint.X - ARROW_X_OFFSET, topPoint.Y + ARROW_Y_OFFSET);
-		PointF rightTop(topPoint.X + ARROW_X_OFFSET, topPoint.Y + ARROW_Y_OFFSET);
-		PointF topBase(topPoint.X,topPoint.Y + ARROW_Y_OFFSET);
+		PointF leftTop((Gdiplus::REAL)(topPoint.X - ARROW_X_OFFSET), (Gdiplus::REAL)(topPoint.Y + ARROW_Y_OFFSET));
+		PointF rightTop((Gdiplus::REAL)(topPoint.X + ARROW_X_OFFSET), (Gdiplus::REAL)(topPoint.Y + ARROW_Y_OFFSET));
+		PointF topBase((Gdiplus::REAL)topPoint.X, (Gdiplus::REAL)(topPoint.Y + ARROW_Y_OFFSET) );
 
 		// Draws up arrow
 		graphics->DrawLine(&blackPen, topPoint, leftTop);
@@ -86,9 +86,9 @@ void CUMLInherited::Draw(Gdiplus::Graphics* graphics)
 	else
 	{
 		// Points needed to draw down arrow
-		PointF leftBottom(tailPoint.X - ARROW_X_OFFSET, tailPoint.Y - ARROW_Y_OFFSET);
-		PointF rightBottom(tailPoint.X + ARROW_X_OFFSET, tailPoint.Y - ARROW_Y_OFFSET);
-		PointF bottomBase(tailPoint.X, tailPoint.Y - ARROW_Y_OFFSET);
+		PointF leftBottom((Gdiplus::REAL)(tailPoint.X - ARROW_X_OFFSET), (Gdiplus::REAL)(tailPoint.Y - ARROW_Y_OFFSET));
+		PointF rightBottom((Gdiplus::REAL)(tailPoint.X + ARROW_X_OFFSET), (Gdiplus::REAL)(tailPoint.Y - ARROW_Y_OFFSET));
+		PointF bottomBase((Gdiplus::REAL)tailPoint.X, (Gdiplus::REAL)(tailPoint.Y - ARROW_Y_OFFSET));
 
 		// Draws down arrow
 		graphics->DrawLine(&blackPen, tailPoint, leftBottom);

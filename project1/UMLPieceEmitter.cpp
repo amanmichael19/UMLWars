@@ -73,6 +73,7 @@ CUMLPieceEmitter::CUMLPieceEmitter(CGame* game)
 	mBadOperations = reader.GetBadOperations();
 	mInherits = reader.GetInherits();
 	mBadInherits = reader.GetBadInherits();
+	srand(8675309);
 }
 
 /**

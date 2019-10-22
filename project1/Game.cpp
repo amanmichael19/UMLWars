@@ -95,8 +95,8 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 		mYOffset = (float)((height - Height * mScale) / 2);
 	}
 
-	graphics->TranslateTransform(mXOffset, mYOffset);
-	graphics->ScaleTransform(mScale, mScale);
+	graphics->TranslateTransform((Gdiplus::REAL)mXOffset, (Gdiplus::REAL)mYOffset);
+	graphics->ScaleTransform((Gdiplus::REAL)mScale, (Gdiplus::REAL)mScale);
 
 	// Fill the background with white
 	/*SolidBrush new_brush(Color::White);
@@ -299,7 +299,7 @@ void CGame::HitUml(CGameObject* pen)
 		object->Accept(&umlVisitor);
 		if (umlVisitor.IsUML())
 		{
-			if (umlVisitor.TryHit(penX, penY))
+			if (umlVisitor.TryHit((int)penX, (int)penY))
 			{
 				pen->MarkForDelete(true);
 				if (std::find(hitUml.begin(), hitUml.end(), object) ==

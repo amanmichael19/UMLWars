@@ -150,8 +150,8 @@ void CEndScreen::Draw(Gdiplus::Graphics* graphics)
 	FontFamily fontFamily(L"Arial");
 	Gdiplus::Font font(&fontFamily, 40);
 	Gdiplus::Font font2(&fontFamily, 30);
-	SolidBrush heavyGreen(Color(256, 256, 256));
-	SolidBrush red(Color(255, 0, 0));
+	SolidBrush heavyGreen(Color::DarkGreen);
+	SolidBrush red(Color::Red);
 
 	/// TODO: clean all other objects and display inthe center, wii finish this when the time of score is done.
 	graphics->DrawString(L"Final Score:", -1, &font, PointF(-500, 200), &heavyGreen);

@@ -129,5 +129,5 @@ void CUMLPiece::DisplayHitMessage(Gdiplus::Graphics* graphics, double& x, double
 	double newY = y - (double)size.Height / 2;
 
 	// Draw UML Hit Message
-	graphics->DrawString(mBad.c_str(), -1, &font, PointF(newX, newY), &messageBrush);
+	graphics->DrawString(mBad.c_str(), -1, &font, PointF((Gdiplus::REAL)newX, (Gdiplus::REAL)newY), &messageBrush);
 }
