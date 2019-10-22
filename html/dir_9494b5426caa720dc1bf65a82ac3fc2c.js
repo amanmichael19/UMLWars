@@ -5,13 +5,16 @@ var dir_9494b5426caa720dc1bf65a82ac3fc2c =
     [ "ChildView.h", "_child_view_8h.html", [
       [ "CChildView", "class_c_child_view.html", "class_c_child_view" ]
     ] ],
+    [ "DisplayTimer.h", "_display_timer_8h.html", [
+      [ "CDisplayTimer", "class_c_display_timer.html", "class_c_display_timer" ]
+    ] ],
     [ "DoubleBufferDC.h", "_double_buffer_d_c_8h.html", null ],
     [ "EndScreen.cpp", "_end_screen_8cpp.html", "_end_screen_8cpp" ],
     [ "EndScreen.h", "_end_screen_8h.html", [
       [ "CEndScreen", "class_c_end_screen.html", "class_c_end_screen" ]
     ] ],
     [ "framework.h", "framework_8h_source.html", null ],
-    [ "Game.cpp", "_game_8cpp.html", null ],
+    [ "Game.cpp", "_game_8cpp.html", "_game_8cpp" ],
     [ "Game.h", "_game_8h.html", [
       [ "CGame", "class_c_game.html", "class_c_game" ]
     ] ],
@@ -25,22 +28,18 @@ var dir_9494b5426caa720dc1bf65a82ac3fc2c =
     ] ],
     [ "GoodUML.h", "_good_u_m_l_8h_source.html", null ],
     [ "pch.h", "pch_8h_source.html", null ],
-    [ "PenHandler.h", "_pen_handler_8h.html", [
-      [ "CPenHandler", "class_c_pen_handler.html", "class_c_pen_handler" ]
-    ] ],
     [ "Player.h", "_player_8h.html", [
       [ "CPlayer", "class_c_player.html", "class_c_player" ]
     ] ],
-    [ "PlayerVisitor.h", "_player_visitor_8h.html", [
-      [ "CPlayerVisitor", "class_c_player_visitor.html", "class_c_player_visitor" ]
-    ] ],
     [ "project1.h", "project1_8h_source.html", null ],
-    [ "RedPen.h", "_red_pen_8h_source.html", null ],
+    [ "RedPen.h", "_red_pen_8h.html", "_red_pen_8h" ],
+    [ "ScoreBoard.cpp", "_score_board_8cpp.html", null ],
     [ "ScoreBoard.h", "_score_board_8h.html", [
       [ "CScoreBoard", "class_c_score_board.html", "class_c_score_board" ]
     ] ],
-    [ "ScoreBoardVisitor.h", "_score_board_visitor_8h.html", [
-      [ "CScoreBoardVisitor", "class_c_score_board_visitor.html", "class_c_score_board_visitor" ]
+    [ "Timer.cpp", "_timer_8cpp.html", null ],
+    [ "Timer.h", "_timer_8h.html", [
+      [ "CTimer", "class_c_timer.html", "class_c_timer" ]
     ] ],
     [ "UMLAttribute.cpp", "_u_m_l_attribute_8cpp.html", null ],
     [ "UMLAttribute.h", "_u_m_l_attribute_8h.html", [
@@ -82,6 +81,7 @@ var dir_9494b5426caa720dc1bf65a82ac3fc2c =
     [ "UMLPieceEmitter.h", "_u_m_l_piece_emitter_8h.html", [
       [ "CUMLPieceEmitter", "class_c_u_m_l_piece_emitter.html", "class_c_u_m_l_piece_emitter" ]
     ] ],
+    [ "UmlVisitor.cpp", "_uml_visitor_8cpp.html", null ],
     [ "UmlVisitor.h", "_uml_visitor_8h.html", [
       [ "CUmlVisitor", "class_c_uml_visitor.html", "class_c_uml_visitor" ]
     ] ],

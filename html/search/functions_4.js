@@ -1,23 +1,4 @@
 var searchData=
 [
-  ['getattribute_322',['GetAttribute',['../class_c_u_m_l_attribute.html#ac6472a17a96c94a3dd35aac47cca6481',1,'CUMLAttribute']]],
-  ['getattributes_323',['GetAttributes',['../class_c_x_m_l_reader.html#af4bc8cf6fb6a9c2f83686d2433054991',1,'CXMLReader']]],
-  ['getbad_324',['GetBad',['../class_c_u_m_l_component.html#a70bdf9f7ef05cacc0212413b7a6505d0',1,'CUMLComponent::GetBad()'],['../class_c_u_m_l_piece.html#ab4126f57631227b1702373eae5ea1d40',1,'CUMLPiece::GetBad()']]],
-  ['getbadattributes_325',['GetBadAttributes',['../class_c_x_m_l_reader.html#a3e51dc2f276609cb5cffaa164a16e108',1,'CXMLReader']]],
-  ['getbadinherits_326',['GetBadInherits',['../class_c_x_m_l_reader.html#a694c96cb2d95cf12f45fa6044c4e5ffd',1,'CXMLReader']]],
-  ['getbadnames_327',['GetBadNames',['../class_c_x_m_l_reader.html#a8c6b6fe8cd6ed670c778f08eea4c8f9a',1,'CXMLReader']]],
-  ['getbadoperations_328',['GetBadOperations',['../class_c_x_m_l_reader.html#aecb13824bd266c429959c100750011ed',1,'CXMLReader']]],
-  ['getbase_329',['GetBase',['../class_c_u_m_l_inheritance.html#a0f1efb1efcda0d3e9c9d3bf33f6a56d8',1,'CUMLInheritance']]],
-  ['getderived_330',['GetDerived',['../class_c_u_m_l_inheritance.html#a9d7bfbf49f6c477c465fd993d4c45bfc',1,'CUMLInheritance']]],
-  ['getdirection_331',['GetDirection',['../class_c_u_m_l_inheritance.html#ad68bd7b0de6a9858e0ad1e369b3bb054',1,'CUMLInheritance']]],
-  ['getfinalscore_332',['GetFinalScore',['../class_c_end_screen.html#a8848e707859119b99dc55d1d64fcb2f2',1,'CEndScreen']]],
-  ['getheight_333',['GetHeight',['../class_c_game.html#afc1a2f8d6863c353b023d39e9ce93c7a',1,'CGame::GetHeight()'],['../class_c_game_object.html#ad8fc3c3588f508cfd65e0a63661db24d',1,'CGameObject::GetHeight()'],['../class_c_u_m_l_display.html#a6ad29da1b524fbf5d4437a9d30e3652f',1,'CUMLDisplay::GetHeight()']]],
-  ['getinherits_334',['GetInherits',['../class_c_x_m_l_reader.html#a563767a7bac66b4d34edd9722d281b51',1,'CXMLReader']]],
-  ['getname_335',['GetName',['../class_c_u_m_l_display.html#a2d9c8a4afe7ae180e5e6a1973b585bd1',1,'CUMLDisplay::GetName()'],['../class_c_u_m_l_name.html#ab9992fbf5cd79eccaa44fa406067bf1f',1,'CUMLName::GetName()']]],
-  ['getnames_336',['GetNames',['../class_c_x_m_l_reader.html#a44b63cb4827553fcc117552816632b7a',1,'CXMLReader']]],
-  ['getoperation_337',['GetOperation',['../class_c_u_m_l_operation.html#a2f467cfb28a6a9c086a3fc486ae6a883',1,'CUMLOperation']]],
-  ['getoperations_338',['GetOperations',['../class_c_x_m_l_reader.html#a2d0b67645e403dc4a353672f2e52f815',1,'CXMLReader']]],
-  ['getwidth_339',['GetWidth',['../class_c_game.html#a00131c7d568be583a38f2b6379c51b5b',1,'CGame::GetWidth()'],['../class_c_game_object.html#a46649672b5205f2357fde2f84625ca59',1,'CGameObject::GetWidth()'],['../class_c_u_m_l_display.html#aef9e0773ede824bcac8df6f973fe70cd',1,'CUMLDisplay::GetWidth()']]],
-  ['getx_340',['GetX',['../class_c_game_object.html#a238017f3eb4d04e42a6e91154388a6ca',1,'CGameObject']]],
-  ['gety_341',['GetY',['../class_c_game_object.html#aba6e41e9acca07910e5141c6f13e1ef6',1,'CGameObject']]]
+  ['firepen_391',['FirePen',['../class_c_red_pen.html#a42b94301f81d151bac5b623c80af26b8',1,'CRedPen']]]
 ];

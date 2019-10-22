@@ -3,12 +3,13 @@
  *
  * \author Amanuel
  *
- * 
+ * Class that represents a ScoreBoard object 
  */
 
 
 #pragma once
 #include "GameObject.h"
+
 /**
  * A class implementing score board
  */
@@ -25,13 +26,14 @@ class CScoreBoard : public CGameObject
 		/// default copy constructor disabled
 		CScoreBoard(const CScoreBoard&) = delete;
 
-		/// accepts visitor
+		/// Accepts a Gameobject visitor
+		/// \param visitor A pointer to the visitor currently visiting this object
 		virtual void Accept(CGameObjectVisitor* visitor) override { visitor->VisitScoreBoard(this); }
 
-		/// draw
-		/// \param graphics
 		virtual void Draw(Gdiplus::Graphics* graphics);
 
+		/// Updates the scoreboard
+		/// \param elapsed The time that has passed since Update() was last called
 		virtual void Update(double elapsed) {}
 
 
@@ -57,8 +59,8 @@ class CScoreBoard : public CGameObject
 		int GetMissed() { return mMissed; }
 
 	private:
-		int mCorrect = 0;
-		int mUnfair = 0;
-		int mMissed = 0;
+		int mCorrect = 0; ///< Number of correct UML scored during the game
+		int mUnfair = 0; ///< Number of unfair UML scored during the game
+		int mMissed = 0; ///< Number of missed UML scored during the game
 };
 

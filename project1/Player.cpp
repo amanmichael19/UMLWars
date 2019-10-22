@@ -75,6 +75,9 @@ void CPlayer::Draw(Gdiplus::Graphics* graphics)
 	graphics->Restore(state);
 }
 
+/**
+ * Creates a new RedPen GameObject
+ */
 void CPlayer::MakeAPen()
 {
 	auto game = GetGame();
@@ -87,6 +90,9 @@ void CPlayer::MakeAPen()
 	game->Add(mPenTimer);
 }
 
+/**
+ * Marks a pen for destruction
+ */
 void CPlayer::DestroyPen()
 {
 	mPenOnHand->MarkForDelete(true);

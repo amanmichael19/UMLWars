@@ -21,6 +21,12 @@ const double INITIAL_ANGLE = -1.078;
 /// radius of hand from center of player
 const double RADIUS = 61.3;
 
+/**
+ * RedPen constructor
+ * \param game The game this object is part of
+ * \param xlocation X location of the pen in virtual pixels
+ * \param ylocation Y location of the pen in virtual pixels
+ */
 CRedPen::CRedPen(CGame* game, double xlocation, double ylocation) : CGameObject(game),
 mXOrigin(xlocation), mYOrigin(ylocation)
 {
@@ -43,6 +49,10 @@ void CRedPen::SetLocation(double x, double y) {
 
 }
 
+/**
+ * Draws this pen object
+ * \param graphics The graphics device this object is being drawn on
+ */
 void CRedPen::Draw(Gdiplus::Graphics* graphics)
 {
 	float wid = (float)mPenImage->GetWidth();
@@ -65,6 +75,11 @@ void CRedPen::Draw(Gdiplus::Graphics* graphics)
 	graphics->Restore(state);
 }
 
+/**
+ * Fires the pen in a set direction and starts the timer for the pen reload
+ * \param xDirection X direction of the pen's movement
+ * \param yDirection Y direction of the pen's movement
+ */
 void CRedPen::FirePen(double xDirection, double yDirection)
 {
 	if (mOnHand)
@@ -77,6 +92,10 @@ void CRedPen::FirePen(double xDirection, double yDirection)
 	}
 }
 
+/**
+ * Updates this pen object
+ * \param elapsed Time that has passed since Update was last called in seconds
+ */
 void CRedPen::Update(double elapsed)
 {
 	if (!mOnHand)
@@ -115,6 +134,10 @@ void CRedPen::TrackHand()
 	}
 }
 
+/**
+ * Responds to mouse movement
+ * \param angle The angle between the pen and the mouse
+ */
 void CRedPen::OnMouseMove(double angle)
 {
 	SetAngle(angle);

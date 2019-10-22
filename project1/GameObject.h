@@ -49,8 +49,8 @@ public:
 	virtual void SetLocation(double x, double y) { mX = x; mY = y; }
 
 	/// Set the object dimensions
-	/// \param x width
-	/// \param y height
+	/// \param wid Width of the game in virtual pixels
+	/// \param hit Height of the game in virtual pixels
 	virtual void SetDimensions(double wid, double hit) { mWidth = wid; mHeight = hit; }
 
 	/** The Width of the item
@@ -63,38 +63,31 @@ public:
 	 */
 	double GetHeight() const { return mHeight; }
 
-	/**
-	* Set the object dimensions
-	* \param x x-location
-	* \param y y-location
-	* \return bool
-	*/
 	virtual bool HitTest(int x, int y);
 
-	/** draws game objects
-	* \param graphics
-	*/
+	/// Draw this GameObject on a graphics device
+	/// \param graphics The graphics device this object is being drawn on
 	virtual void Draw(Gdiplus::Graphics* graphics) {};
 
-	/** Accept a visitor
-	* \param visitor
-	*/
+	/// Accepts a GameObjectVisitor
+	/// \param visitor The visitor visiting this object
 	virtual void Accept(CGameObjectVisitor* visitor) {};
 
 
 	/// update time counter
-	/// \param elapsed time
+	/// \param elapsed Time that has elapsed since Update was last called
 	virtual void Update(double elapsed) {}
 
 	/// Get the game this item is in
-	/// \returns game pointer
+	/// \returns A pointer to the game this object is in
 	CGame* GetGame() const { return mGame; }
 
-	/// is marked for delete
+	/// Gets if this object is marked for deletion
+	/// \returns True if this object is currently marked for deletion
 	virtual bool IsMarkedForDelete() { return mMarkedForDelete; }
 
-	/// set marked for delete
-	/// \param markDelete
+	/// Setter marked for delete
+	/// \param markDelete The new value for mMakedForDelete
 	virtual void MarkForDelete(bool markDelete) { mMarkedForDelete = markDelete; }
 
 private:
@@ -110,8 +103,8 @@ private:
 	/// The Game for this object
 	CGame* mGame;
 
-	bool mHit = false;
+	bool mHit = false; ///< Tracks if this object has been hit by a pen or not
 
-	bool mMarkedForDelete = false;
+	bool mMarkedForDelete = false; ///< Tracks if this object needs to be deleted
 };
 

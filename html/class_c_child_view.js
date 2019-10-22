@@ -7,6 +7,7 @@ var class_c_child_view =
     [ "OnLButtonUp", "class_c_child_view.html#ae81948a77ebf3744bd0f9449af57ee21", null ],
     [ "OnMouseMove", "class_c_child_view.html#ad3cb2f8d9fa9a6fb06989513dee5a8bc", null ],
     [ "OnPaint", "class_c_child_view.html#a8ea6d42631a4f9f446923ff864b239ab", null ],
+    [ "OnSize", "class_c_child_view.html#a467a30f03417e5919571bb83d6ed5aad", null ],
     [ "OnTimer", "class_c_child_view.html#a4c6bb8bd631cee84bb80c948f3d6d98a", null ],
     [ "mFirstDraw", "class_c_child_view.html#a02e7e39b1dc65025e429d6284c122b65", null ],
     [ "mGame", "class_c_child_view.html#ad930e3e814a86debe8cbd3bbac3a44e1", null ],

@@ -168,6 +168,9 @@ void CGame::Accept(CGameObjectVisitor* visitor)
 	}
 }
 
+/**
+ * Check if the game has ended
+ */
 void CGame::CheckGameOver()
 {
 	if (mGameOver && !mEndScreenDisplayed)
@@ -191,19 +194,9 @@ void CGame::UMLMissed()
 
 /**
  * Adds a GameObject to the list of GameObjects to be destroyed at the end of the next update call.
- * \param object Pointer to the GameObject to be deleted.
  */
 void CGame::PrepareDeleteQueue()
 {
-	// ******  deleteObject was being initialized with a raw ptr 
-	// ******* that has already a shared_ptr in the gameobjects list
-	// *******  and these two shared_ptrs dont know each other 
-	// *****    so deleting the queue will cause double deleting
-	// Cast raw pointer argument to shared pointer
-	 //shared_ptr<CGameObject> deleteObject(object);
-
-	// mDeleteQueue.push_back(deleteObject);
-
 	// this solves the problem by basically copying a shared pointer
 	// to the queue. The two shared ptrs know each other 
 	for (auto gameobject : mGameObjects)
@@ -285,16 +278,13 @@ void CGame::Update(double elapsed)
 	}
 
 	PrepareDeleteQueue();
-	// TODO: There is a bug causing the pen can not be reloaded if I use QueueFree(this) for pens
-	// Delete any objects from the game that are ready to be deleted.
 	ClearQueue();
 }
 
 
 /**
- * Detects whether a given position has hit a UML piece
- * \param x X position of point
- * \param y Y position of point
+ * Detects whether a pen at a given position has hit a UML piece
+ * \param pen A pointer to the pen may or may not have hit a UMLPiece
  */
 void CGame::HitUml(CGameObject* pen)
 {
@@ -303,15 +293,6 @@ void CGame::HitUml(CGameObject* pen)
 
 	double penX = pen->GetX();
 	double penY = pen->GetY();
-
-	// this is a very naive to solve it. We do not know the position of scoreboard.
-	// The other ways to solve: 
-	// 1) always make sure the scorebaord is the first in the game object list 
-	// 2)
-		//for (auto object : mGameObjects)
-		//{
-		//	object->Accept(&scoVisitor);
-		//}
 
 	for (auto object : mGameObjects)
 	{

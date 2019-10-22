@@ -106,18 +106,33 @@ void CChildView::OnPaint()
 
 
 
+/**
+ * Left mouse button down event handler
+ * \param nFlags The flags of the button click
+ * \param point The point at which the click occured
+ */
 void CChildView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	mGame.OnLeftClick(point.x, point.y);	
 }
 
 
+/**
+ * Left mouse button up event handler
+ * \param nFlags The flags of the button click
+ * \param point The point at which the release occured
+ */
 void CChildView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	CWnd::OnLButtonUp(nFlags, point);
 }
 
 
+/**
+ * Mouse movement event handler
+ * \param nFlags The mouse flags for the mouse movement
+ * \param point The point where the mouse moved
+ */
 void CChildView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	mGame.OnMouseMove(point.x, point.y);
@@ -147,6 +162,12 @@ void CChildView::OnTimer(UINT_PTR nIDEvent)
 }
 
 
+/**
+ * Window resize event handler
+ * \param nType The type of resize that occured
+ * \param cx The change in X in pixels
+ * \param cy The change in Y in pixels
+ */
 void CChildView::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd::OnSize(nType, cx, cy);

@@ -16,6 +16,10 @@ CScoreBoard::CScoreBoard(CGame* game) : CGameObject(game)
 {
 }
 
+/**
+ * Draws the scoreboard
+ * \param graphics Graphics device this object is being drawn on
+ */
 void CScoreBoard::Draw(Gdiplus::Graphics* graphics)
 {
 	FontFamily font(L"Arial");

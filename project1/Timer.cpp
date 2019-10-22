@@ -8,6 +8,10 @@
 #include "Timer.h"
 
 
+/**
+ * Updates timer
+ * \param elapsed Time that has passed since last call to Update()
+ */
 void CTimer::Update(double elapsed)
 {
 	if (mIsStart) {

@@ -1,9 +1,9 @@
 /**
- * \file Player.h
+ * \file RedPen.h
  *
  * \author Funakoshi Silva
  *
- *
+ * Class that represents a pen
  */
 
 
@@ -12,6 +12,7 @@
 #include "Game.h"
 #include <memory>
 
+/// Mathematical value of pi rounded to nine places
 const double PI = 3.141592653;
 
  /**
@@ -20,7 +21,6 @@ const double PI = 3.141592653;
 class CRedPen : public CGameObject
 {
 public:
-	/// Default constructor
 	CRedPen(CGame* game, double xLocation, double yLocation);
 
 	/// Default constructor (disabled)
@@ -29,23 +29,19 @@ public:
 	/// default copy constructor disabled
 	CRedPen(const CRedPen&) = delete;
 
-	/// draw pen
 	virtual void Draw(Gdiplus::Graphics* graphics) override;
 
-	/// set angle
+	/// Set the angle of the pen
+	/// \param angle The angle between the pen and the mouse
 	void SetAngle(double angle) { mAngleOfMovement = angle; mAngleOfRotation = angle - mAngleOffset; }
 
-	/// set Rotation
 	void FirePen(double xDirection, double yDirection);
-	/// reload
-	//void ReLoad();
 
-	/// update time counter
-	/// \param elapsed time
 	virtual void Update(double elapsed) override;
-	/// follow player hand
+	
+	/// Follow the player's hand as it moves and rotates
 	void TrackHand();
-	/// on mouse move
+	
 	void OnMouseMove(double angle);
 
 	/// set location of the red pen

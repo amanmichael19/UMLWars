@@ -3,7 +3,7 @@
  *
  * \author Amanuel
  *
- * 
+ * Base Visitor class for GameObjects
  */
 
 
@@ -24,22 +24,20 @@ class CGameObjectVisitor
 	public:
 		virtual ~CGameObjectVisitor(){}
 
-		/// visit player object
-		/// \param player
+		/// Visit Player object
+		/// \param player The player being visited
 		virtual void VisitPlayer(CPlayer* player){}
 
-		/// visit pen object
-		/// \param pen
+		/// Visit RedPen object
+		/// \param pen The RedPen being visited
 		virtual void VisitPen(CRedPen* pen) {}
 
-		/// visit uml piece
-		/// \param umlPiece
+		/// Visit UmlPiece object
+		/// \param umlPiece The UMLPiece being visited
 		virtual void VisitUMLPiece(CUMLPiece* umlPiece) {}
 
-		/// visit score board
-		/// \param scoreboard
+		/// Visit ScoreBoard object
+		/// \param scoreBoard The Scoreboard being visited
 		virtual void VisitScoreBoard(CScoreBoard* scoreBoard) {}
-
-
 };
 

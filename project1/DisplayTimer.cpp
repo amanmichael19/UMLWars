@@ -20,6 +20,10 @@ CDisplayTimer::CDisplayTimer(CGame* game, double duration) : CTimer(game, durati
 }
 
 
+/**
+ * Draws this timer
+ * \param graphics The graphics device being drawn on
+ */
 void CDisplayTimer::Draw(Gdiplus::Graphics* graphics)
 {
 	FontFamily fontFamily(L"Arial");
@@ -32,6 +36,10 @@ void CDisplayTimer::Draw(Gdiplus::Graphics* graphics)
 	graphics->DrawString(remainingTime.c_str(), -1, &font, PointF(-600, 10), &heavyGreen);
 }
 
+/**
+ * Updates the timer
+ * \param elapsed The time that has passed since update was last called
+ */
 void CDisplayTimer::Update(double elapsed)
 {
 	CTimer::Update(elapsed);

@@ -24,13 +24,16 @@ public:
 	/// \returns The final score value of the game
 	int GetFinalScore() { return mFinalScore; }
 
-	/// draw
-	/// \param graphics
+	/// Draws this GameObject
+	/// \param graphics The graphics device this object is being drawn on
 	virtual void Draw(Gdiplus::Graphics* graphics);
 
-	/// accepts visitor
+	/// Accepts a GameObject visitor
+	/// \param visitor A pointer to the visitor currently visiting this object
 	virtual void Accept(CGameObjectVisitor* visitor) override {}
 
+	/// Updates this EndScreen object
+	/// \param elapsed The amount of time that has passed since Update was last called on this object
 	virtual void Update(double elapsed) {}
 
 

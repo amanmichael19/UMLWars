@@ -191,6 +191,12 @@ void Cproject1App::OnAppAbout()
 
 
 
+/**
+ * Handler for when the about dialog window is resized
+ * \param nType The type of resize
+ * \param cx The change in X the window experienced in pixels
+ * \param cy The change in Y the window experienced in pixels
+ */
 void CAboutDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialogEx::OnSize(nType, cx, cy);

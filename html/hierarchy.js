@@ -9,17 +9,17 @@ var hierarchy =
       [ "CPlayer", "class_c_player.html", null ],
       [ "CRedPen", "class_c_red_pen.html", null ],
       [ "CScoreBoard", "class_c_score_board.html", null ],
+      [ "CTimer", "class_c_timer.html", [
+        [ "CDisplayTimer", "class_c_display_timer.html", null ]
+      ] ],
       [ "CUMLPiece", "class_c_u_m_l_piece.html", [
         [ "CUMLClass", "class_c_u_m_l_class.html", null ],
         [ "CUMLInherited", "class_c_u_m_l_inherited.html", null ]
       ] ]
     ] ],
     [ "CGameObjectVisitor", "class_c_game_object_visitor.html", [
-      [ "CPlayerVisitor", "class_c_player_visitor.html", null ],
-      [ "CScoreBoardVisitor", "class_c_score_board_visitor.html", null ],
       [ "CUmlVisitor", "class_c_uml_visitor.html", null ]
     ] ],
-    [ "CPenHandler", "class_c_pen_handler.html", null ],
     [ "CUMLComponent", "class_c_u_m_l_component.html", [
       [ "CUMLAttribute", "class_c_u_m_l_attribute.html", null ],
       [ "CUMLInheritance", "class_c_u_m_l_inheritance.html", null ],

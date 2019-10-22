@@ -1,9 +1,9 @@
 /**
- * \file CountDownTimer.h
+ * \file DisplayTimer.h
  *
  * \author Ziyuan Zhang
  *
- * 
+ * Class that represents a countdown timer on screen
  */
 
 #pragma once
@@ -11,11 +11,15 @@
 #include "Game.h"
 
 
+/**
+ * Class that represents a timer that counts down visually on screen
+ */
 class CDisplayTimer : public CTimer
 {
 public:
 	/// Display timer constructor
-	/// \param game
+	/// \param game Game this display timer is part of
+	/// \param duration How long the timer lasts for
 	CDisplayTimer(CGame* game, double duration);
 
 	/// default constructor disabled
@@ -24,12 +28,12 @@ public:
 	/// default copy constructor disabled
 	CDisplayTimer(const CDisplayTimer&) = delete;
 
-	/// draw
-	/// \param graphics
 	virtual void Draw(Gdiplus::Graphics* graphics);
 
 	virtual void Update(double elapsed);
 
+	/// Accepts a GameObject visitor
+	/// \param visitor The visitor that is visiting this DisplayTimer
 	virtual void Accept(CGameObjectVisitor* visitor) override {}
 };
 

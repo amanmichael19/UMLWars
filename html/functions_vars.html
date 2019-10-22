@@ -108,7 +108,18 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <h3><a id="index_m"></a>- m -</h3><ul>
 <li>mAngle
 : <a class="el" href="class_c_player.html#ae837d04f7a3e768c478f96285ec35cab">CPlayer</a>
-, <a class="el" href="class_c_red_pen.html#a0885bb8b8a31a92e80ba6d122304f1d9">CRedPen</a>
+</li>
+<li>mAngleOffset
+: <a class="el" href="class_c_red_pen.html#a576b00427026fe84e1ae2f8572c67df9">CRedPen</a>
+</li>
+<li>mAngleOfMovement
+: <a class="el" href="class_c_red_pen.html#a0782bc8d834018e925fb53c9b6794da6">CRedPen</a>
+</li>
+<li>mAngleOfRotation
+: <a class="el" href="class_c_red_pen.html#ac1d09c560c401759b16349394134a6bb">CRedPen</a>
+</li>
+<li>mAngleOnAir
+: <a class="el" href="class_c_red_pen.html#a9b9384b8e8eb0518df5c606d5fad0c63">CRedPen</a>
 </li>
 <li>mArrowDirection
 : <a class="el" href="class_c_u_m_l_inherited.html#ac6c69d45c37781db620679d76b3aebd1">CUMLInherited</a>
@@ -130,6 +141,7 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <li>mBad
 : <a class="el" href="class_c_u_m_l_component.html#a1d7d202da9e6efe16bd29f3e5464d45d">CUMLComponent</a>
 , <a class="el" href="class_c_u_m_l_piece.html#abc242a7bd4e3a0a5b6966c569f2ab2fd">CUMLPiece</a>
+, <a class="el" href="class_c_uml_visitor.html#aa5522c57cd31544fc10d5d2b2761ff28">CUmlVisitor</a>
 </li>
 <li>mBadAttributes
 : <a class="el" href="class_c_u_m_l_piece_emitter.html#aca6c9eee96a0da45c675ed5ee9f74d8a">CUMLPieceEmitter</a>
@@ -156,14 +168,32 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <li>mClassDisplay
 : <a class="el" href="class_c_u_m_l_class.html#a8a868e2383c77ee13190263245eeba4b">CUMLClass</a>
 </li>
+<li>mCorrect
+: <a class="el" href="class_c_score_board.html#aed02586313525805b8e114359d47e15d">CScoreBoard</a>
+</li>
+<li>mDeleteQueue
+: <a class="el" href="class_c_game.html#a36fd2843df0690989603d12f236bac7a">CGame</a>
+</li>
 <li>mDerived
 : <a class="el" href="class_c_u_m_l_inheritance.html#af8a6bb4eca6376d85bbdec47f13f4e47">CUMLInheritance</a>
 </li>
 <li>mDerivedDisplay
 : <a class="el" href="class_c_u_m_l_inherited.html#ab8aec3308777740732703130673c0c46">CUMLInherited</a>
 </li>
+<li>mDescription
+: <a class="el" href="class_c_end_screen.html#aa32c6ed8b6854df85f232a1f45b8837b">CEndScreen</a>
+</li>
 <li>mDirection
 : <a class="el" href="class_c_u_m_l_inheritance.html#a58f05ab97e6321cf416452f18c6d393c">CUMLInheritance</a>
+</li>
+<li>mEmitter
+: <a class="el" href="class_c_game.html#af222dae0e557484d545f97b2e0d07097">CGame</a>
+</li>
+<li>mEmitterTime
+: <a class="el" href="class_c_game.html#a580c30dcc386688aba7d02cefc227936">CGame</a>
+</li>
+<li>mEndScreenDisplayed
+: <a class="el" href="class_c_game.html#a15e3e88a1067bdfa9147e7a184359f1b">CGame</a>
 </li>
 <li>mFinalScore
 : <a class="el" href="class_c_end_screen.html#ad8c0fd946017d3574d0ea7478560751a">CEndScreen</a>
@@ -175,11 +205,13 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <li>mGame
 : <a class="el" href="class_c_child_view.html#ad930e3e814a86debe8cbd3bbac3a44e1">CChildView</a>
 , <a class="el" href="class_c_game_object.html#aafbf9ca17ebece7c6a921a691748f3eb">CGameObject</a>
-, <a class="el" href="class_c_pen_handler.html#afd6eb95fb517e049558cb8fc47ce7ef2">CPenHandler</a>
 , <a class="el" href="class_c_u_m_l_piece_emitter.html#a8236afc6ea1878cb8039f415fd9002ba">CUMLPieceEmitter</a>
 </li>
 <li>mGameObjects
 : <a class="el" href="class_c_game.html#a6dbfd3be4cd96ea546aabb02510e00b6">CGame</a>
+</li>
+<li>mGameOver
+: <a class="el" href="class_c_game.html#aff161a0859d0d3d4fcc68475f057f457">CGame</a>
 </li>
 <li>mHandicap
 : <a class="el" href="class_c_u_m_l_piece_emitter.html#a919f0b4f93d0e0f9cb7d4668f148f63d">CUMLPieceEmitter</a>
@@ -188,27 +220,39 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 : <a class="el" href="class_c_game_object.html#ad0a242ebb8c12517f377c81903120cee">CGameObject</a>
 , <a class="el" href="class_c_u_m_l_display.html#a0db9f622b1029ccc7f0a40d26e48c3d3">CUMLDisplay</a>
 </li>
+<li>mHit
+: <a class="el" href="class_c_game_object.html#a2fa8550913fbf59d6bab38375a1d83b3">CGameObject</a>
+</li>
+<li>mHitUMLTimer
+: <a class="el" href="class_c_u_m_l_piece.html#ac7f831027a105c3ab48d12ea0c89d215">CUMLPiece</a>
+</li>
 <li>mInherits
 : <a class="el" href="class_c_u_m_l_piece_emitter.html#a218a0d4010d16a7c72a50f444312bb29">CUMLPieceEmitter</a>
 , <a class="el" href="class_c_x_m_l_reader.html#abc17efe637f477c6fb2424e3ad9eab17">CXMLReader</a>
 </li>
-<li>mIsPlayer
-: <a class="el" href="class_c_player_visitor.html#a60284260c7eb43fc79824b4c376fed30">CPlayerVisitor</a>
+<li>mIsPenOnHand
+: <a class="el" href="class_c_player.html#a7858ed415a424245edd0a78ba4a12f1f">CPlayer</a>
+</li>
+<li>mIsStart
+: <a class="el" href="class_c_timer.html#a2acbca06330261124d3b45edcb11fb99">CTimer</a>
+</li>
+<li>mIsUml
+: <a class="el" href="class_c_uml_visitor.html#a08035a382dc60f888f46f7c4bed11533">CUmlVisitor</a>
 </li>
 <li>mLastTime
 : <a class="el" href="class_c_child_view.html#ade201e82e361a98862d72f590abf736a">CChildView</a>
 </li>
 <li>mLoadX
-: <a class="el" href="class_c_pen_handler.html#a4606300968a92c1c12a2e0cc43f7389b">CPenHandler</a>
+: <a class="el" href="class_c_red_pen.html#a2510d37799860b5106c4ba57085c208e">CRedPen</a>
 </li>
 <li>mLoadY
-: <a class="el" href="class_c_pen_handler.html#aea47aa0bbf9e9d32a01b8e0cb9bbc234">CPenHandler</a>
+: <a class="el" href="class_c_red_pen.html#a29dd079f8352c72ba8ff794e2f665a97">CRedPen</a>
 </li>
-<li>mMouseX
-: <a class="el" href="class_c_player_visitor.html#a32900e5be4b0b10136983cd1e3ac480a">CPlayerVisitor</a>
+<li>mMarkedForDelete
+: <a class="el" href="class_c_game_object.html#a09b3200029cdbf91d1cf40e683116464">CGameObject</a>
 </li>
-<li>mMouseY
-: <a class="el" href="class_c_player_visitor.html#a08ece14885590bbe73a85d947ee1aff9">CPlayerVisitor</a>
+<li>mMissed
+: <a class="el" href="class_c_score_board.html#a31190d5e6f711a74db718a36849a4122">CScoreBoard</a>
 </li>
 <li>mName
 : <a class="el" href="class_c_u_m_l_display.html#a83320b8b79910560490dd98187b18700">CUMLDisplay</a>
@@ -225,7 +269,7 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 : <a class="el" href="class_c_u_m_l_display.html#a18a95c8a3e0199083aa186e2972bcb80">CUMLDisplay</a>
 </li>
 <li>mOnHand
-: <a class="el" href="class_c_pen_handler.html#a768e0c5bc0df002e156cfc5f49b8c7cf">CPenHandler</a>
+: <a class="el" href="class_c_red_pen.html#a1df0ff8f952e6c8b9fa7e41d0e3241a2">CRedPen</a>
 </li>
 <li>mOperation
 : <a class="el" href="class_c_u_m_l_operation.html#aa721911e9df21a44cb988f3fe1fd4cd1">CUMLOperation</a>
@@ -241,18 +285,24 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <li>mOperationWidth
 : <a class="el" href="class_c_u_m_l_display.html#a1ed4be26390f8ba791a790fdfdbe54a5">CUMLDisplay</a>
 </li>
-<li>mPen
-: <a class="el" href="class_c_pen_handler.html#a0628b916fc27132308e36f0d5da0bff7">CPenHandler</a>
-</li>
-<li>mPenHandler
-: <a class="el" href="class_c_player.html#abe5a99b2897234ac98a4b52a2f7bda54">CPlayer</a>
-</li>
 <li>mPenImage
-: <a class="el" href="class_c_pen_handler.html#a201b327ec8e95c4413f40632563228ff">CPenHandler</a>
+: <a class="el" href="class_c_game.html#a5ef1f28f178538297d63db3d91ec5a0f">CGame</a>
 , <a class="el" href="class_c_red_pen.html#a1e0f87603be11cdb6e85e9628b4bd5e9">CRedPen</a>
+</li>
+<li>mPenOnHand
+: <a class="el" href="class_c_player.html#a6ce48102be9482d76c863f7508c8ea2a">CPlayer</a>
+</li>
+<li>mPenTimer
+: <a class="el" href="class_c_player.html#aae1409d84903ec034ed151ae64791b6e">CPlayer</a>
+</li>
+<li>mPiece
+: <a class="el" href="class_c_uml_visitor.html#a1bd87032872d159141f271bfd743a607">CUmlVisitor</a>
 </li>
 <li>mPieceSpeed
 : <a class="el" href="class_c_u_m_l_piece_emitter.html#aaf9fd52106c925fd2476d87f98872101">CUMLPieceEmitter</a>
+</li>
+<li>mPlayer
+: <a class="el" href="class_c_game.html#af86b38ac54ec96f11882bdec085215fb">CGame</a>
 </li>
 <li>mPlayerImage
 : <a class="el" href="class_c_player.html#a6ebb5623ae943d58e7bd88f00ed0fa32">CPlayer</a>
@@ -260,20 +310,39 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <li>mRankText
 : <a class="el" href="class_c_end_screen.html#a058c221c11664342678d9156c5e98370">CEndScreen</a>
 </li>
-<li>mRotate
-: <a class="el" href="class_c_red_pen.html#a31651556c41d2525c6bac5028b76731f">CRedPen</a>
-</li>
 <li>mScale
 : <a class="el" href="class_c_game.html#a0087ddf694e6f5eae3d070903ccf01b0">CGame</a>
 </li>
+<li>mScoreBoard
+: <a class="el" href="class_c_game.html#a5a48615b6b1c28f4b6963fde9e6486da">CGame</a>
+</li>
 <li>mSpeed
-: <a class="el" href="class_c_u_m_l_piece.html#a6b2eff0130fed8d6be1937e0ccae057f">CUMLPiece</a>
+: <a class="el" href="class_c_red_pen.html#a4783ff7affc71a9a0b2958830e547c56">CRedPen</a>
+, <a class="el" href="class_c_u_m_l_piece.html#a6b2eff0130fed8d6be1937e0ccae057f">CUMLPiece</a>
+</li>
+<li>mStart
+: <a class="el" href="class_c_timer.html#af8baab0d23b99eed8bc931dc1dfa3c76">CTimer</a>
 </li>
 <li>mTimeFreq
 : <a class="el" href="class_c_child_view.html#a8a2cf821d68b57f72cb6656f09b5537c">CChildView</a>
 </li>
+<li>mTimeLeft
+: <a class="el" href="class_c_timer.html#af41bed3e5d5eabce74898f2c685d6c1f">CTimer</a>
+</li>
+<li>mTimePassed
+: <a class="el" href="class_c_game.html#a4e24eb9eda344f9f7aea2df7e162818c">CGame</a>
+</li>
+<li>mTimeTotal
+: <a class="el" href="class_c_timer.html#af2eb2b43a9bceaebaa9d34091c4698c3">CTimer</a>
+</li>
 <li>mTotalEmitted
 : <a class="el" href="class_c_u_m_l_piece_emitter.html#ad1bed80b3bec17ec14260d7a840bc87c">CUMLPieceEmitter</a>
+</li>
+<li>mUnfair
+: <a class="el" href="class_c_score_board.html#acccc89a556a546994af229b3c554a8dc">CScoreBoard</a>
+</li>
+<li>mWasHit
+: <a class="el" href="class_c_u_m_l_piece.html#a5ba41de8909a0d2d08d2c34e0248dd45">CUMLPiece</a>
 </li>
 <li>mWidth
 : <a class="el" href="class_c_game_object.html#a03d185fee59edfc5b195ea848816bf33">CGameObject</a>
@@ -283,21 +352,29 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 : <a class="el" href="class_c_game_object.html#ade95199e5fd9f62b092030cba7172377">CGameObject</a>
 </li>
 <li>mXDirection
-: <a class="el" href="class_c_u_m_l_piece.html#a1a02e0ed8b83cc0107bf4a9689c184b9">CUMLPiece</a>
+: <a class="el" href="class_c_red_pen.html#a141a2765e9b08f9669725c66c3dab740">CRedPen</a>
+, <a class="el" href="class_c_u_m_l_piece.html#a1a02e0ed8b83cc0107bf4a9689c184b9">CUMLPiece</a>
 </li>
 <li>mXOffset
 : <a class="el" href="class_c_game.html#ab485770f01eaf1c0bd593376f977a2c0">CGame</a>
-, <a class="el" href="class_c_pen_handler.html#ac8692e504665a20c9c647293590f3e8f">CPenHandler</a>
+, <a class="el" href="class_c_red_pen.html#a2548afeb2352219d6649bb2a2407104b">CRedPen</a>
+</li>
+<li>mXOrigin
+: <a class="el" href="class_c_red_pen.html#a7ecaff7f3ccdc2b273af4de1803161f7">CRedPen</a>
 </li>
 <li>mY
 : <a class="el" href="class_c_game_object.html#a793437317ed1db24d94b7e36ab5cf17d">CGameObject</a>
 </li>
 <li>mYDirection
-: <a class="el" href="class_c_u_m_l_piece.html#ad81c4dcdfcd3238dce1b0eed8040d210">CUMLPiece</a>
+: <a class="el" href="class_c_red_pen.html#a46fe9d73fe4c111d15a9be6b976a0f89">CRedPen</a>
+, <a class="el" href="class_c_u_m_l_piece.html#ad81c4dcdfcd3238dce1b0eed8040d210">CUMLPiece</a>
 </li>
 <li>mYOffset
 : <a class="el" href="class_c_game.html#aa39a14aecc7851bae6f9ace0e5a845ad">CGame</a>
-, <a class="el" href="class_c_pen_handler.html#a3d7e4dc18d5ed841cb0c57d4f24f5c7a">CPenHandler</a>
+, <a class="el" href="class_c_red_pen.html#a78d3d5c9d8ea6b42f1d496de6e983e61">CRedPen</a>
+</li>
+<li>mYOrigin
+: <a class="el" href="class_c_red_pen.html#ad547b98eddaf150550d2be97512ace26">CRedPen</a>
 </li>
 </ul>
 
@@ -312,7 +389,7 @@ $(document).ready(function(){initNavTree('functions_vars.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Oct 14 2019 15:23:28 for CSE 335 Project by
+    <li class="footer">Generated on Mon Oct 21 2019 21:52:48 for CSE 335 Project by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.16 </li>
   </ul>

@@ -36,19 +36,35 @@ const int RANK_FOUR_CUTOFF = 20;
 
 /// Text for Rank 1
 const wstring RANK_ONE_TEXT = L"A SQUIRREL WITH A PEN";
+
+/// Description of Rank 1
 const wstring DESCRIPTION_RANK_ONE = L"Squirrels are good at many things,\nbut grading UML is not one of them.";
+
 /// Text for Rank 2
 const wstring RANK_TWO_TEXT = L"A FIRST YEAR CS STUDENT";
+
+/// Description for Rank 2
 const wstring DESCRIPTION_RANK_TWO = L"A good try, but a lot\nof room for improvement.";
+
 /// Text for Rank 3
 const wstring RANK_THREE_TEXT = L"A SEASONED ULA";
+
+/// Description for Rank 3
 const wstring DESCRIPTION_RANK_THREE = L"You have seen your fair share of\nUML, but you're not quite an expert yet.";
+
 /// Text for Rank 4
 const wstring RANK_FOUR_TEXT = L"THE HEAD TA";
+
+/// Description for Rank 4
 const wstring DESCRIPTION_RANK_FOUR = L"An impressive display.\nSurely this is the final rank?";
+
 /// Text for Rank 5
-const wstring RANK_FIVE_TEXT = L"LIVING LEGEND";
-const wstring DESCRIPTION_RANK_FIVE = L"GRADY BOOCH\nIt was not.";
+const wstring RANK_FIVE_TEXT = L"GRADY BOOCH";
+
+/// Description for Rank 5
+const wstring DESCRIPTION_RANK_FIVE = L"It was not.";
+
+
 /**
  * Constructor for CEndScreen
  * \param game The game this end screen is part of

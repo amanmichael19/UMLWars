@@ -3,7 +3,7 @@
  *
  * \author Funakoshi Silva
  *
- *
+ * Visits UMLPiece GameObjects
  */
 
 
@@ -38,8 +38,8 @@ public:
 	bool TryHit(int x, int y);
 
 private:
-	bool mIsUml = false; ///Bool for if target is UMLPiece
-	bool mBad = false; ///Bool for if the piece was bad
-	CUMLPiece* mPiece = nullptr;
+	bool mIsUml = false; ///< Bool for if target is UMLPiece
+	bool mBad = false; ///< Bool for if the piece was bad
+	CUMLPiece* mPiece = nullptr; ///< Pointer to the piece this visitor has visited, if any
 };
 

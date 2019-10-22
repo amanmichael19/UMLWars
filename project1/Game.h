@@ -4,8 +4,6 @@
  * \author Caleb Jenkins
  *
  * Class that implements a Game
- *
- *
  */
 
 #pragma once
@@ -19,6 +17,9 @@ class CUmlHitDetector;
 class CScoreBoard;
 class CPlayer;
 
+/**
+ * Class that represents the game being played
+ */
 class CGame
 {
 public:
@@ -43,45 +44,46 @@ public:
 
 	void HitUml(CGameObject* pen);
 
-	//void HitUml(int x, int y);
-
-	/**
-	 *  Test to see if we hit this GameObject.
-	 * \param x X position to test
-	 * \param y Y position to test
-	 * \return std::shared_ptr<CGameObject>
-	 */
 	std::shared_ptr<CGameObject> CGame::HitTest(int x, int y);
 
-	/// populate game on launch
+	/// Populates game on launch
 	void OnLaunch();
 
-	/// get width
-	/// \return int
+	/// Getter for Width
+	/// \return Width of the game
 	static int GetWidth() { return Width; }
 
-	/// get height
-	/// \return int
+	/// Getter for Height
+	/// \return Height of the game
 	static int GetHeight() { return Height; }
 
-	/// act on mouse movement
+	/// Handles mouse movement event
+	/// \param x X location of mouse
+	/// \param y Y location of mouse
 	void OnMouseMove(int x, int y);
 
-	/// act on left click
+	/// Left CLick event handler
+	/// \param x X location of mouse click
+	/// \param y Y location of mouse click
 	void OnLeftClick(int x, int y);
 
-	/// accepts visitor
-	/// \param visitor
+	/// Accepts visitor
+	/// \param visitor The visitor visiting the game
 	void Accept(CGameObjectVisitor* visitor);
-
 
 	void CheckGameOver();
 
+	/// Setter for mGameOver
+	/// \param gameover New value of mGameOver
 	void SetGameOver(bool gameover) { mGameOver = gameover; }
 
+	/// Getter for mGameOver
+	/// \returns True if game is over
 	bool IsGameOver() { return mGameOver; }
 
-	auto GetPenImage() { return mPenImage; }
+	/// Getter for mPenImage
+	/// \returns The image of the pen
+	std::shared_ptr<Gdiplus::Bitmap> GetPenImage() { return mPenImage; }
 
 	/// Increments missed counter when bad UML leaves screen
 	void UMLMissed();
@@ -93,11 +95,11 @@ private:
 	/// All of the gameobjects to populate our game
 	std::vector<std::shared_ptr<CGameObject> > mGameObjects;
 
-	std::shared_ptr<CScoreBoard> mScoreBoard;
+	std::shared_ptr<CScoreBoard> mScoreBoard; ///< Pointer to Scoreboard GameObject
 
-	std::shared_ptr<CPlayer> mPlayer;
+	std::shared_ptr<CPlayer> mPlayer; ///< Pointer to player GameObject
 
-	std::shared_ptr<Gdiplus::Bitmap> mPenImage;
+	std::shared_ptr<Gdiplus::Bitmap> mPenImage; ///< Pointer to the Pen Image bitmap
 
 	/// Game area in virtual pixels
 	const static int Width = 1250;
