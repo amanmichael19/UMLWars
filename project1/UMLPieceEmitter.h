@@ -45,7 +45,7 @@ private:
 	std::vector<std::shared_ptr<CUMLInheritance>> mInherits; ///< Vector containing valid inherits
 	std::vector<std::shared_ptr<CUMLInheritance>> mBadInherits; ///< Vector containing invalid inherits with reasons
 
-	CGame* mGame; ///< The game this emitter is part of
+	CGame* mGame = nullptr; ///< The game this emitter is part of
 
 	int mHandicap = 5; ///< Higher value makes game easier (less good UML and inheritance)
 	int mTotalEmitted = 0; ///< The total number of UMLPieces that have been emitted this game

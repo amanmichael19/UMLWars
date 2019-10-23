@@ -63,7 +63,7 @@ private:
 	double mYDirection; ///< The Y direction this UMLPiece is moving
 	int mSpeed; ///< The speed at which this UMLPiece is moving
 	bool mWasHit = false; ///< Indicates if this UMLPiece object was hit or not
-	std::shared_ptr<CTimer> mHitUMLTimer; ///< Timer that counts down after this UMLPiece object has been hit
+	std::shared_ptr<CTimer> mHitUMLTimer = nullptr; ///< Timer that counts down after this UMLPiece object has been hit
 
 protected:
 	virtual void DisplayHitMessage(Gdiplus::Graphics* graphics, double& x, double& y);

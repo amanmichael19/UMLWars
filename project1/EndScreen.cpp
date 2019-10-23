@@ -64,6 +64,35 @@ const wstring RANK_FIVE_TEXT = L"GRADY BOOCH";
 /// Description for Rank 5
 const wstring DESCRIPTION_RANK_FIVE = L"It was not.";
 
+/// Name of the font being used, static to avoid link errors
+static const WCHAR* FONT_NAME = L"Arial";
+
+/// Size of primary font
+const int FONT_1_SIZE = 40;
+
+/// Size of secondary font
+const int FONT_2_SIZE = 30;
+
+/// String value for final score label
+const WCHAR* FINAL_SCORE = L"Final Score:";
+
+/// String value for final rank label
+const WCHAR* RANK = L"RANK:";
+
+/// Point on screen to display final score label
+const PointF FINAL_SCORE_POINT = PointF(-500, 200);
+
+/// Point on screen to display final score value
+const PointF FINAL_SCORE_VAL_POINT = PointF(-130, 200);
+
+/// Point on screen to display rank label
+const PointF RANK_LABEL_POINT = PointF(-500, 350);
+
+/// Point on screen to display rank value
+const PointF RANK_VAL_POINT = PointF(-130, 350);
+
+/// Point on screen to display rank description
+const PointF RANK_DESC_POINT = PointF(-300, 650);
 
 /**
  * Constructor for CEndScreen
@@ -147,23 +176,18 @@ void CEndScreen::DisplayRank()
 
 void CEndScreen::Draw(Gdiplus::Graphics* graphics)
 {
-	FontFamily fontFamily(L"Arial");
-	Gdiplus::Font font(&fontFamily, 40);
-	Gdiplus::Font font2(&fontFamily, 30);
+	FontFamily fontFamily(FONT_NAME);
+	Gdiplus::Font font(&fontFamily, FONT_1_SIZE);
+	Gdiplus::Font font2(&fontFamily, FONT_2_SIZE);
 	SolidBrush heavyGreen(Color::DarkGreen);
 	SolidBrush red(Color::Red);
 
-	/// TODO: clean all other objects and display inthe center, wii finish this when the time of score is done.
-	graphics->DrawString(L"Final Score:", -1, &font, PointF(-500, 200), &heavyGreen);
+	// Draw final score
+	graphics->DrawString(FINAL_SCORE, -1, &font, FINAL_SCORE_POINT, &heavyGreen);
+	graphics->DrawString(to_wstring(mFinalScore).c_str(), -1, &font, FINAL_SCORE_VAL_POINT, &red);
 
-	graphics->DrawString(to_wstring(mFinalScore).c_str(), -1, &font, PointF(-130, 200), &red);
-
-	graphics->DrawString(L"RANK:", -1, &font, PointF(-500, 350), &heavyGreen);
-
-	graphics->DrawString( mRankText.c_str(), -1, &font, PointF(-130, 350), &red);
-
-	graphics->DrawString(mDescription.c_str(), -1, &font2, PointF(-300, 650), &heavyGreen);
-
-
-	
+	// Draw final rank and description
+	graphics->DrawString(RANK, -1, &font, RANK_LABEL_POINT, &heavyGreen);
+	graphics->DrawString( mRankText.c_str(), -1, &font, RANK_VAL_POINT, &red);
+	graphics->DrawString(mDescription.c_str(), -1, &font2, RANK_DESC_POINT, &heavyGreen);
 }

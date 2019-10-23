@@ -17,6 +17,12 @@ class CUmlHitDetector;
 class CScoreBoard;
 class CPlayer;
 
+/// Width of the screen in virtual pixels
+const int WIDTH = 1250;
+
+/// Height of the screen in virtual pixels
+const int HEIGHT = 1000;
+
 /**
  * Class that represents the game being played
  */
@@ -95,17 +101,17 @@ private:
 	/// All of the gameobjects to populate our game
 	std::vector<std::shared_ptr<CGameObject> > mGameObjects;
 
-	std::shared_ptr<CScoreBoard> mScoreBoard; ///< Pointer to Scoreboard GameObject
+	std::shared_ptr<CScoreBoard> mScoreBoard = nullptr; ///< Pointer to Scoreboard GameObject
 
-	std::shared_ptr<CPlayer> mPlayer; ///< Pointer to player GameObject
+	std::shared_ptr<CPlayer> mPlayer = nullptr; ///< Pointer to player GameObject
 
-	std::shared_ptr<Gdiplus::Bitmap> mPenImage; ///< Pointer to the Pen Image bitmap
+	std::shared_ptr<Gdiplus::Bitmap> mPenImage = nullptr; ///< Pointer to the Pen Image bitmap
 
 	/// Game area in virtual pixels
-	const static int Width = 1250;
+	const static int Width = WIDTH;
 
 	/// Game area height in virtual pixels
-	const static int Height = 1000;
+	const static int Height = HEIGHT;
 
 	/// value to scale screen size by
 	double mScale = 1.0;
@@ -117,7 +123,7 @@ private:
 	double mYOffset = 0.0;
 
 	/// Emitter for UMLPieces
-	std::shared_ptr<CUMLPieceEmitter> mEmitter;
+	std::shared_ptr<CUMLPieceEmitter> mEmitter = nullptr;
 
 	/// Time until emitter emits next piece
 	double mEmitterTime = 0;
@@ -128,8 +134,8 @@ private:
 	/// game over check
 	bool mGameOver = false;
 
-	/// Queue of objects to be deleted from the game, initialize to empty vector
-	std::vector<std::shared_ptr<CGameObject>> mDeleteQueue = std::vector<std::shared_ptr<CGameObject>>();
+	/// Queue of objects to be deleted from the game
+	std::vector<std::shared_ptr<CGameObject>> mDeleteQueue;
 
 	void ClearQueue();
 

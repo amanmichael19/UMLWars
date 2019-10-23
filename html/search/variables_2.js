@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['description_5frank_5ffive_483',['DESCRIPTION_RANK_FIVE',['../_end_screen_8cpp.html#aaf04ce8b3c93118c1c7e3d7068c8e4a8',1,'EndScreen.cpp']]],
-  ['description_5frank_5ffour_484',['DESCRIPTION_RANK_FOUR',['../_end_screen_8cpp.html#a191a85695b4e54a60b51d339cdf6ef7d',1,'EndScreen.cpp']]],
-  ['description_5frank_5fone_485',['DESCRIPTION_RANK_ONE',['../_end_screen_8cpp.html#a890ef8c319dc5801e3683c7fa9ebaec2',1,'EndScreen.cpp']]],
-  ['description_5frank_5fthree_486',['DESCRIPTION_RANK_THREE',['../_end_screen_8cpp.html#a7ece9bb2282919afb992635eff2b98f1',1,'EndScreen.cpp']]],
-  ['description_5frank_5ftwo_487',['DESCRIPTION_RANK_TWO',['../_end_screen_8cpp.html#a7bd81ad53b8eba94b5c8808b431af1ce',1,'EndScreen.cpp']]]
+  ['correct_515',['CORRECT',['../_score_board_8cpp.html#abe490a288082eafac6961171aeff8beb',1,'ScoreBoard.cpp']]],
+  ['correct_5fpoint_516',['CORRECT_POINT',['../_score_board_8cpp.html#ac3a926cd33990f26c1fc9c20294674ac',1,'ScoreBoard.cpp']]],
+  ['correct_5fvalue_517',['CORRECT_VALUE',['../_end_screen_8cpp.html#a648c9523685778aa59bf46c67c7f5803',1,'EndScreen.cpp']]]
 ];

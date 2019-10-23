@@ -51,6 +51,21 @@ const double MIN_X_SPAWN = -300;
 /// Variance that X spawn location can have
 const double X_SPAWN_FACTOR = 600;
 
+/// The value that needs to be passed to make good UML or UML with inheritance
+const int THRESHOLD = 4;
+
+/// The number of bad elements that a single class UMLPiece can have
+const int BAD_ELEMENT_TYPES = 3;
+
+/// Maximum number of attributes a UMLPiece can have
+const int MAX_NUM_ATTRIBUTES = 4;
+
+/// Maximum number of operatons a UMLPiece can have
+const int MAX_NUM_OPERATIONS = 4;
+
+/// One above maximum number that can be tested against THRESHOLD
+const int THRESHOLD_RAND_MAX = 10;
+
 /**
  * CUMLPieceEmitter Constructor
  * \param game The game this emitter is part of
@@ -73,7 +88,6 @@ CUMLPieceEmitter::CUMLPieceEmitter(CGame* game)
 	mBadOperations = reader.GetBadOperations();
 	mInherits = reader.GetInherits();
 	mBadInherits = reader.GetBadInherits();
-	srand(8675309);
 }
 
 /**
@@ -83,8 +97,8 @@ CUMLPieceEmitter::CUMLPieceEmitter(CGame* game)
 shared_ptr<CUMLPiece> CUMLPieceEmitter::EmitPiece()
 {
 	// Chance to create inherited instead of class starts at 0%
-	// And moves up to 50% over time
-	if (((rand() % 10) + mHandicap) < 4)
+	// And moves up to 50% over time given current values of constants
+	if (((rand() % THRESHOLD_RAND_MAX) + mHandicap) < THRESHOLD)
 	{
 		// Make inherited
 		return EmitInherited();
@@ -107,13 +121,14 @@ shared_ptr<CUMLPiece> CUMLPieceEmitter::EmitPiece()
 	int numOperations; // Number of operations to add to display
 
 	// Decide if new UML object is bad or not, starts at 100% bad, goes to 50% as time progresses
-	// Increases probability in 10% increments
-	if (((rand() % 10) + mHandicap) > 4)
+	// Increases probability in 10% increments given current values of constants
+	if (((rand() % THRESHOLD_RAND_MAX) + mHandicap) > THRESHOLD)
 	{
 		// Make bad UML
-		int badValue = rand() % 3;
+		int badValue = rand() % BAD_ELEMENT_TYPES;
 		int badIndex = 0;
 
+		// Decide which element will be bad
 		switch (badValue)
 		{
 			case 0: // Bad Name
@@ -124,8 +139,8 @@ shared_ptr<CUMLPiece> CUMLPieceEmitter::EmitPiece()
 				newPiece->SetBad(mBadNames[badIndex]->GetBad());
 
 				// Decide number of attributes and operations to add
-				numAttributes = rand() % 4;
-				numOperations = rand() % 4;
+				numAttributes = rand() % MAX_NUM_ATTRIBUTES;
+				numOperations = rand() % MAX_NUM_OPERATIONS;
 				
 				// Finish creating display
 				CreateDisplay(newDisplay,false,numAttributes,numOperations);
@@ -140,8 +155,8 @@ shared_ptr<CUMLPiece> CUMLPieceEmitter::EmitPiece()
 				newPiece->SetBad(mBadAttributes[badIndex]->GetBad());
 
 				// Decide number of additional attributes and operations to add
-				numAttributes = rand() % 3;
-				numOperations = rand() % 4;
+				numAttributes = rand() % (MAX_NUM_ATTRIBUTES - 1);
+				numOperations = rand() % MAX_NUM_OPERATIONS;
 
 				// Finish creating display
 				CreateDisplay(newDisplay, true, numAttributes, numOperations);
@@ -156,8 +171,8 @@ shared_ptr<CUMLPiece> CUMLPieceEmitter::EmitPiece()
 				newPiece->SetBad(mBadOperations[badIndex]->GetBad());
 
 				// Decide number of attributes and additional operations to add
-				numAttributes = rand() % 4;
-				numOperations = rand() % 3;
+				numAttributes = rand() % MAX_NUM_ATTRIBUTES;
+				numOperations = rand() % (MAX_NUM_OPERATIONS - 1);
 
 				// Finish creating display
 				CreateDisplay(newDisplay, true, numAttributes, numOperations);
@@ -168,8 +183,8 @@ shared_ptr<CUMLPiece> CUMLPieceEmitter::EmitPiece()
 
 	else
 	{
-		numAttributes = rand() % 4;
-		numOperations = rand() % 4;
+		numAttributes = rand() % MAX_NUM_ATTRIBUTES;
+		numOperations = rand() % MAX_NUM_OPERATIONS;
 
 		CreateDisplay(newDisplay, true, numAttributes, numOperations);
 	}
@@ -289,8 +304,8 @@ shared_ptr<CUMLPiece> CUMLPieceEmitter::EmitInherited()
 
 
 	// Decide if new UML object is bad or not, starts at 100% bad, goes to 50% as time progresses
-	// Increases probability in 10% increments
-	if (((rand() % 10) + mHandicap) > 4) // Make bad UML
+	// Increases probability in 10% increments given current values of constants
+	if (((rand() % THRESHOLD_RAND_MAX) + mHandicap) > THRESHOLD) // Make bad UML
 	{
 		// Select bad Inherit
 		int badIndex = rand() % (mBadInherits.size());
@@ -314,13 +329,13 @@ shared_ptr<CUMLPiece> CUMLPieceEmitter::EmitInherited()
 	}
 
 	// Create Base Display
-	int numAttributes = rand() % 4; // Number of attributes to add to display
-	int numOperations = rand() % 4; // Number of operations to add to display
+	int numAttributes = rand() % MAX_NUM_ATTRIBUTES; // Number of attributes to add to display
+	int numOperations = rand() % MAX_NUM_OPERATIONS; // Number of operations to add to display
 	CreateDisplay(newBase, false, numAttributes, numOperations);
 
 	// Create Derived Display 
-	numAttributes = rand() % 4;
-	numOperations = rand() % 4;
+	numAttributes = rand() % MAX_NUM_ATTRIBUTES;
+	numOperations = rand() % MAX_NUM_OPERATIONS;
 	CreateDisplay(newDerived, false, numAttributes, numOperations);
 
 	// Set displays for new piece

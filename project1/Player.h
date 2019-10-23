@@ -64,10 +64,10 @@ class CPlayer : public CGameObject
 
 	private:
 		/// player image
-		std::unique_ptr<Gdiplus::Bitmap> mPlayerImage;
+		std::unique_ptr<Gdiplus::Bitmap> mPlayerImage = nullptr;
 		
 		/// pen handler
-		std::shared_ptr<CRedPen> mPenOnHand;
+		std::shared_ptr<CRedPen> mPenOnHand = nullptr;
 		
 		/// Is pen on hand
 		bool mIsPenOnHand;
@@ -76,7 +76,7 @@ class CPlayer : public CGameObject
 		double mAngle = 0.0;
 		
 		/// pen timer
-		std::shared_ptr<CTimer>	 mPenTimer;
+		std::shared_ptr<CTimer>	 mPenTimer = nullptr;
 
 };
 

@@ -23,6 +23,6 @@ public:
 	virtual bool HitTest(int x, int y) override;
 
 private:
-	std::shared_ptr<CUMLDisplay> mClassDisplay; ///< The CUMLDisplay object that displays this class
+	std::shared_ptr<CUMLDisplay> mClassDisplay = nullptr; ///< The CUMLDisplay object that displays this class
 };
 

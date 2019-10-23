@@ -7,6 +7,12 @@
 #include "pch.h"
 #include "UMLClass.h"
 
+/// Message text a good UMLPiece that has been struck by a pen
+const std::wstring UNFAIR = L"Unfair";
+
+/// Default value of mBad for a good UMLPiece
+const std::wstring EMPTY = L"";
+
 /**
  * CUMLClass Constructor
  *
@@ -32,9 +38,9 @@ void CUMLClass::Draw(Gdiplus::Graphics* graphics)
 	// Display hit message
 	if (GetWasHit())
 	{
-		if (GetBad() == L"")
+		if (GetBad() == EMPTY)
 		{
-			SetBad(L"Unfair");
+			SetBad(UNFAIR);
 		}
 
 		double x = GetX() + (mClassDisplay->GetWidth() / 2);

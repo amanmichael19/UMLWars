@@ -15,8 +15,17 @@
 /// Mathematical value of pi rounded to nine places
 const double PI = 3.141592653;
 
+/// X offset in virtual pixels
+static const double X_OFFSET = 29.0;
+
+/// Y offset in virtual pixels
+static const double Y_OFFSET = 54.0;
+
+/// Speed that pen moves in virutal pixels/second
+static const double SPEED = 1000.0;
+
  /**
-  * class implementing player
+  * Class that implements a RedPen GameObject
   */
 class CRedPen : public CGameObject
 {
@@ -45,45 +54,59 @@ public:
 	void OnMouseMove(double angle);
 
 	/// set location of the red pen
-	/// \param x
-	/// \param y
+	/// \param x Desired X location of pen in virtual pixels
+	/// \param y Desired Y location of pen in virtual pixels
 	void SetLocation(double x, double y) override;
 
-	/// accept
-	/// \param visitor
+	/// Accepts a visitor
+	/// \param visitor The visitor currently visiting this object
 	virtual void Accept(CGameObjectVisitor* visitor) override {}
 
 private:
 	/// pen image
-	std::shared_ptr<Gdiplus::Bitmap> mPenImage;
+	std::shared_ptr<Gdiplus::Bitmap> mPenImage = nullptr;
+
 	/// angle of rotation
 	double mAngleOfRotation = -PI / 2;
+
 	///angle offset
 	double mAngleOffset = PI/2;
+
 	/// angle of movement
 	double mAngleOfMovement = 0.0;
+
 	/// angle of pen after being fired
 	double mAngleOnAir = 0.0;
+
 	/// bool to dictate rotation
 	bool mOnHand = true;
+
 	/// initial load x location
 	double mLoadX = 0.0;
+
 	/// initial load y location
 	double mLoadY = 0.0;
+
 	/// the x center of the player to be used as origin for pen
 	double mXOrigin = 0.0;
+
 	/// the y center of the player to be used as origin for pen
 	double mYOrigin = 0.0;
+
 	/// offset x from player image center
-	const double mXOffset = 29.0;
+	const double mXOffset = X_OFFSET;
+
 	/// offset y from player image center
-	const double mYOffset = 54.0;
+	const double mYOffset = Y_OFFSET;
+
 	/// x direction
 	double mXDirection = 0.0;
+
 	/// y direction
 	double mYDirection = 0.0;
+
 	/// speed
-	double mSpeed = 1000.0;
+	double mSpeed = SPEED;
 };
 
 

@@ -27,6 +27,12 @@ const double EMITTER_INTERVAL = 5;
 /// game duration
 const double GameDuration = 60.0;
 
+/// Path to pen's image file
+const WCHAR* PEN_FILENAME = L"images/images/redpen.png";
+
+/// Error for if pen file did not open correctly
+const WCHAR* PEN_ERROR = L"Failed to open images/images/redpen.png";
+
 /**
  * Game constructor
  */
@@ -46,10 +52,10 @@ void CGame::OnLaunch()
 	srand(unsigned(time(NULL)));
 
 	// Load pen image
-	mPenImage = std::shared_ptr<Bitmap>(Bitmap::FromFile(L"images/images/redpen.png"));
+	mPenImage = std::shared_ptr<Bitmap>(Bitmap::FromFile(PEN_FILENAME));
 	if (mPenImage->GetLastStatus() != Ok)
 	{
-		AfxMessageBox(L"Failed to open images/images/redpen.png");
+		AfxMessageBox(PEN_ERROR);
 	}
 
 	// Create the scoreboard
@@ -77,10 +83,6 @@ void CGame::OnLaunch()
  */
 void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 {
-	// Fill the background with black
-	/*SolidBrush brush(Color::Black);
-	graphics->FillRectangle(&brush, 0, 0, width, height);*/
-
 	//
 	// Automatic Scaling
 	//
@@ -89,7 +91,6 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 	mScale = min(scaleX, scaleY);
 
 	mXOffset = width / 2.0f;
-	//mXOffset = (width - mScale * width) / 2 ;
 	mYOffset = 0;
 	if (height > Height * mScale) {
 		mYOffset = (float)((height - Height * mScale) / 2);
@@ -98,22 +99,13 @@ void CGame::OnDraw(Gdiplus::Graphics* graphics, int width, int height)
 	graphics->TranslateTransform((Gdiplus::REAL)mXOffset, (Gdiplus::REAL)mYOffset);
 	graphics->ScaleTransform((Gdiplus::REAL)mScale, (Gdiplus::REAL)mScale);
 
-	// Fill the background with white
-	/*SolidBrush new_brush(Color::White);
-	graphics->FillRectangle(&new_brush, -Width/2.0, 0, Width, Height);*/
-
-	/// TODO: EndScreen teasting.
-	//CEndScreen EndScreen();
-	//EndScreen->Draw(graphics);
-
+	// Draw all gameobjects
 	for (auto gameObjects : mGameObjects)
 	{
 		gameObjects->Draw(graphics);
 	}
 
-	// This will prevent the harold and scoreboard 
-	//to be Drawn at the end of the game
-	// when the end screen gets drawm
+	// Draw player and scoreboard last if the game has not yet been won
 	if (!mGameOver)
 	{
 		mPlayer->Draw(graphics);
@@ -288,37 +280,43 @@ void CGame::Update(double elapsed)
  */
 void CGame::HitUml(CGameObject* pen)
 {
+	// Create an appropriate visitor
 	CUmlVisitor umlVisitor;
 	std::vector<std::shared_ptr<CGameObject> > hitUml;
 
+	// Get pen coordinates
 	double penX = pen->GetX();
 	double penY = pen->GetY();
 
+	// Loop  for every gameobject
 	for (auto object : mGameObjects)
 	{
 		object->Accept(&umlVisitor);
 		if (umlVisitor.IsUML())
 		{
+			// Check if pen hit UML
 			if (umlVisitor.TryHit((int)penX, (int)penY))
 			{
+				// If pen hit UML, mark this pen and the UML for deletion
 				pen->MarkForDelete(true);
 				if (std::find(hitUml.begin(), hitUml.end(), object) ==
 					hitUml.end())
 				{
 					hitUml.push_back(object);
 
+					// Increment the appropriate score on the scoreboard
 					if (umlVisitor.IsBad())
 					{
 						mScoreBoard->IncrementCorrectScore();
-						//break;
 					}
+
 					else
 					{
 						mScoreBoard->IncrementUnfairScore();
-						//break;
 					}
 				}
 			}
+			// Reset the visitor for the next visit
 			umlVisitor.Reset();
 		}
 	}

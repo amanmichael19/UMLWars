@@ -15,9 +15,7 @@ var dir_9494b5426caa720dc1bf65a82ac3fc2c =
     ] ],
     [ "framework.h", "framework_8h_source.html", null ],
     [ "Game.cpp", "_game_8cpp.html", "_game_8cpp" ],
-    [ "Game.h", "_game_8h.html", [
-      [ "CGame", "class_c_game.html", "class_c_game" ]
-    ] ],
+    [ "Game.h", "_game_8h.html", "_game_8h" ],
     [ "GameObject.cpp", "_game_object_8cpp.html", null ],
     [ "GameObject.h", "_game_object_8h.html", [
       [ "CGameObject", "class_c_game_object.html", "class_c_game_object" ]
@@ -33,7 +31,7 @@ var dir_9494b5426caa720dc1bf65a82ac3fc2c =
     ] ],
     [ "project1.h", "project1_8h_source.html", null ],
     [ "RedPen.h", "_red_pen_8h.html", "_red_pen_8h" ],
-    [ "ScoreBoard.cpp", "_score_board_8cpp.html", null ],
+    [ "ScoreBoard.cpp", "_score_board_8cpp.html", "_score_board_8cpp" ],
     [ "ScoreBoard.h", "_score_board_8h.html", [
       [ "CScoreBoard", "class_c_score_board.html", "class_c_score_board" ]
     ] ],
@@ -45,7 +43,7 @@ var dir_9494b5426caa720dc1bf65a82ac3fc2c =
     [ "UMLAttribute.h", "_u_m_l_attribute_8h.html", [
       [ "CUMLAttribute", "class_c_u_m_l_attribute.html", "class_c_u_m_l_attribute" ]
     ] ],
-    [ "UMLClass.cpp", "_u_m_l_class_8cpp.html", null ],
+    [ "UMLClass.cpp", "_u_m_l_class_8cpp.html", "_u_m_l_class_8cpp" ],
     [ "UMLClass.h", "_u_m_l_class_8h.html", [
       [ "CUMLClass", "class_c_u_m_l_class.html", "class_c_u_m_l_class" ]
     ] ],

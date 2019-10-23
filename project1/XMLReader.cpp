@@ -11,7 +11,7 @@ using namespace std;
 using namespace xmlnode;
 
 /// Name of file containing UML information
-wstring filename = L"images/data/uml.xml";
+const wstring FILENAME = L"images/data/uml.xml";
 
 /**
  * Loads the UML Data from the XML file
@@ -21,7 +21,7 @@ void CXMLReader::Load()
 	try
 	{
 		// Open the document to read
-		shared_ptr<CXmlNode> root = CXmlNode::OpenDocument(filename);
+		shared_ptr<CXmlNode> root = CXmlNode::OpenDocument(FILENAME);
 
 		// Once we know it is open, read data
 

@@ -11,6 +11,7 @@
 #include "Player.h"
 #include "RedPen.h"
 #include "Game.h"
+#include <string>
 
 
 using namespace Gdiplus;
@@ -18,17 +19,21 @@ using namespace std;
 
 /// Constant ratio to convert radians to degrees
 const double RtoD = 57.295779513;
+
 /// constant pen reload duration
 const double ReloadDuration = 1.0;
 
+/// Filepath to image of Harold
+const WCHAR* HAROLD_FILENAME = L"images/images/harold.png";
+
+const WCHAR* HAROLD_ERROR = L"Failed to open images/harold.png";
+
 CPlayer::CPlayer(CGame* game) : CGameObject(game)
 {
-	mPlayerImage = unique_ptr<Gdiplus::Bitmap>(
-		//Bitmap::FromFile(L"M:/project1/images/images/harold.png"));
-		Bitmap::FromFile(L"images/images/harold.png"));
+	mPlayerImage = unique_ptr<Gdiplus::Bitmap>(Bitmap::FromFile(HAROLD_FILENAME));
 	if (mPlayerImage->GetLastStatus() != Ok)
 	{
-		AfxMessageBox(L"Failed to open images/harold.png");
+		AfxMessageBox(HAROLD_ERROR);
 	}
 	else
 	{

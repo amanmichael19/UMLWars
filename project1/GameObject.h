@@ -12,12 +12,11 @@
 
 #include "GameObjectVisitor.h"
 
-
 class CGame;
 
 
 /**
- * GameObject class to hold various game objects
+ * GameObject class to represent various game objects
  */
 
 class CGameObject
@@ -101,7 +100,7 @@ private:
 	double mHeight = 0; ///< Height of object
 
 	/// The Game for this object
-	CGame* mGame;
+	CGame* mGame = nullptr;
 
 	bool mHit = false; ///< Tracks if this object has been hit by a pen or not
 

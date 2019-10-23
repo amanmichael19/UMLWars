@@ -172,5 +172,4 @@ void CChildView::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd::OnSize(nType, cx, cy);
 	Invalidate();
-	// TODO: Add your message handler code here
 }

@@ -16,8 +16,10 @@ using namespace std;
 
 /// Constant ratio to convert radians to degrees
 const double RtoD = 57.295779513;
+
 /// angle of hand from center of player
 const double INITIAL_ANGLE = -1.078;
+
 /// radius of hand from center of player
 const double RADIUS = 61.3;
 

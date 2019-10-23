@@ -21,6 +21,9 @@ const double ARROW_X_OFFSET = 20;
 /// How many pixels to left or right of arrow a hit can be for hit detection
 const double X_BUFFER = 5;
 
+/// String indicating that the inherited UML's arrow points up
+const std::wstring UP = L"up";
+
 /**
  * CUMLInherited Constructor
  *
@@ -57,10 +60,10 @@ void CUMLInherited::Draw(Gdiplus::Graphics* graphics)
 	mDerivedDisplay->Draw(graphics,derivedX,derivedY); // Draw Derived
 
 	// Pen used to draw arrow
-	Gdiplus::Pen blackPen(Gdiplus::Color(0, 0, 0));
+	Gdiplus::Pen blackPen(Gdiplus::Color::Black);
 
 	// Pen used to clean up leftover arrow
-	Gdiplus::Pen eraser(Gdiplus::Color(255, 255, 255));
+	Gdiplus::Pen eraser(Gdiplus::Color::White);
 
 	// Draw shaft of arrow
 	PointF topPoint((Gdiplus::REAL)(derivedX + (mDerivedDisplay->GetWidth() / 2)), (Gdiplus::REAL)(derivedY - Y_OFFSET) );
@@ -68,7 +71,7 @@ void CUMLInherited::Draw(Gdiplus::Graphics* graphics)
 	graphics->DrawLine(&blackPen, topPoint, tailPoint);
 
 	// Draw up arrow tip
-	if (mArrowDirection == L"up")
+	if (mArrowDirection == UP)
 	{
 		// Points needed to draw up arrow
 		PointF leftTop((Gdiplus::REAL)(topPoint.X - ARROW_X_OFFSET), (Gdiplus::REAL)(topPoint.Y + ARROW_Y_OFFSET));

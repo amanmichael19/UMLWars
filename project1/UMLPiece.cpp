@@ -16,11 +16,21 @@ using namespace std;
 
 /// The maximum Y value of the display
 const double SCREEN_SIZE_Y = 1000;
-/// umlpiece duration after hit
+
+/// How long the UMLPiece object persists after being struck by pen
 const double StuckDuration = 1.0;
 
 /// The size of the font on the UML hit message
 const int FONT_SIZE = 25;
+
+/// String used to indicate that a good UMLPiece was incorrectly hit
+const wstring UNFAIR = L"Unfair";
+
+/// String value of a good UMLPiece's mBad data member when been instantiated
+const wstring EMPTY = L"";
+
+/// Name of font to be used, static to avoid link error
+static const WCHAR* FONT_NAME = L"Arial";
 
 /**
  * CUMLPiece Constructor
@@ -61,7 +71,7 @@ void CUMLPiece::Update(double elapsed)
 	if (LeaveScreenCheck())
 	{
 		// If piece was bad signal missed
-		if (mBad != L"")
+		if (mBad != EMPTY)
 		{
 			GetGame()->UMLMissed();
 		}
@@ -102,9 +112,9 @@ void CUMLPiece::DisplayHitMessage(Gdiplus::Graphics* graphics, double& x, double
 	SolidBrush messageBrush(Color(0, 0, 0)); // Pen to display message with, defaults to black
 
 	// Good UML, Set color and update message
-	if (mBad == L"" || mBad == L"Unfair")
+	if (mBad == EMPTY || mBad == UNFAIR)
 	{
-		mBad = L"Unfair";
+		mBad = UNFAIR;
 		messageBrush.SetColor(Color::Red);
 	}
 
@@ -119,7 +129,7 @@ void CUMLPiece::DisplayHitMessage(Gdiplus::Graphics* graphics, double& x, double
 	Gdiplus::PointF origin(0.0f, 0.0f);
 
 	// Font to be used
-	Gdiplus::FontFamily fontFamily(L"Arial");
+	Gdiplus::FontFamily fontFamily(FONT_NAME);
 	Gdiplus::Font font(&fontFamily, FONT_SIZE);
 
 	// Calculate size of message string

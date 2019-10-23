@@ -58,16 +58,8 @@ namespace Testing
 			Assert::IsTrue(game.HitTest(100, 200) == obj2,
 				L"Testing obj stacking");
 
-			/*
-			game.MoveToFront(obj1);
-
-			Assert::IsTrue(game.HitTest(100, 200) == obj1,
-				L"Testing MoveToFront at 100, 200");
-			*/
-
 			Assert::IsTrue(game.HitTest(100, 2010) == nullptr,
 				L"Testing no obj at 100, 2010");
 		}
-		//*/
 	};
 }

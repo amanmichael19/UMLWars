@@ -27,8 +27,8 @@ public:
 	virtual bool HitTest(int x, int y) override;
 
 private:
-	std::shared_ptr<CUMLDisplay> mBaseDisplay; ///< The CUMLDisplay object that displays the base class
-	std::shared_ptr<CUMLDisplay> mDerivedDisplay; ///< The CUMLDisplay object that displays the derived class
+	std::shared_ptr<CUMLDisplay> mBaseDisplay = nullptr; ///< The CUMLDisplay object that displays the base class
+	std::shared_ptr<CUMLDisplay> mDerivedDisplay = nullptr; ///< The CUMLDisplay object that displays the derived class
 	std::wstring mArrowDirection;	///< The direction of the arrow
 	bool mFirstDraw = true; ///< Indicates if it is the first time the piece has been drawn
 

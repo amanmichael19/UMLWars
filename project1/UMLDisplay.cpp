@@ -12,6 +12,15 @@ using namespace Gdiplus;
 /// The size of the font on the UML
 const int FONT_SIZE = 13;
 
+/// The name of the font to be used, static to avoid linking error
+static const WCHAR* FONT_NAME = L"Arial";
+
+/// Minimum height of a UMLPiece object
+const double MIN_HEIGHT = 10.0f;
+
+/// Minimum width of a UMLPiece object
+const double MIN_WIDTH = 50.0f;
+
 /**
  * Draws the UML on the screen
  * \param graphics The graphics device to be drawn on
@@ -31,12 +40,12 @@ void CUMLDisplay::Draw(Gdiplus::Graphics* graphics, double x, double y)
 	double yOffset = y + mNameHeight;
 
 	// Colors to be used
-	SolidBrush yellowBrush(Color(255, 255, 193));
-	SolidBrush blackBrush(Color(0, 0, 0));
-	Pen blackPen(Color(0, 0, 0));
+	SolidBrush yellowBrush(Color::Yellow);
+	SolidBrush blackBrush(Color::Black);
+	Pen blackPen(Color::Black);
 
 	// Font to be used
-	FontFamily fontFamily(L"Arial");
+	FontFamily fontFamily(FONT_NAME);
 	Gdiplus::Font font(&fontFamily, FONT_SIZE);
 
 	// Rectangle that contains UML
@@ -82,7 +91,7 @@ void CUMLDisplay::Draw(Gdiplus::Graphics* graphics, double x, double y)
 void CUMLDisplay::SetDimensions(Gdiplus::Graphics* graphics)
 {
 	// Font to be used
-	FontFamily fontFamily(L"Arial");
+	FontFamily fontFamily(FONT_NAME);
 	Gdiplus::Font font(&fontFamily, FONT_SIZE);
 	Gdiplus::RectF size;
 	Gdiplus::PointF origin(0.0f, 0.0f);
@@ -133,13 +142,13 @@ void CUMLDisplay::SetDimensions(Gdiplus::Graphics* graphics)
 	// Minimum height
 	if (mHeight == 0.0f)
 	{
-		mHeight = 10.0f;
+		mHeight = MIN_HEIGHT;
 	}
 
 	// Minimum width
 	if (mWidth == mNameHeight)
 	{
-		mWidth += 50.0f;
+		mWidth += MIN_WIDTH;
 	}
 }
 

@@ -19,7 +19,8 @@ void CTimer::Update(double elapsed)
 		mTimeLeft = mTimeTotal - (float(diff) / CLOCKS_PER_SEC);
 		if (mTimeLeft <= 0)
 		{
-			mTimeLeft = 0.0; mIsStart = false;
+			mTimeLeft = 0.0;
+			mIsStart = false;
 		}
 	}
 	else
